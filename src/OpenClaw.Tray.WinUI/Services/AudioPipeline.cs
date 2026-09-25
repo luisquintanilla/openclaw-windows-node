@@ -394,10 +394,7 @@ public sealed class AudioPipeline : IAsyncDisposable
             // Compute RMS for level visualization
             if (resampled.Length > 0)
             {
-                float sumSquares = 0;
-                for (int i = 0; i < resampled.Length; i++)
-                    sumSquares += resampled[i] * resampled[i];
-                var rms = MathF.Sqrt(sumSquares / resampled.Length);
+                var rms = AudioNumerics.CalculateRms(resampled);
                 AudioLevelChanged?.Invoke(Math.Clamp(rms * 3f, 0f, 1f));
             }
 
@@ -431,19 +428,14 @@ public sealed class AudioPipeline : IAsyncDisposable
             var chunk = _resampleBuffer.GetRange(0, VadChunkSamples).ToArray();
             _resampleBuffer.RemoveRange(0, VadChunkSamples);
 
-            // Compute RMS energy of this chunk
-            float energy = 0;
-            for (int i = 0; i < chunk.Length; i++)
-                energy += chunk[i] * chunk[i];
-            energy = MathF.Sqrt(energy / chunk.Length);
-
-            _vadChunkCount++;
-
             // Hysteresis: use a higher threshold to START detecting speech,
             // and a lower threshold to STAY in speech mode. This prevents
             // brief pauses between words from ending the utterance.
             const float startThreshold = 0.03f;  // energy to begin speech
             const float stayThreshold = 0.008f;   // energy to remain in speech (much lower)
+
+            float energy = AudioNumerics.CalculateVadRms(chunk, _isSpeaking ? stayThreshold : startThreshold);
+            _vadChunkCount++;
 
             bool chunkIsSpeech = _isSpeaking
                 ? energy >= stayThreshold
