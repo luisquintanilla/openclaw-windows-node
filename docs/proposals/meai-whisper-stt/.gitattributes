@@ -1,0 +1,2 @@
+# Preserve archived patch bytes, including required blank context-line prefixes.
+initial-source.patch -text -whitespace

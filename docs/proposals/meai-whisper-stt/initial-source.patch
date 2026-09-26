@@ -1,0 +1,441 @@
+diff --git a/docs/WINDOWS_NODE_TESTING.md b/docs/WINDOWS_NODE_TESTING.md
+index 0867fa45..e4bf0402 100644
+--- a/docs/WINDOWS_NODE_TESTING.md
++++ b/docs/WINDOWS_NODE_TESTING.md
+@@ -127,6 +127,80 @@ These features need the gateway to send `node.invoke` commands:
+ | `ollama.models` | Discover local Ollama chat models | Requires Share Windows Ollama in Permissions; reads the separately installed Ollama service on `127.0.0.1:11434` |
+ | `ollama.chat` | Run bounded local Ollama inference | Requires Share Windows Ollama, gateway command approval, and an exact local model returned by `ollama.models` |
+ 
++### Local Whisper speech client
++
++`SpeechToTextService` consumes the `ISpeechToTextClient` already shipped by
++Whisper.net 1.9.0, with an explicit Microsoft.Extensions.AI.Abstractions 10.9.0
++reference. The package is stable, but its speech APIs are experimental
++(`MEAI001`). No middleware, exporter, cloud provider, or native engine upgrade
++is included.
++
++The service still explicitly loads the same GGML model, converts 16 kHz mono
++float samples to PCM16 WAV, normalizes BCP-47 tags to a two-letter language or
++`auto`, and sets `max(1, processor count / 2)` threads. `TextLanguage` stays
++unset: the pinned adapter treats any nonempty value as English translation.
++Each adapter streaming update represents a complete Whisper segment despite its
++`TextUpdating` kind. The service preserves order and timestamps, trims nonempty
++text, and returns the normalized requested language (including `auto`), not a
++newly inferred language label. This is not a generic promise about other MEAI
++providers or live bidirectional audio streaming.
++
++The service owns both the eager factory and its adapter. One gate covers
++transcription, reload, unload, and disposal so model replacement cannot free
++an in-flight processor's model. Production `VoiceService` callers await async
++load and disposal; contended lifecycle operations must not block the UI thread.
++Legacy synchronous lifecycle calls retain their idle behavior but now fail
++immediately when busy, without changing ownership. This is an intentional
++concurrency-contract change from the original unsafe overlapping disposal.
++The service retains the factory until cleanup
++even if the lazy adapter has not used it; the pinned factory's disposal is
++idempotent. The WAV stream belongs to the service and is disposed after
++enumeration; the adapter must leave caller streams open. Cancellation is checked
++before, during, and after enumeration because the pinned adapter can end its
++iterator normally when cancellation is requested. Partial transcripts never
++become a successful canceled utterance.
++
++Whisper.net 1.9.0's `GetService` throws `NotImplementedException`. This integration
++does not call it or expose a general-purpose MEAI client; correcting metadata
++discovery is an upstream prerequisite for broader middleware reuse. Model
++downloads, capture, resampling, VAD, utterance boundaries, readiness, permissions,
++and the three `stt.*` command schemas remain OpenClaw-owned and unchanged.
++
++Focused offline checks:
++
++```powershell
++dotnet test .\tests\OpenClaw.Shared.Tests\OpenClaw.Shared.Tests.csproj `
++  --filter "FullyQualifiedName~SpeechToTextServiceTests|FullyQualifiedName~SpeechToTextLifecycleContractTests|FullyQualifiedName~SpeechToTextLanguageNormalizationTests|FullyQualifiedName~SttCapabilityTests|FullyQualifiedName~McpToolBridgeTests"
++```
++
++`SpeechToTextNativeProofTests` is separately opt-in. Supply only the public
++`ggml-tiny.bin` model from Hugging Face `ggerganov/whisper.cpp` revision
++`5359861c739e955e79d9a303bcbc70fb988958b1` (MIT, 77,691,713 bytes, catalog SHA-256)
++and `samples/jfk.wav` from `ggml-org/whisper.cpp` revision
++`d09f61a708f3487afa956ff578e60eae5e7a233c` (public presidential speech sample,
++352,078 bytes, Git blob `3184d372cd2f8b804d3a540c70ec50d927b335d2`).
++The test verifies asset identities and never downloads, plays, or records audio.
++Keep binaries outside version control.
++
++```powershell
++$env:OPENCLAW_RUN_WHISPER_PROOF = '1'
++$env:OPENCLAW_WHISPER_PROOF_ASSETS = '<approved-public-asset-directory>'
++dotnet test .\tests\OpenClaw.Shared.Tests\OpenClaw.Shared.Tests.csproj `
++  --filter FullyQualifiedName~SpeechToTextNativeProofTests --logger "console;verbosity=detailed"
++```
++
++The proof compares an independent frozen copy of the original direct Whisper
++processor path with the actual service for `en-US` and `auto`, twice each.
++Output includes hashes of ordered text/times/language, segment counts, actual
++backend, and diagnostic durations, never transcript payloads. It also checks
++caller-stream ownership, deterministic pre-canceled admission, and unused-model
++cleanup. Controlled fake tests establish in-flight cancellation and rejection of
++partial success at the service boundary. Neither those fakes nor pre-canceled
++admission establish native mid-flight abort behavior, which remains unverified.
++This small fixture comparison is not accuracy, latency, microphone, UI, gateway,
++or ARM64 proof. Run it separately from ordinary suites and remove the opt-in
++variables afterward.
++
+ ### Cancelling an invocation
+ 
+ The gateway may send the `node.invoke.cancel` event with
+diff --git a/src/OpenClaw.Shared/Audio/SpeechToTextService.cs b/src/OpenClaw.Shared/Audio/SpeechToTextService.cs
+index b0101c26..e774c5b5 100644
+--- a/src/OpenClaw.Shared/Audio/SpeechToTextService.cs
++++ b/src/OpenClaw.Shared/Audio/SpeechToTextService.cs
+@@ -2,49 +2,134 @@ using System;
+ using System.Collections.Generic;
+ using System.Threading;
+ using System.Threading.Tasks;
++using Microsoft.Extensions.AI;
+ using Whisper.net;
+-using Whisper.net.Ggml;
++
++#pragma warning disable MEAI001 // Experimental speech contract, pinned to Abstractions 10.9.0.
+ 
+ namespace OpenClaw.Shared.Audio;
+ 
+ /// <summary>
+-/// Wraps Whisper.net for speech-to-text transcription.
+-/// Lazily loads the model on first use and caches the factory.
+-/// Thread-safe: concurrent calls are serialized by a semaphore.
++/// Consumes Whisper.net's speech client while owning model loading and PCM conversion.
++/// Transcription, model replacement, unloading, and disposal share one gate.
+ /// </summary>
+-public sealed class SpeechToTextService : IDisposable
++public sealed class SpeechToTextService : IDisposable, IAsyncDisposable
+ {
+     private readonly IOpenClawLogger _logger;
+     private readonly SemaphoreSlim _gate = new(1, 1);
++    private readonly Func<string, ISpeechToTextClient> _createClient;
+     private WhisperFactory? _factory;
++    private ISpeechToTextClient? _client;
+     private string? _loadedModelPath;
++    private bool _disposed;
+ 
+-    public bool IsModelLoaded => _factory != null;
+-    public string? LoadedModelPath => _loadedModelPath;
++    public bool IsModelLoaded => Volatile.Read(ref _client) != null;
++    public string? LoadedModelPath => Volatile.Read(ref _loadedModelPath);
+ 
+     public SpeechToTextService(IOpenClawLogger logger)
+     {
+         _logger = logger;
++        _createClient = CreateWhisperClient;
++    }
++
++    // The service owns each returned client. The seam does not register alternative engines.
++    internal SpeechToTextService(IOpenClawLogger logger, Func<string, ISpeechToTextClient> createClient)
++    {
++        _logger = logger;
++        _createClient = createClient;
++    }
++
++    private ISpeechToTextClient CreateWhisperClient(string modelPath)
++    {
++        // Preserve eager loading/readiness rather than the adapter's lazy path constructor.
++        var factory = WhisperFactory.FromPath(modelPath);
++        _factory = factory;
++        return new WhisperSpeechToTextClient(() => factory);
+     }
+ 
+-    /// <summary>Load (or reload) the Whisper model from disk.</summary>
++    /// <summary>Load a model when idle. Use LoadModelAsync if transcription may be active.</summary>
+     public void LoadModel(string modelPath)
+     {
++        EnterQuiescentLifecycle();
++        try
++        {
++            LoadModelCore(modelPath);
++        }
++        finally
++        {
++            _gate.Release();
++        }
++    }
++
++    /// <summary>Wait asynchronously for active transcription, then load the model off the caller context.</summary>
++    public async Task LoadModelAsync(string modelPath, CancellationToken cancellationToken = default)
++    {
++        await _gate.WaitAsync(cancellationToken).ConfigureAwait(ConfigureAwaitOptions.ForceYielding);
++        try
++        {
++            cancellationToken.ThrowIfCancellationRequested();
++            LoadModelCore(modelPath);
++        }
++        finally
++        {
++            _gate.Release();
++        }
++    }
++
++    private void LoadModelCore(string modelPath)
++    {
++        ObjectDisposedException.ThrowIf(_disposed, this);
+         if (!System.IO.File.Exists(modelPath))
+             throw new System.IO.FileNotFoundException($"Whisper model not found: {modelPath}");
+ 
+-        _factory?.Dispose();
+-        _factory = WhisperFactory.FromPath(modelPath);
+-        _loadedModelPath = modelPath;
++        ReleaseModel();
++        try
++        {
++            var client = _createClient(modelPath);
++            _loadedModelPath = modelPath;
++            _client = client;
++        }
++        catch
++        {
++            ReleaseModel();
++            throw;
++        }
+         _logger.Info($"Whisper model loaded: {modelPath}");
+     }
+ 
+-    /// <summary>Unload the current model and free memory.</summary>
++    /// <summary>Unload an idle model. Use UnloadModelAsync if transcription may be active.</summary>
+     public void UnloadModel()
+     {
+-        _factory?.Dispose();
+-        _factory = null;
+-        _loadedModelPath = null;
++        EnterQuiescentLifecycle();
++        try
++        {
++            UnloadModelCore();
++        }
++        finally
++        {
++            _gate.Release();
++        }
++    }
++
++    /// <summary>Wait asynchronously for active transcription before freeing the model.</summary>
++    public async Task UnloadModelAsync(CancellationToken cancellationToken = default)
++    {
++        await _gate.WaitAsync(cancellationToken).ConfigureAwait(ConfigureAwaitOptions.ForceYielding);
++        try
++        {
++            cancellationToken.ThrowIfCancellationRequested();
++            UnloadModelCore();
++        }
++        finally
++        {
++            _gate.Release();
++        }
++    }
++
++    private void UnloadModelCore()
++    {
++        ObjectDisposedException.ThrowIf(_disposed, this);
++        ReleaseModel();
+         _logger.Info("Whisper model unloaded");
+     }
+ 
+@@ -57,42 +142,57 @@ public sealed class SpeechToTextService : IDisposable
+         string language = "auto",
+         CancellationToken cancellationToken = default)
+     {
+-        if (_factory == null)
+-            throw new InvalidOperationException("No Whisper model is loaded. Call LoadModel first.");
+-
+-        await _gate.WaitAsync(cancellationToken);
++        // The pinned adapter captures its starting context internally. Always leave
++        // the UI context before entering it, including uncontended admission, so
++        // async lifecycle and transcription never depend on a blocked UI continuation.
++        await _gate.WaitAsync(cancellationToken).ConfigureAwait(ConfigureAwaitOptions.ForceYielding);
+         try
+         {
++            ObjectDisposedException.ThrowIf(_disposed, this);
++            var client = _client ??
++                throw new InvalidOperationException("No Whisper model is loaded. Call LoadModel first.");
++            cancellationToken.ThrowIfCancellationRequested();
+             // Whisper.net's WithLanguage expects either "auto" or a 2-letter
+             // ISO 639-1 code. The capability validator accepts the broader
+             // BCP-47 shape ("en-US", "zh-Hans-CN") because that's what the
+             // public docs advertise; normalize down here so Whisper actually
+             // sees something it understands.
+             var whisperLang = NormalizeForWhisper(language);
+-            var builder = _factory.CreateBuilder()
+-                .WithLanguage(whisperLang)
++            var options = new SpeechToTextOptions
++                {
++                    SpeechLanguage = whisperLang,
++                    SpeechSampleRate = 16000
++                    // TextLanguage must stay unset: Whisper interprets any value as translation.
++                }
+                 .WithThreads(Math.Max(1, Environment.ProcessorCount / 2));
+ 
+-            using var processor = builder.Build();
+-
+             using var wavStream = PcmToWavStream(samples, 16000);
+ 
+             var results = new List<TranscriptionResult>();
+-            await foreach (var segment in processor.ProcessAsync(wavStream, cancellationToken))
++            // In Whisper.net 1.9.0 each update is one complete native segment, despite
++            // its TextUpdating kind. GetTextAsync flattens these segment boundaries.
++            await foreach (var segment in client.GetStreamingTextAsync(wavStream, options, cancellationToken)
++                .ConfigureAwait(false))
+             {
++                cancellationToken.ThrowIfCancellationRequested();
+                 var text = segment.Text?.Trim();
+                 if (!string.IsNullOrEmpty(text))
+                 {
+                     results.Add(new TranscriptionResult
+                     {
+                         Text = text,
+-                        Start = segment.Start,
+-                        End = segment.End,
++                        Start = segment.StartTime ??
++                            throw new InvalidOperationException("Whisper segment is missing its start time."),
++                        End = segment.EndTime ??
++                            throw new InvalidOperationException("Whisper segment is missing its end time."),
+                         Language = whisperLang
+                     });
+                 }
+             }
+ 
++            // The shipped adapter may break its iterator on cancellation. Never
++            // turn that successful enumeration into a successful partial utterance.
++            cancellationToken.ThrowIfCancellationRequested();
+             return results;
+         }
+         finally
+@@ -174,9 +274,66 @@ public sealed class SpeechToTextService : IDisposable
+         return primary;
+     }
+ 
++    private void ReleaseModel()
++    {
++        var client = _client;
++        var factory = _factory;
++        _client = null;
++        _factory = null;
++        _loadedModelPath = null;
++        try
++        {
++            client?.Dispose();
++        }
++        finally
++        {
++            // Before first transcription the lazy adapter does not own the eager
++            // factory yet. Afterward WhisperFactory.Dispose is idempotent (1.9.0).
++            factory?.Dispose();
++        }
++    }
++
++    private void EnterQuiescentLifecycle()
++    {
++        if (!_gate.Wait(0))
++            throw new InvalidOperationException("Whisper is busy. Use the asynchronous model lifecycle API.");
++    }
++
++    /// <summary>Dispose when idle. Use DisposeAsync if transcription may be active.</summary>
+     public void Dispose()
+     {
+-        _factory?.Dispose();
+-        _gate.Dispose();
++        EnterQuiescentLifecycle();
++        try
++        {
++            DisposeCore();
++        }
++        finally
++        {
++            _gate.Release();
++        }
++    }
++
++    public async ValueTask DisposeAsync()
++    {
++        await _gate.WaitAsync().ConfigureAwait(ConfigureAwaitOptions.ForceYielding);
++        try
++        {
++            DisposeCore();
++        }
++        finally
++        {
++            _gate.Release();
++        }
++    }
++
++    private void DisposeCore()
++    {
++        if (_disposed) return;
++        _disposed = true;
++        ReleaseModel();
++        // Keep the managed gate alive so already queued callers can observe
++        // disposal rather than race a disposed semaphore.
+     }
+ }
++
++#pragma warning restore MEAI001
+diff --git a/src/OpenClaw.Shared/OpenClaw.Shared.csproj b/src/OpenClaw.Shared/OpenClaw.Shared.csproj
+index f8a295ae..38c8c639 100644
+--- a/src/OpenClaw.Shared/OpenClaw.Shared.csproj
++++ b/src/OpenClaw.Shared/OpenClaw.Shared.csproj
+@@ -19,10 +19,10 @@
+ 
+   <!-- Audio / Speech-to-Text (platform-agnostic components) -->
+   <ItemGroup>
++    <PackageReference Include="Microsoft.Extensions.AI.Abstractions" Version="10.9.0" />
+     <PackageReference Include="Whisper.net" Version="1.9.0" />
+     <PackageReference Include="Whisper.net.Runtime" Version="1.9.1" />
+     <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.30.0" />
+   </ItemGroup>
+ 
+ </Project>
+-
+diff --git a/src/OpenClaw.Tray.WinUI/Services/VoiceService.cs b/src/OpenClaw.Tray.WinUI/Services/VoiceService.cs
+index 6d191122..40b8f080 100644
+--- a/src/OpenClaw.Tray.WinUI/Services/VoiceService.cs
++++ b/src/OpenClaw.Tray.WinUI/Services/VoiceService.cs
+@@ -126,7 +126,7 @@ public sealed class VoiceService : IAsyncDisposable
+         if (!_stt.IsModelLoaded)
+         {
+             var modelPath = _modelManager.GetModelPath(modelName);
+-            _stt.LoadModel(modelPath);
++            await _stt.LoadModelAsync(modelPath, cancellationToken).ConfigureAwait(false);
+         }
+     }
+ 
+@@ -485,6 +485,6 @@ public sealed class VoiceService : IAsyncDisposable
+     public async ValueTask DisposeAsync()
+     {
+         await StopAsync();
+-        _stt.Dispose();
++        await _stt.DisposeAsync().ConfigureAwait(false);
+     }
+ }
+diff --git a/tests/OpenClaw.Shared.Tests/SpeechToTextLifecycleContractTests.cs b/tests/OpenClaw.Shared.Tests/SpeechToTextLifecycleContractTests.cs
+new file mode 100644
+index 00000000..11090081
+--- /dev/null
++++ b/tests/OpenClaw.Shared.Tests/SpeechToTextLifecycleContractTests.cs
+@@ -0,0 +1,21 @@
++using OpenClaw.TestSupport;
++
++namespace OpenClaw.Shared.Tests;
++
++public sealed class SpeechToTextLifecycleContractTests
++{
++    [Fact]
++    public void VoiceService_AwaitsModelLoadAndDisposal()
++    {
++        // Retirement: replace this source guard when VoiceService has a WinUI-free
++        // runtime seam that can execute both lifecycle paths under controlled inference.
++        var path = Path.Combine(ProductionSourceFiles.FindRepoRoot(),
++            "src", "OpenClaw.Tray.WinUI", "Services", "VoiceService.cs");
++        var source = File.ReadAllText(path);
++        Assert.Contains("await _stt.LoadModelAsync(modelPath, cancellationToken)", source);
++        Assert.Contains("await _stt.DisposeAsync()", source);
++        Assert.DoesNotContain("_stt.LoadModel(", source);
++        Assert.DoesNotContain("_stt.UnloadModel(", source);
++        Assert.DoesNotContain("_stt.Dispose(", source);
++    }
++}

@@ -1,0 +1,505 @@
+{
+  "schemaVersion": 1,
+  "scope": "Local Windows x64 proposal validation; not a complete app, packaging, or merge-ready claim.",
+  "baseCommit": "273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+  "upstreamMainObserved": "5a59535216eea603192f2df13d4eddf1e1a20267",
+  "lifecycleCommit": "9b338475df8d51a36bca92f6355d74ab147a463c",
+  "sourceCommit": "15134f936c2ede2f1d6bd28ddc1395797f3d0d3e",
+  "sourceAtExecution": "Uncommitted combined tree on base273b018. Every final tested source blob was verified identical when committed as sourceCommit. Assembly hashes are the actual executed binaries, not hypothetical rebuilds after commit.",
+  "intermediateCommitExecutedIndependently": false,
+  "host": {
+    "os": "Windows",
+    "architecture": "x64",
+    "sdk": "10.0.401",
+    "testPlatform": "VSTest",
+    "framework": "xUnit 2.9.3",
+    "configuration": "Debug",
+    "nativeThreads": 8
+  },
+  "sourceAndAssemblies": {
+    "base": "273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+    "sources": [
+      {
+        "path": "src\\OpenClaw.Shared\\Audio\\SpeechToTextService.cs",
+        "gitBlob": "288c86363f959208852654d11a52602170302dbc",
+        "sha256": "28206f8ea8decc5c85e23d82a90f838d85ff26f902c973a210736a85db3fdfd4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "gitBlob": "38c8c639d42b0ef9eb9f5bf6fa962465ffde764d",
+        "sha256": "b4c114f69766e818c7592f673921f2e43a70ac772e417aafd669d6861547b2ba"
+      },
+      {
+        "path": "src\\OpenClaw.Tray.WinUI\\Services\\VoiceService.cs",
+        "gitBlob": "40b8f0803db636dbd4f97d401373276450d29075",
+        "sha256": "36ac311cdd1284ae40d4ffcbdbaf26e388c2b4934380997db23df16fac5f229f"
+      },
+      {
+        "path": "tests\\OpenClaw.Shared.Tests\\SpeechToTextServiceTests.cs",
+        "gitBlob": "39680c7f5fd3835ebbe5b4da648bf5019927ea98",
+        "sha256": "aff4f0b19900c059baf80dde0dacc0c0e030d3882d0a9d6ca5327f76c6554f76"
+      },
+      {
+        "path": "tests\\OpenClaw.Shared.Tests\\SpeechToTextLifecycleContractTests.cs",
+        "gitBlob": "110900814bec3fa8fed64e643fdda4851678a8fe",
+        "sha256": "4866d72ca9cf95963c1530b0517f5e3a0bd17fd50523f37f314d82ff9725e860"
+      },
+      {
+        "path": "tests\\OpenClaw.Shared.Tests\\SpeechToTextNativeProofTests.cs",
+        "gitBlob": "a46a7bbd26c3c0c3152e6dcb6d1eb2dd725c88de",
+        "sha256": "a23686231c9127e0cb62d170b46f600d704dbdf5ca52c2e0e90768bc27b595e0"
+      }
+    ],
+    "assemblies": [
+      {
+        "path": "tests\\OpenClaw.Shared.Tests\\bin\\Debug\\net10.0\\OpenClaw.Shared.dll",
+        "version": "0.0.1.0",
+        "sha256": "3e3eb1ded6125b4667a72366bc9a68fd4a92e128a83c4735d68fb0825334ebf5"
+      },
+      {
+        "path": "tests\\OpenClaw.Shared.Tests\\bin\\Debug\\net10.0\\OpenClaw.Shared.Tests.dll",
+        "version": "1.0.0.0",
+        "sha256": "99d3d3de4563364f62aa95701112487f63f48d0c75028d48b5072d58fe35af93"
+      },
+      {
+        "path": "tests\\OpenClaw.Shared.Tests\\bin\\Debug\\net10.0\\Whisper.net.dll",
+        "version": "1.9.0.0",
+        "sha256": "42112ae16a8c869cc60b008f1d3f343fb52c12d5a2d89bba19f40de057b5ebc6"
+      },
+      {
+        "path": "tests\\OpenClaw.Shared.Tests\\bin\\Debug\\net10.0\\Microsoft.Extensions.AI.Abstractions.dll",
+        "version": "10.9.0.0",
+        "sha256": "ac9812acecf3ed2cf418044ee6608b00f9820cc49be57ba4b46eda4d1fd08108"
+      },
+      {
+        "path": "tests\\OpenClaw.Tray.Tests\\bin\\Debug\\net10.0\\OpenClaw.Tray.Tests.dll",
+        "version": "1.0.0.0",
+        "sha256": "0f9b1b52d4a88bfe53d9bd49684862a349ae7cfe8abd2a36aa2b9243ebdad620"
+      },
+      {
+        "path": "tests\\OpenClaw.WinNode.Cli.Tests\\bin\\Debug\\net10.0\\OpenClaw.WinNode.Cli.Tests.dll",
+        "version": "1.0.0.0",
+        "sha256": "ead2e3fce23898ee2cdff0e1bba6b193f80a2ed990a745f45fe4a574c37760cd"
+      },
+      {
+        "path": "src\\OpenClaw.Tray.WinUI\\bin\\Debug\\net10.0-windows10.0.22621.0\\win-x64\\OpenClaw.Tray.WinUI.dll",
+        "version": "0.0.1.0",
+        "sha256": "b1cbc368ca20198aa1fe73d8d11fe67c5625c8c24d5dc5ed22fbfe26ab0e7182"
+      }
+    ]
+  },
+  "restoredPackages": [
+    {
+      "project": "src\\OpenClaw.Shared",
+      "package": "Microsoft.Extensions.AI.Abstractions/10.9.0",
+      "sha512": "//nASHMCJVxnYfE/WSzfaLOao6/q816kPpgB9rxU0gfSmAny1u3rfQT0D4xAmcIo4yQqJs7rAeBB+M/dIMdZYA=="
+    },
+    {
+      "project": "src\\OpenClaw.Shared",
+      "package": "Whisper.net.Runtime.Metal/1.9.1",
+      "sha512": "Ut5tZyCUwXMVdThoLvdvQ7GyLwjRMreR/p3LuMJvRiXidQ2AXxx2Tv8UOGtMxvL395AC3+IkHdN/kMfd+EPSEw=="
+    },
+    {
+      "project": "src\\OpenClaw.Shared",
+      "package": "Whisper.net.Runtime/1.9.1",
+      "sha512": "TipPJkry69VwJ3XL38U082QK5Trqte6NgSOoosuyj/C1eRHabmBbLQ3ujjcDryg5pkXT7wXwAKU5+PxGIJyxkQ=="
+    },
+    {
+      "project": "src\\OpenClaw.Shared",
+      "package": "Whisper.net/1.9.0",
+      "sha512": "oIDi3oa+EYQgPdAsGxEZJmheUuyHI8imN4GUE0rA2xme38uiImE8pqJNYvKsseug3+2Dp9dOud38fl159kROIA=="
+    },
+    {
+      "project": "src\\OpenClaw.Tray.WinUI",
+      "package": "Microsoft.Extensions.AI.Abstractions/10.9.0",
+      "sha512": "//nASHMCJVxnYfE/WSzfaLOao6/q816kPpgB9rxU0gfSmAny1u3rfQT0D4xAmcIo4yQqJs7rAeBB+M/dIMdZYA=="
+    },
+    {
+      "project": "src\\OpenClaw.Tray.WinUI",
+      "package": "Whisper.net.Runtime.Metal/1.9.1",
+      "sha512": "Ut5tZyCUwXMVdThoLvdvQ7GyLwjRMreR/p3LuMJvRiXidQ2AXxx2Tv8UOGtMxvL395AC3+IkHdN/kMfd+EPSEw=="
+    },
+    {
+      "project": "src\\OpenClaw.Tray.WinUI",
+      "package": "Whisper.net.Runtime/1.9.1",
+      "sha512": "TipPJkry69VwJ3XL38U082QK5Trqte6NgSOoosuyj/C1eRHabmBbLQ3ujjcDryg5pkXT7wXwAKU5+PxGIJyxkQ=="
+    },
+    {
+      "project": "src\\OpenClaw.Tray.WinUI",
+      "package": "Whisper.net/1.9.0",
+      "sha512": "oIDi3oa+EYQgPdAsGxEZJmheUuyHI8imN4GUE0rA2xme38uiImE8pqJNYvKsseug3+2Dp9dOud38fl159kROIA=="
+    },
+    {
+      "project": "tests\\OpenClaw.Shared.Tests",
+      "package": "Microsoft.Extensions.AI.Abstractions/10.9.0",
+      "sha512": "//nASHMCJVxnYfE/WSzfaLOao6/q816kPpgB9rxU0gfSmAny1u3rfQT0D4xAmcIo4yQqJs7rAeBB+M/dIMdZYA=="
+    },
+    {
+      "project": "tests\\OpenClaw.Shared.Tests",
+      "package": "Whisper.net.Runtime.Metal/1.9.1",
+      "sha512": "Ut5tZyCUwXMVdThoLvdvQ7GyLwjRMreR/p3LuMJvRiXidQ2AXxx2Tv8UOGtMxvL395AC3+IkHdN/kMfd+EPSEw=="
+    },
+    {
+      "project": "tests\\OpenClaw.Shared.Tests",
+      "package": "Whisper.net.Runtime/1.9.1",
+      "sha512": "TipPJkry69VwJ3XL38U082QK5Trqte6NgSOoosuyj/C1eRHabmBbLQ3ujjcDryg5pkXT7wXwAKU5+PxGIJyxkQ=="
+    },
+    {
+      "project": "tests\\OpenClaw.Shared.Tests",
+      "package": "Whisper.net/1.9.0",
+      "sha512": "oIDi3oa+EYQgPdAsGxEZJmheUuyHI8imN4GUE0rA2xme38uiImE8pqJNYvKsseug3+2Dp9dOud38fl159kROIA=="
+    },
+    {
+      "project": "tests\\OpenClaw.Tray.Tests",
+      "package": "Microsoft.Extensions.AI.Abstractions/10.9.0",
+      "sha512": "//nASHMCJVxnYfE/WSzfaLOao6/q816kPpgB9rxU0gfSmAny1u3rfQT0D4xAmcIo4yQqJs7rAeBB+M/dIMdZYA=="
+    },
+    {
+      "project": "tests\\OpenClaw.Tray.Tests",
+      "package": "Whisper.net.Runtime.Metal/1.9.1",
+      "sha512": "Ut5tZyCUwXMVdThoLvdvQ7GyLwjRMreR/p3LuMJvRiXidQ2AXxx2Tv8UOGtMxvL395AC3+IkHdN/kMfd+EPSEw=="
+    },
+    {
+      "project": "tests\\OpenClaw.Tray.Tests",
+      "package": "Whisper.net.Runtime/1.9.1",
+      "sha512": "TipPJkry69VwJ3XL38U082QK5Trqte6NgSOoosuyj/C1eRHabmBbLQ3ujjcDryg5pkXT7wXwAKU5+PxGIJyxkQ=="
+    },
+    {
+      "project": "tests\\OpenClaw.Tray.Tests",
+      "package": "Whisper.net/1.9.0",
+      "sha512": "oIDi3oa+EYQgPdAsGxEZJmheUuyHI8imN4GUE0rA2xme38uiImE8pqJNYvKsseug3+2Dp9dOud38fl159kROIA=="
+    },
+    {
+      "project": "tests\\OpenClaw.WinNode.Cli.Tests",
+      "package": "Microsoft.Extensions.AI.Abstractions/10.9.0",
+      "sha512": "//nASHMCJVxnYfE/WSzfaLOao6/q816kPpgB9rxU0gfSmAny1u3rfQT0D4xAmcIo4yQqJs7rAeBB+M/dIMdZYA=="
+    },
+    {
+      "project": "tests\\OpenClaw.WinNode.Cli.Tests",
+      "package": "Whisper.net.Runtime.Metal/1.9.1",
+      "sha512": "Ut5tZyCUwXMVdThoLvdvQ7GyLwjRMreR/p3LuMJvRiXidQ2AXxx2Tv8UOGtMxvL395AC3+IkHdN/kMfd+EPSEw=="
+    },
+    {
+      "project": "tests\\OpenClaw.WinNode.Cli.Tests",
+      "package": "Whisper.net.Runtime/1.9.1",
+      "sha512": "TipPJkry69VwJ3XL38U082QK5Trqte6NgSOoosuyj/C1eRHabmBbLQ3ujjcDryg5pkXT7wXwAKU5+PxGIJyxkQ=="
+    },
+    {
+      "project": "tests\\OpenClaw.WinNode.Cli.Tests",
+      "package": "Whisper.net/1.9.0",
+      "sha512": "oIDi3oa+EYQgPdAsGxEZJmheUuyHI8imN4GUE0rA2xme38uiImE8pqJNYvKsseug3+2Dp9dOud38fl159kROIA=="
+    }
+  ],
+  "assetIdentities": {
+    "fixtureSha256": "59dfb9a4acb36fe2a2affc14bacbee2920ff435cb13cc314a08c13f66ba7860e",
+    "fixtureBytes": 352078,
+    "modelBytes": 77691713,
+    "modelSha256": "be07e048e1e599ad46341c8d2a135645097a538221678b7acdd1b1919c6e1b21",
+    "fixtureRevision": "d09f61a708f3487afa956ff578e60eae5e7a233c",
+    "modelRevision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+    "fixtureBlob": "3184d372cd2f8b804d3a540c70ec50d927b335d2"
+  },
+  "finalTests": [
+    {
+      "name": "stt-focused-final",
+      "command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --no-restore -m:1 -p:UseSharedCompilation=false --filter \"FullyQualifiedName~SpeechToTextServiceTests|FullyQualifiedName~SpeechToTextLifecycleContractTests|FullyQualifiedName~SpeechToTextLanguageNormalizationTests|FullyQualifiedName~SttCapabilityTests|FullyQualifiedName~McpToolBridgeTests\" --logger \"trx;LogFileName=stt-focused-final.trx\" --results-directory \"<repo>\\artifacts\\stt-task\\results\"",
+      "total": 136,
+      "executed": 136,
+      "passed": 136,
+      "failed": 0,
+      "skipped": 0,
+      "skippedCases": [],
+      "reportSha256": "b7e26a1b54597ea01a64170fd290893609a79067a45b9fb390eb5f63a46da254"
+    },
+    {
+      "name": "stt-native-final",
+      "command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --no-restore -m:1 -p:UseSharedCompilation=false --no-build --filter \"FullyQualifiedName~SpeechToTextNativeProofTests\" --logger \"trx;LogFileName=stt-native-final.trx\" --results-directory \"<repo>\\artifacts\\stt-task\\results\"",
+      "total": 1,
+      "executed": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "skippedCases": [],
+      "reportSha256": "70269d1620a7a6cc3a48aa47ca5e295dd8f220278941032eeb2cc1911c179de3"
+    },
+    {
+      "name": "stt-shared-final",
+      "command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --no-restore -m:1 -p:UseSharedCompilation=false --no-build --logger \"trx;LogFileName=stt-shared-final.trx\" --results-directory \"<repo>\\artifacts\\stt-task\\results\"",
+      "total": 4171,
+      "executed": 4138,
+      "passed": 4138,
+      "failed": 0,
+      "skipped": 33,
+      "skippedCases": [
+        "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_PipelineSmokeTest_WithDenyPaths_ReturnsResult",
+        "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DirectArgvWithWindowsUiAccess_ExecutesInsideAppContainer",
+        "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CmdDir_ReadsGrantedCustomFolder",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenForRole_Node_PreservesOperatorToken",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_PersistsAcrossReload",
+        "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_InvalidCommand_ReturnsError",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.PublicKeyBase64Url_IsValidBase64Url",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ProducesDeterministicSignature",
+        "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Cmd",
+        "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Powershell",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_LeavesNoTempFileBehind",
+        "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_Timeout_KillsProcess",
+        "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_EchoCmd_ExecutesInsideAppContainer",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildDebugPayload_HasCorrectFormat",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_LeavesNoTempFileBehind",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV3_HasCorrectFormat",
+        "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithCwd",
+        "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_FilesystemAccessMatrix_EnforcesReadwriteAndReadonlyPaths",
+        "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DefaultShell_ExecutesInsideAppContainer",
+        "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_NonZeroExitCode",
+        "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CustomEnv_DeniesBeforeMxcUnavailableHostFallback",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_LoadsExistingKeypair",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ThrowsBeforeInitialize",
+        "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CompletesPromptly_WhenOrphanChildProcessHoldsStdoutHandle",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_GeneratesNewKeypair",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV2_HasCorrectFormat",
+        "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CapturesStderr",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.DifferentDirs_ProduceDifferentIdentities",
+        "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithEnvVars",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_PreservesNonTokenFields_AfterAtomicWrite",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_DiffersForDifferentNonces",
+        "OpenClaw.Shared.Tests.SpeechToTextNativeProofTests.Native_ServiceMatchesFrozenBaselineAndPreservesOwnership",
+        "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenWithScopes_PersistsScopesAcrossReload"
+      ],
+      "reportSha256": "66492e18d08c7c2fd2b52a03f06f89d564e0e95b6fecce7494a2e8e555813354"
+    },
+    {
+      "name": "stt-tray-final",
+      "command": "dotnet test .\\tests\\OpenClaw.Tray.Tests\\OpenClaw.Tray.Tests.csproj --no-restore -m:1 -p:UseSharedCompilation=false --no-build --logger \"trx;LogFileName=stt-tray-final.trx\" --results-directory \"<repo>\\artifacts\\stt-task\\results\"",
+      "total": 3072,
+      "executed": 3072,
+      "passed": 3072,
+      "failed": 0,
+      "skipped": 0,
+      "skippedCases": [],
+      "reportSha256": "683cb848f7398554af15a94cba121adfac0f1fa2d750b731fa176acdbe4b37d4"
+    },
+    {
+      "name": "stt-cli-final",
+      "command": "dotnet test .\\tests\\OpenClaw.WinNode.Cli.Tests\\OpenClaw.WinNode.Cli.Tests.csproj --no-restore -m:1 -p:UseSharedCompilation=false --no-build --logger \"trx;LogFileName=stt-cli-final.trx\" --results-directory \"<repo>\\artifacts\\stt-task\\results\"",
+      "total": 127,
+      "executed": 127,
+      "passed": 127,
+      "failed": 0,
+      "skipped": 0,
+      "skippedCases": [],
+      "reportSha256": "4ad3df6695f74b025ad9be76954f49f9004667e88fb1109f5650a952b1d78541"
+    }
+  ],
+  "focusedNewCases": [
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextLifecycleContractTests.VoiceService_AwaitsModelLoadAndDisposal",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_AsyncLoadAndRepeatedDisposalStayOffCallerContext",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_AsyncUiCallerRemainsResponsiveUntilEnumerationEnds(action: \"dispose\")",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_AsyncUiCallerRemainsResponsiveUntilEnumerationEnds(action: \"reload\")",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_AsyncUiCallerRemainsResponsiveUntilEnumerationEnds(action: \"unload\")",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_ClientCreationFailureCleansOwnedModelAndPreservesPrimaryError(cleanupFails: False)",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_ClientCreationFailureCleansOwnedModelAndPreservesPrimaryError(cleanupFails: True)",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_DisposesUnusedLoadedClientExactlyOnce",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_ModelCleanupFollowsClientEvenIfClientDisposalThrows(failDisposal: False)",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_ModelCleanupFollowsClientEvenIfClientDisposalThrows(failDisposal: True)",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_QueuedCancellationLeavesCurrentModelOwned(reload: False)",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_QueuedCancellationLeavesCurrentModelOwned(reload: True)",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_ReadinessTracksExplicitLoadFailureUnloadAndDispose",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_SynchronousBusyCallFailsWithoutChangingOwnership(action: \"dispose\")",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_SynchronousBusyCallFailsWithoutChangingOwnership(action: \"load\")",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_SynchronousBusyCallFailsWithoutChangingOwnership(action: \"unload\")",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.ModelLifetime_TwoDisposalFailuresPreserveClientFailure",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_CanceledIteratorCannotReturnPartialSuccess(emitAfterCancel: False)",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_CanceledIteratorCannotReturnPartialSuccess(emitAfterCancel: True)",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_CancellationRemainsCapabilityCancellation",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_DoesNotEnterAdapterOnCallerSynchronizationContext",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_EmptyAudioAndBlankSegmentsRemainEmpty",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_PreCanceledTokenDoesNotInvokeClient",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_PreservesPcmBytesOptionsAndOrderedSegments(language: \"abc\", expectedLanguage: \"auto\")",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_PreservesPcmBytesOptionsAndOrderedSegments(language: \"AUTO\", expectedLanguage: \"auto\")",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_PreservesPcmBytesOptionsAndOrderedSegments(language: \"en-US\", expectedLanguage: \"en\")",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_PreservesPcmBytesOptionsAndOrderedSegments(language: \"zh-Hans-CN\", expectedLanguage: \"zh\")",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_ProviderFailureIsNotPartialSuccessAndCapabilitySanitizesIt",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_RejectsMissingSegmentTimes(missingStart: False)",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_RejectsMissingSegmentTimes(missingStart: True)",
+      "outcome": "Passed"
+    },
+    {
+      "name": "OpenClaw.Shared.Tests.SpeechToTextServiceTests.Transcribe_SerializesCallsAndCancelsQueuedCallWithoutReplacingClient",
+      "outcome": "Passed"
+    }
+  ],
+  "nativeMetadata": [
+    "fixtureSha256=59dfb9a4acb36fe2a2affc14bacbee2920ff435cb13cc314a08c13f66ba7860e",
+    "sampleCount=176000; floatBytesSha256=ebd52851100536db02d12c49fddd010372dcdc70243562e057553d476b706ae0",
+    "whisperAssembly=1.9.0.0; meaiAssembly=10.9.0.0",
+    "backend=Cpu; runtime=WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | OPENMP = 1 | REPACK = 1 | ; threads=8",
+    "nativeModule=ggml-base-whisper.dll; sha256=e6c362421b6d5a5c1b52341f88d3d72764de29f05141748cc3faad2f6348063f",
+    "nativeModule=ggml-cpu-whisper.dll; sha256=480a23afc6deea301c5cda66cf462fa2f2eb7ff9bca63b8f4f933a0e8dc5d4dd",
+    "nativeModule=ggml-whisper.dll; sha256=2e0ac238c2bc178a5c1f09b3bde2421904b191bce1cc1c13dc64309ca3b9cb36",
+    "nativeModule=whisper.dll; sha256=07ec2fac4946005ba7380f2c2e9ccfa3ad23007592d074aa698ed5df6bfb4938",
+    "language=en-US; repeat=1; segments=1; baselineHash=ebec48e0cacf88c1fb0bd913e4ea1bb18569ca219e68ce84dad0fe16f2e99a0c; candidateHash=ebec48e0cacf88c1fb0bd913e4ea1bb18569ca219e68ce84dad0fe16f2e99a0c; baselineMs=787; candidateMs=795",
+    "language=en-US; repeat=2; segments=1; baselineHash=ebec48e0cacf88c1fb0bd913e4ea1bb18569ca219e68ce84dad0fe16f2e99a0c; candidateHash=ebec48e0cacf88c1fb0bd913e4ea1bb18569ca219e68ce84dad0fe16f2e99a0c; baselineMs=801; candidateMs=739",
+    "language=auto; repeat=1; segments=1; baselineHash=8bc1d3093b9c0614e143c2f3256bfb80ab6e73335a0e3d62bdcbdd75748144df; candidateHash=8bc1d3093b9c0614e143c2f3256bfb80ab6e73335a0e3d62bdcbdd75748144df; baselineMs=1357; candidateMs=1351",
+    "language=auto; repeat=2; segments=1; baselineHash=8bc1d3093b9c0614e143c2f3256bfb80ab6e73335a0e3d62bdcbdd75748144df; candidateHash=8bc1d3093b9c0614e143c2f3256bfb80ab6e73335a0e3d62bdcbdd75748144df; baselineMs=1442; candidateMs=1331",
+    "adapterMetadata=NotImplementedException (observed limitation, not an acceptance requirement)",
+    "cancellationScope=preCanceledAdmissionOnly; nativeMidFlightAbort=unverified; callerStream=leftOpen; modelReloadWithoutInference=completed"
+  ],
+  "initialAttempts": [
+    {
+      "name": "focused-01",
+      "result": "131 passed, zero failed/skipped",
+      "serviceBlob": "e774c5b576ff67914037aec2962fd1558609fe00",
+      "sourcePatch": "initial-source.patch",
+      "limitation": "Early test binary and complete untracked test snapshot were not retained. Superseded by final evidence."
+    },
+    {
+      "name": "native-01",
+      "result": "one passed, zero failed/skipped; all four pair/repeat hashes equal",
+      "serviceBlob": "e774c5b576ff67914037aec2962fd1558609fe00",
+      "nativeProofBlob": "8e5819114c1fdd26704b0c8959612e9ae151edf1",
+      "sourcePatch": "initial-source.patch",
+      "limitation": "No retained early assembly hashes. Superseded by final native run, which adds loaded-module hashes."
+    },
+    {
+      "name": "full-build-01",
+      "command": ".\\build.ps1 -NoTrustRepository",
+      "exitCode": 1,
+      "serviceBlob": "e774c5b576ff67914037aec2962fd1558609fe00",
+      "sourcePatch": "initial-source.patch",
+      "result": "Documentation gate passed 50 files; Shared/Cli/WinNodeCli/SetupEngine succeeded; WinUI blocked by existing node-pty npm TLS handshake failure. Not repeated."
+    },
+    {
+      "name": "focused-02",
+      "exitCode": 1,
+      "result": "CS0053 test-helper accessibility/nesting error while strengthening ownership proof. Fixed without changing assertions; final focused suite passed."
+    },
+    {
+      "name": "focused-03",
+      "result": "136 passed, zero failed/skipped",
+      "serviceBlob": "288c86363f959208852654d11a52602170302dbc",
+      "limitation": "Final production source, preceding final test-only model assertions and module provenance additions."
+    },
+    {
+      "name": "native-02",
+      "result": "one passed, zero failed/skipped; same four pair/repeat hashes",
+      "serviceBlob": "288c86363f959208852654d11a52602170302dbc",
+      "nativeProofBlob": "8e5819114c1fdd26704b0c8959612e9ae151edf1"
+    },
+    {
+      "name": "winui-scoped-01",
+      "command": "dotnet build .\\src\\OpenClaw.Tray.WinUI\\OpenClaw.Tray.WinUI.csproj --no-restore -c Debug -r win-x64 -p:SkipMxcNodeBridgeRestore=true -p:UseSharedCompilation=false -m:1",
+      "exitCode": 1,
+      "result": "Actual changed VoiceService/WinUI assembly compiled, then existing wxc-exec copy failed because npm bridge was absent. One existing generated Icon obsolete warning."
+    },
+    {
+      "name": "winui-compile-02",
+      "command": "dotnet msbuild .\\src\\OpenClaw.Tray.WinUI\\OpenClaw.Tray.WinUI.csproj -t:Compile,CopyOpenClawVCRuntimeToOutput,CopySetupAssetsLooseForConsumerCopy,CopySetupDefaultConfigToOutput -p:RuntimeIdentifier=win-x64 -p:Configuration=Debug -p:SkipMxcNodeBridgeRestore=true -p:UseSharedCompilation=false -m:1 -v:minimal",
+      "exitCode": 0,
+      "result": "Qualified compile and existing harness asset/runtime copy only. Platform omitted; actual TargetDir is bin\\Debug\\net10.0-windows10.0.22621.0\\win-x64. No shipping/MXC/app launch claim."
+    }
+  ],
+  "environmentRecovery": [
+    "Process-only short PATH, OPENCLAW_REPO_ROOT, isolated OPENCLAW_TRAY_DATA_DIR/TEMP/TMP; no user settings read.",
+    "Official NuGet v2 session-only restore configuration after missing prerequisites; no TLS bypass, feed mirror, package-pin or audit changes.",
+    "Existing Visual Studio 2022 Enterprise VC runtime selected using repository override and copy targets.",
+    "Task-owned artifacts\\stt-task\\temp ownership and non-reparse ancestors verified; additive current-user inheritable FullControl ACE only, preserving every prior ACE and inheritance. Raw SID/ACL retained locally, not published.",
+    "No workflow/authentication changes, model substitutions, microphone, playback, private corpus, cloud AI, or credentials used.",
+    "All heavy workloads ended before host slot release at 2026-09-26T06:18:44-04:00."
+  ],
+  "gaps": [
+    "Full repository build and packaging blocked, not passing.",
+    "33 ordinary Shared skips: 16 DeviceIdentity integration, 9 LocalCommandRunner integration, 7 MXC integration, 1 explicitly gated native proof. Native proof passed separately.",
+    "Native mid-flight abort unverified; only pre-canceled admission token identity is proven natively.",
+    "Native fixture yielded one segment each time. Multiple/empty/out-of-order segment semantics are fake-backed, not a native multi-segment corpus claim.",
+    "Live WinUI, real microphone/capture/drain, gateway/MCP runtime round trips, ARM64, Talk Mode, accuracy and performance improvements unverified.",
+    "Async disposal waits for admitted inference with no new timeout. This is not a bounded shutdown guarantee."
+  ]
+}
