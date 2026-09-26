@@ -2,6 +2,10 @@
 
 **Status:** Implemented (initial cut). See `src/OpenClaw.Shared/Mcp/`, `src/OpenClaw.Shared/Mcp/McpHttpServer.cs`, and the Settings UI MCP section.
 
+An isolated [official SDK protocol-core experiment](MCP_SDK_FEASIBILITY.md)
+exercises a reusable internal catalog/invocation seam. It does not replace this
+production HTTP transport or change its protocol contract.
+
 ## Summary
 
 The Windows tray app now ships a **local Model Context Protocol (MCP) server** alongside its existing OpenClaw gateway client. The same node capabilities the agent reaches over the OpenClaw gateway WebSocket - `system.*`, `screen.*`, `canvas.*`, `camera.*`, `location.get`, `tts.*`, `stt.*`, `device.*`, and `browser.proxy` - are advertised, on the same machine, as MCP tools over `http://127.0.0.1:8765/`. Local-only `app.*` and `app.connection.*` tools are also exposed to MCP clients for tray automation and connection/pairing workflows; those are not registered with the remote gateway node transport.

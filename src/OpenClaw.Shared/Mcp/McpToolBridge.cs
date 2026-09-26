@@ -131,15 +131,21 @@ public class McpToolBridge
 
             var method = methodProp.GetString()!;
             var paramsElement = root.TryGetProperty("params", out var p) ? p : default;
-            var invocation = string.Equals(method, "tools/call", StringComparison.Ordinal)
-                ? new NodeToolInvocation(NodeToolTransport.Mcp, linkedContext)
-                : null;
-            NodeToolOutcome terminalOutcome = NodeToolOutcome.Success;
-            NodeToolErrorCategory terminalCategory = NodeToolErrorCategory.None;
-            NodeToolExecutionMode? terminalExecutionMode = null;
-            Type? terminalErrorType = null;
+            if (string.Equals(method, "tools/call", StringComparison.Ordinal))
+            {
+                var call = await InvokeToolAsync(
+                    paramsElement,
+                    hasId ? GetRequestKey(idElement!.Value) : null,
+                    cancellationToken,
+                    linkedContext);
+                return new McpTransportResponse(
+                    !hasId ? null : call.IsProtocolError
+                        ? WriteError(idElement, JsonRpcErrorCode.InternalError, "internal error")
+                        : WriteResult(idElement, call.Result!),
+                    call.PendingTelemetry);
+            }
+
             string? responseBody;
-            var requestKey = hasId ? GetRequestKey(idElement!.Value) : null;
 
             try
             {
@@ -150,11 +156,6 @@ public class McpToolBridge
                     "notifications/initialized" => null,
                     "notifications/cancelled" => HandleCancelledNotification(paramsElement),
                     "tools/list" => HandleToolsList(),
-                    "tools/call" => await HandleToolsCallAsync(
-                        paramsElement,
-                        requestKey,
-                        cancellationToken,
-                        invocation!),
                     // Some clients (notably Cursor) probe these on startup. Returning
                     // empty lists is friendlier than MethodNotFound — both feature sets
                     // are deferred but compatible by being absent rather than failing.
@@ -162,17 +163,6 @@ public class McpToolBridge
                     "prompts/list" => new { prompts = Array.Empty<object>() },
                     _ => throw new McpMethodNotFoundException(method),
                 };
-
-                if (result is McpToolCallResult toolCall)
-                {
-                    result = toolCall.Result;
-                    if (toolCall.Diagnostic != null)
-                    {
-                        terminalOutcome = NodeToolOutcome.Failure;
-                        terminalCategory = toolCall.Diagnostic.ErrorCategory;
-                        terminalExecutionMode = toolCall.Diagnostic.ExecutionMode;
-                    }
-                }
 
                 responseBody = hasId ? WriteResult(idElement, result ?? new { }) : null;
             }
@@ -182,31 +172,8 @@ public class McpToolBridge
                     ? WriteError(idElement, JsonRpcErrorCode.MethodNotFound, ex.Message)
                     : null;
             }
-            catch (McpToolException ex)
-            {
-                terminalOutcome = ex.Outcome;
-                terminalCategory = ex.ErrorCategory;
-                terminalExecutionMode = ex.ExecutionMode;
-                terminalErrorType = ex.ErrorType;
-                responseBody = hasId
-                    ? WriteToolError(idElement, ex.Message)
-                    : null;
-            }
-            catch (McpCapabilityException ex)
-            {
-                terminalOutcome = NodeToolOutcome.Failure;
-                terminalCategory = NodeToolErrorCategory.CapabilityFailure;
-                terminalErrorType = ex.InnerException?.GetType() ?? ex.GetType();
-                _logger.Error($"[MCP] Handler error for {method}", ex.InnerException ?? ex);
-                responseBody = hasId
-                    ? WriteError(idElement, JsonRpcErrorCode.InternalError, "internal error")
-                    : null;
-            }
             catch (Exception ex)
             {
-                terminalOutcome = NodeToolOutcome.Failure;
-                terminalCategory = NodeToolErrorCategory.InternalFailure;
-                terminalErrorType = ex.GetType();
                 // Full exception with stack goes to the log; the wire response
                 // gets a generic message so we don't leak internals to clients.
                 _logger.Error($"[MCP] Handler error for {method}", ex);
@@ -215,17 +182,72 @@ public class McpToolBridge
                     : null;
             }
 
-            var pending = invocation == null
-                ? null
-                : new McpPendingToolTelemetry(
-                    this,
-                    invocation,
-                    terminalOutcome,
-                    terminalCategory,
-                    terminalExecutionMode,
-                    terminalErrorType);
-            return new McpTransportResponse(responseBody, pending);
+            return new McpTransportResponse(responseBody, null);
         }
+    }
+
+    /// <summary>
+    /// Executes the node policy boundary without parsing or dispatching a JSON-RPC envelope.
+    /// The transport owns request correlation and must complete delivery telemetry after writing.
+    /// A separate caller token lets session transports distinguish cancellation from a deadline.
+    /// </summary>
+    internal async Task<McpInvocationResult> InvokeToolAsync(
+        JsonElement parameters,
+        string? requestKey,
+        CancellationToken cancellationToken,
+        ActivityContext linkedContext = default,
+        CancellationToken callerCancellationToken = default)
+    {
+        var invocation = new NodeToolInvocation(NodeToolTransport.Mcp, linkedContext);
+        var outcome = NodeToolOutcome.Success;
+        var category = NodeToolErrorCategory.None;
+        NodeToolExecutionMode? executionMode = null;
+        Type? errorType = null;
+        object? result = null;
+        var isProtocolError = false;
+        try
+        {
+            var call = await HandleToolsCallAsync(
+                parameters, requestKey, cancellationToken, invocation, callerCancellationToken);
+            result = call.Result;
+            if (call.Diagnostic != null)
+            {
+                outcome = NodeToolOutcome.Failure;
+                category = call.Diagnostic.ErrorCategory;
+                executionMode = call.Diagnostic.ExecutionMode;
+            }
+        }
+        catch (McpToolException ex)
+        {
+            outcome = ex.Outcome;
+            category = ex.ErrorCategory;
+            executionMode = ex.ExecutionMode;
+            errorType = ex.ErrorType;
+            result = new
+            {
+                content = new[] { new { type = "text", text = ex.Message } },
+                isError = true,
+            };
+        }
+        catch (McpCapabilityException ex)
+        {
+            outcome = NodeToolOutcome.Failure;
+            category = NodeToolErrorCategory.CapabilityFailure;
+            errorType = ex.InnerException?.GetType() ?? ex.GetType();
+            _logger.Error("[MCP] Handler error for tools/call", ex.InnerException ?? ex);
+            isProtocolError = true;
+        }
+        catch (Exception ex)
+        {
+            outcome = NodeToolOutcome.Failure;
+            category = NodeToolErrorCategory.InternalFailure;
+            errorType = ex.GetType();
+            _logger.Error("[MCP] Handler error for tools/call", ex);
+            isProtocolError = true;
+        }
+
+        return new McpInvocationResult(result, isProtocolError,
+            new McpPendingToolTelemetry(this, invocation, outcome, category, executionMode, errorType));
     }
 
     private object HandleInitialize() => new
@@ -242,7 +264,7 @@ public class McpToolBridge
         },
     };
 
-    private object HandleToolsList()
+    internal object HandleToolsList()
     {
         var caps = _capabilityProvider();
         var tools = new List<object>();
@@ -455,7 +477,8 @@ public class McpToolBridge
         JsonElement parameters,
         string? requestKey,
         CancellationToken cancellationToken,
-        NodeToolInvocation telemetry)
+        NodeToolInvocation telemetry,
+        CancellationToken callerCancellationToken)
     {
         if (parameters.ValueKind != JsonValueKind.Object)
             throw new McpToolException(
@@ -527,7 +550,7 @@ public class McpToolBridge
         request.TelemetryParentContext = executeActivity?.Context ?? telemetry.Context;
         try
         {
-            if (invocation?.CancelledByCaller == true)
+            if (invocation?.CancelledByCaller == true || callerCancellationToken.IsCancellationRequested)
             {
                 NodeToolInvocation.CompleteChild(
                     executeActivity,
@@ -553,7 +576,8 @@ public class McpToolBridge
                     outcome: NodeToolOutcome.Canceled);
             }
         }
-        catch (OperationCanceledException) when (invocation?.CancelledByCaller == true)
+        catch (OperationCanceledException) when (
+            invocation?.CancelledByCaller == true || callerCancellationToken.IsCancellationRequested)
         {
             NodeToolInvocation.CompleteChild(
                 executeActivity,
@@ -592,7 +616,7 @@ public class McpToolBridge
         }
         finally
         {
-            cancelledByCaller = invocation?.CancelledByCaller == true;
+            cancelledByCaller = invocation?.CancelledByCaller == true || callerCancellationToken.IsCancellationRequested;
             invocation?.Dispose();
         }
 
@@ -736,20 +760,6 @@ public class McpToolBridge
         return System.Text.Encoding.UTF8.GetString(ms.GetBuffer(), 0, (int)ms.Length);
     }
 
-    /// <summary>
-    /// Tool execution failures are reported as a successful JSON-RPC result
-    /// with isError=true (per MCP spec), not as a JSON-RPC error.
-    /// </summary>
-    private static string WriteToolError(JsonElement? id, string message)
-    {
-        var result = new
-        {
-            content = new[] { new { type = "text", text = message } },
-            isError = true,
-        };
-        return WriteResult(id, result);
-    }
-
     private static void WriteId(Utf8JsonWriter w, JsonElement? id)
     {
         w.WritePropertyName("id");
@@ -820,6 +830,11 @@ public class McpToolBridge
     }
 
     private sealed record McpToolCallResult(object Result, NodeToolDiagnostic? Diagnostic);
+
+    internal sealed record McpInvocationResult(
+        object? Result,
+        bool IsProtocolError,
+        McpPendingToolTelemetry PendingTelemetry);
 
     private void CompleteToolTelemetry(
         NodeToolInvocation telemetry,
