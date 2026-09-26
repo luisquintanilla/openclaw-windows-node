@@ -6,13 +6,14 @@ using OpenClaw.Shared.Capabilities;
 using OpenClaw.TestSupport;
 using OpenClawTray.Services;
 using Windows.Media.SpeechSynthesis;
+using Xunit.Abstractions;
 
 #pragma warning disable MEAI001 // Exercise the pinned experimental synthesis contract.
 
 namespace OpenClaw.Tray.UITests;
 
 /// <summary>Real service tests. Playback is always replaced; no sound or cloud calls.</summary>
-public sealed class WindowsTextToSpeechServiceTests
+public sealed class WindowsTextToSpeechServiceTests(ITestOutputHelper output)
 {
     private static byte[] Wav() => Convert.FromHexString(
         "524946462C00000057415645666D74201000000001000100401F0000803E000002001000646174610800000000000100FFFF0000");
@@ -83,7 +84,7 @@ public sealed class WindowsTextToSpeechServiceTests
         Assert.Equal("windows", result.RequestedProvider);
         Assert.False(result.FellBack);
         Assert.Equal("audio/wav", result.ContentType);
-        Assert.InRange(result.DurationMs, 0, int.MaxValue);
+        Assert.InRange(Assert.IsType<int>(result.DurationMs), 0, int.MaxValue);
     }
 
     [Theory]
@@ -249,7 +250,7 @@ public sealed class WindowsTextToSpeechServiceTests
         Assert.Equal(1, fixture.PlayCalls);
     }
 
-    private static void AssertPcmWave(byte[] wav)
+    private void AssertPcmWave(byte[] wav)
     {
         Assert.Equal("RIFF"u8.ToArray(), wav[..4]);
         Assert.Equal("WAVE"u8.ToArray(), wav[8..12]);
@@ -267,6 +268,12 @@ public sealed class WindowsTextToSpeechServiceTests
                 Assert.InRange(BinaryPrimitives.ReadInt16LittleEndian(wav.AsSpan(offset + 10)), (short)1, (short)2);
                 Assert.InRange(BinaryPrimitives.ReadInt32LittleEndian(wav.AsSpan(offset + 12)), 8000, 192000);
                 Assert.Equal(16, BinaryPrimitives.ReadInt16LittleEndian(wav.AsSpan(offset + 22)));
+                output.WriteLine(
+                    "Native Windows WAV: bytes={0}, format=PCM, channels={1}, sampleRate={2}, bitsPerSample={3}. Playback replaced.",
+                    wav.Length,
+                    BinaryPrimitives.ReadInt16LittleEndian(wav.AsSpan(offset + 10)),
+                    BinaryPrimitives.ReadInt32LittleEndian(wav.AsSpan(offset + 12)),
+                    BinaryPrimitives.ReadInt16LittleEndian(wav.AsSpan(offset + 22)));
                 foundFormat = true;
             }
             if (wav.AsSpan(offset, 4).SequenceEqual("data"u8))
