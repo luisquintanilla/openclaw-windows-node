@@ -1,8 +1,10 @@
 # Managed audio arithmetic experiment
 
-Status: meter plus gain selected from the initial three-run experiment.
-Original scalar VAD is restored. Final-source measurement and mandatory full-build
-validation are still pending, so this is not a qualified or published optimization.
+Status: meter plus gain passed the initial and final three-run performance gates
+on the available native Windows x64 host. Original scalar VAD is retained.
+The full build remains blocked by npm TLS; this is a discussion proposal,
+not a merge-ready change. See
+[openclaw/openclaw-windows-node#1524](https://github.com/openclaw/openclaw-windows-node/issues/1524).
 No application, transcription, battery, or cross-architecture speedup is claimed.
 
 ## Reproduction
@@ -72,11 +74,11 @@ mismatches before timing.
 
 ## Numerical contract and derivation
 
-Only post-gain/clamp finite samples in [-1,1] or NaN are in the helper domain.
+Only post-gain/clamp finite samples in [-1,1] or NaN are in the RMS helper domain.
 Meter vectorization is limited to lengths 32..4096; other lengths and
 nonaccelerated runtimes retain ascending original-order float accumulation.
 Empty input remains NaN. Nonfinite SIMD output is recomputed scalar, not
-sanitized. Inputs are never mutated.
+sanitized. RMS inputs are never mutated; gain is deliberately in-place.
 
 For n samples, let u=2^-24, k=n+16, g=ku/(1-ku),
 L=(1-u)^4 sqrt(1-g), U=(1+u)^4 sqrt(1+g), h=2^-55.
@@ -154,6 +156,10 @@ The full JSON and raw measurement CSV files are losslessly gzip-compressed.
 Every archive was decompressed and compared byte-for-byte to its original;
 no measurement or noisy/outlier row was removed. `archive-index.json` records
 both stored and uncompressed SHA256 hashes.
+The evidence directory disables Git text conversion for archived exports so
+the committed bytes also match the hashes. The final evidence commit restores
+the original CRLF Markdown-summary bytes that Git normalized in the first
+archive commit; compressed raw measurements and statistical values were unchanged.
 The evidence-only `results\evaluate-results.py` accepts either original or
 compressed run directories. Reproduce the initial gates with:
 
@@ -197,18 +203,81 @@ Run the final matrix three times serially with distinct artifact directories:
 dotnet run -c Release --project .\benchmarks\OpenClaw.Audio.Benchmarks\OpenClaw.Audio.Benchmarks.csproj -- --filter "*AudioRmsBenchmarks*" "*AudioGainBenchmarks*" "*AudioStageBenchmarks.Scalar*" "*AudioStageBenchmarks.Meter" "*AudioStageBenchmarks.MeterGain*" --artifacts .\BenchmarkDotNet.Artifacts\audio-final-1
 ```
 
-Final selection requires the actual source-linked meter/gain implementation to
-pass the same primary and composed gates on its new measured revision. No
-cutoffs, thresholds, corpus, reset rules, error targets, or acceptance gates change.
+## Completed final-source campaign
 
-## Current validation and blockers
+Final measured source: `1fd070aa658d03668aeb69a715a040a5a28ee4f2`.
+Its production code is the selection commit `0a2e7ca8d1bc4caaf7413ce541ca005821e5066a`;
+the intervening change only archives initial evidence and documentation.
+Three serial invocations completed all **279 cases (93 per run)** at this clean,
+unchanged revision, with no failures and **zero reported allocated bytes in every
+row**. Durations were 2:01:25, 1:19:56, and 1:25:15. Both retained candidates
+passed the same primary rows in every run, with candidate upper 99.9% confidence
+limits below baseline lower limits. All six composed workloads passed against
+the original scalar baseline and the already-retained meter combination.
+
+**Final precision limitation: 77/93, 45/93, and 45/93 rows missed the requested
+2% relative-error target (167/279 overall).** The initial 348/435 misses remain
+part of the evidence too. These are noisy measurements, not 2%-precision claims.
+No case was omitted because it was slow or noisy; no guard, cutoff, corpus,
+reset rule, confidence level, or acceptance gate was changed. Final corpus
+hashes match the initial corpus exactly.
+
+The following speech-profile times are mean ns/op. Each cell is
+`scalar -> retained candidate`; gain includes the common reset copy.
+Full errors, standard deviations, allocations, raw iterations, and every
+diagnostic/composed row are in the exports rather than hidden by these summaries.
+
+| Operation / samples | Run 1 | Run 2 | Run 3 |
+|---|---:|---:|---:|
+| Meter / 480 | 377.719 -> 23.867 | 417.035 -> 24.183 | 456.742 -> 31.994 |
+| Meter / 960 | 1184.315 -> 53.113 | 873.121 -> 52.644 | 872.867 -> 52.517 |
+| Meter / 1600 | 1941.132 -> 92.273 | 1460.078 -> 81.842 | 1492.926 -> 83.145 |
+| Copy + gain / 480 | 517.026 -> 88.430 | 414.912 -> 73.801 | 416.036 -> 76.244 |
+| Copy + gain / 960 | 692.634 -> 195.536 | 719.932 -> 154.612 | 706.526 -> 154.004 |
+| Copy + gain / 1600 | 1175.905 -> 246.863 | 1192.591 -> 261.372 | 1192.492 -> 256.560 |
+
+Meter primary mean improvements span **92.995% to 95.515%**; copy+gain spans
+**71.769% to 82.896%**. These are arithmetic/fixture improvements only.
+For the 20-callback numerical-stage proxy, the complete retained composition is:
+
+| Workload | Scalar mean range (us/op) | Meter+gain mean range (us/op) | Mean improvement range | Worst conservative ratio vs scalar | Worst conservative ratio vs meter |
+|---|---:|---:|---:|---:|---:|
+| Fixed | 55.694-56.292 | 8.602-8.853 | 84.113%-84.719% | 0.165108 | 0.325915 |
+| Ordinary | 28.243-29.626 | 12.901-15.539 | 47.549%-54.457% | 0.546253 | 0.748571 |
+| Clipped | 27.257-29.339 | 12.126-12.822 | 55.512%-56.297% | 0.462935 | 0.685903 |
+| 10% fallback corpus | 28.091-28.269 | 12.522-13.048 | 53.703%-55.459% | 0.481132 | 0.722240 |
+| 50% fallback corpus | 27.227-28.380 | 12.684-13.215 | 53.412%-53.516% | 0.484828 | 0.711413 |
+| 100% fallback corpus | 27.123-28.283 | 12.298-12.976 | 54.120%-54.657% | 0.475512 | 0.705697 |
+
+"Fallback corpus" denotes the unchanged input's verified fallback frequency in
+the rejected guarded experiment. Final production VAD is always the original
+scalar loop, not a conditionally retained vector path.
+
+There was no positive mean or conservative regression in any retained final
+comparison. The worst meter-only composed ratio was 0.735136 mean / 0.776085
+conservative. The worst final-composition ratio was 0.524506 mean / 0.546253
+conservative versus scalar, and 0.713482 mean / 0.748571 conservative versus
+meter. All three worst cases were run 1 ordinary audio; all are below the
+unchanged 1.05 limit. The rejected VAD's 21.28% mean / 33.15% conservative
+slowdown from the initial campaign is not erased by these retained-candidate wins.
+
+Final durable exports and checksums:
+[`results/1fd070aa658d03668aeb69a715a040a5a28ee4f2/x64`](results/1fd070aa658d03668aeb69a715a040a5a28ee4f2/x64).
+The same lossless archive checks and privacy screening apply. Reproduce final gates:
+
+```powershell
+$evidence = ".\benchmarks\OpenClaw.Audio.Benchmarks\results\1fd070aa658d03668aeb69a715a040a5a28ee4f2\x64"
+python .\benchmarks\OpenClaw.Audio.Benchmarks\results\evaluate-results.py --retained --source-sha 1fd070aa658d03668aeb69a715a040a5a28ee4f2 --run "$evidence\run-1" --run "$evidence\run-2" --run "$evidence\run-3" --output .\BenchmarkDotNet.Artifacts\final-gates
+```
+
+## Final validation and blockers
 
 Original scalar pipeline characterization: 23 actual pipeline/lifecycle tests
 passed, zero skipped, on native Windows x64. Pure helper plus existing speech
-contracts and gain experiment: 90 passed, zero skipped, both normally and in a
+contracts and initial gain experiment: 90 passed, zero skipped, both normally and in a
 separate process with `DOTNET_EnableHWIntrinsic=0`. The same 23 actual-pipeline
-tests also pass against current candidate assemblies with matching SHA256
-between production and test outputs. These are not final closeout results.
+tests also passed against the initial candidate assemblies with matching SHA256
+between production and test outputs. Those initial results preceded selection.
 Host: Windows build 26200, Intel i9-11950H, .NET SDK 10.0.401, runtime 10.0.12.
 Native ARM64, live microphone/UI, gateway and application-level performance
 are not verified.
@@ -226,6 +295,27 @@ No shared/root-directory ACL or machine-wide setting was changed.
 The subsequent complete mandatory-suite rerun passed Shared (4107 passed,
 32 skipped, 4139 total) and Tray (3157 passed, zero skipped). The full build
 still failed only at the unrelated WinUI npm dependency restore.
+These final-code checks ran before the clean final measurement freeze. There
+were no subsequent production, oracle, test, or benchmark changes, only
+documentation and evidence. Sanitized commands, TRX-derived results and hashes,
+and source fingerprints are in
+[`results/source-validation.json`](results/source-validation.json).
+
+| Requirement | Evidence |
+|---|---|
+| "EXACT identical speech decisions" | `HysteresisAndSegmentation_MatchScalarTraceAtExactConsumedChunks`: exact events, chunk boundaries, eligibility and scalar probability bits in 5 cases; original VAD source restored unchanged |
+| "Gain/clamp finite output bits/signed zeros must be exact, with original NaN semantics." | `Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification`: 25 shapes with offset slices and untouched sentinels; `NaNInput_EmitsNaNMeterAndDoesNotStartSpeech` |
+| "Characterization and actual pipeline fake-capture tests precede adoption." | Original 23-case trace passed before substitution; final `FixedCapture_PreservesPostGainSampleBitsAndMeter_ButBypassesVad` covers 8 PCM16/float cases; final pipeline/lifecycle total 29 passed |
+| "bounded RMS/meter/probability rounding" | `ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput`, 25 shapes; `EmptyRms_RemainsNaN_NotSilentZero`; `verify-numerical-bounds.py`; final VAD probabilities are exact |
+| "zero added steady-state numeric allocations" | MemoryDiagnoser reports 0 B/op for all 279 final records, including every composed workload |
+| Required full Shared and Tray tests | 4107 Shared passed, 32 skipped; 3157 Tray passed, 0 skipped; final-code TRX counters retained |
+
+Direct production, oracle, benchmark and evaluator review found no blocking
+issue. The structured review attempt
+`python .\.agents\skills\autoreview\scripts\autoreview --mode commit --commit 0a2e7ca8d1bc4caaf7413ce541ca005821e5066a`
+could not run its Codex engine because the executable was unavailable. This is
+not a clean autoreview claim. Initial optimized x64 JIT diagnostic output is
+preserved in `results\initial-jit-x64.txt`; it is not final-run timing evidence.
 
 Baseline recovery uses only process-scoped settings: short PATH (the inherited
 10,141-character PATH breaks CMD's 8191-character limit), an explicit official
@@ -238,5 +328,24 @@ locked MXC dependencies. The public Microsoft npm mirror returns 401 for
 mxc-sdk 0.8.0 and node-pty 1.2.0-beta.12; offline restore reports ENOTCACHED.
 Focused pipeline tests used compiled real assemblies and the repository's
 asset-copy target, then `--no-build`; this is not a passing full build.
-No branch push or upstream proposal is permitted while that mandatory gate
-remains blocked. Measurement/selection results will be added only after runs.
+The exact failing download is
+`https://registry.npmjs.org/node-pty/-/node-pty-1.2.0-beta.12.tgz`
+with `ERR_SSL_SSL/TLS_ALERT_HANDSHAKE_FAILURE`. Independent official-endpoint
+checks also failed. No TLS bypass, account switch, changed lockfile, substitute
+binary, or privileged installation was used.
+
+To clear this remaining gate, restore authorized working HTTPS access to the
+locked npm dependencies, run `npm ci --no-audit --no-fund` in the isolated
+worktree, then rerun `.\build.ps1`, full Shared/Tray tests and focused pipeline
+tests with the same task-local settings/TEMP isolation. Do not treat the
+successful scoped compile/copy/test path as the required complete app build.
+
+The original publication policy was revised by user direction to permit a
+transparent discussion proposal while this unrelated full-build blocker remains.
+The fork is
+[`perf/tensorprimitives-audio`](https://github.com/luisquintanilla/openclaw-windows-node/tree/perf/tensorprimitives-audio);
+the coordinating session published
+[openclaw/openclaw-windows-node#1524](https://github.com/openclaw/openclaw-windows-node/issues/1524).
+Evidence commits preserve the immutable initial and final measured revisions.
+No PR, ownership labels, merge-readiness, native ARM64, live microphone/UI/gateway,
+or application/transcription speedup claim is made.

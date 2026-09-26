@@ -1,0 +1,1128 @@
+{
+  "Baseline": "273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+  "ValidatedSourceSelection": "0a2e7ca8d1bc4caaf7413ce541ca005821e5066a",
+  "FinalMeasuredSource": "1fd070aa658d03668aeb69a715a040a5a28ee4f2",
+  "Provenance": "Final-code tests ran before committing the selection. Source/test blobs are unchanged between selection and measured revision; later commits contain documentation/evidence only.",
+  "OriginalVadAndRemainderOfPipelineMatchBaseline": true,
+  "ProductionAndTestHostTrayAssemblySha256": "8463C846D7B9089E0427607CD3D0FA227F7F2CD8C99173C85D5E794B10124006",
+  "Tests": [
+    {
+      "Suite": "Shared",
+      "Command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --no-restore",
+      "ExitCode": 0,
+      "Passed": 4107,
+      "Skipped": 32,
+      "Total": 4139,
+      "TrxCounters": {
+        "total": 4139,
+        "executed": 4107,
+        "passed": 4107,
+        "failed": 0,
+        "error": 0,
+        "timeout": 0,
+        "aborted": 0,
+        "inconclusive": 0,
+        "passedButRunAborted": 0,
+        "notRunnable": 0,
+        "notExecuted": 0,
+        "disconnected": 0,
+        "warning": 0,
+        "completed": 0,
+        "inProgress": 0,
+        "pending": 0
+      },
+      "ResultOutcomes": {
+        "Passed": 4107,
+        "NotExecuted": 32
+      },
+      "OriginalTrxSha256": "8eff1cd15d8619edc82ff2797a6adc8ef897066ee4ffaa5b2327a6aa160338ad"
+    },
+    {
+      "Suite": "Tray",
+      "Command": "dotnet test .\\tests\\OpenClaw.Tray.Tests\\OpenClaw.Tray.Tests.csproj --no-restore",
+      "ExitCode": 0,
+      "Passed": 3157,
+      "Skipped": 0,
+      "Total": 3157,
+      "TrxCounters": {
+        "total": 3157,
+        "executed": 3157,
+        "passed": 3157,
+        "failed": 0,
+        "error": 0,
+        "timeout": 0,
+        "aborted": 0,
+        "inconclusive": 0,
+        "passedButRunAborted": 0,
+        "notRunnable": 0,
+        "notExecuted": 0,
+        "disconnected": 0,
+        "warning": 0,
+        "completed": 0,
+        "inProgress": 0,
+        "pending": 0
+      },
+      "ResultOutcomes": {
+        "Passed": 3157
+      },
+      "OriginalTrxSha256": "33c98822b2106cb944985694acccea19eb18ea5a8a3d2900a8b5455e9d50cce4"
+    },
+    {
+      "Suite": "Pure default",
+      "Command": "dotnet test .\\tests\\OpenClaw.Tray.Tests\\OpenClaw.Tray.Tests.csproj --no-build --no-restore --filter \"FullyQualifiedName~AudioNumerics|FullyQualifiedName~SpeechInputContractTests\"",
+      "ExitCode": 0,
+      "Passed": 90,
+      "Skipped": 0,
+      "Total": 90,
+      "TrxCounters": {
+        "total": 90,
+        "executed": 90,
+        "passed": 90,
+        "failed": 0,
+        "error": 0,
+        "timeout": 0,
+        "aborted": 0,
+        "inconclusive": 0,
+        "passedButRunAborted": 0,
+        "notRunnable": 0,
+        "notExecuted": 0,
+        "disconnected": 0,
+        "warning": 0,
+        "completed": 0,
+        "inProgress": 0,
+        "pending": 0
+      },
+      "ResultOutcomes": {
+        "Passed": 90
+      },
+      "OriginalTrxSha256": "0e4391fc7bf8285fb9d08810e823c26fceed62d3f4ed687646e3f04d1dbfc258",
+      "Tests": [
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 15)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.AdversarialReductions_PreserveDecisionAndInclusiveFallback(threshold: 0.0299999993)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 1600)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 16000)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 0)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 4095)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 513)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 4)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 1)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 16)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.GuardEndpoints_AreClosedExactDoubleIntervals(threshold: 0.0299999993)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 8)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 7)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 1600)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 1024)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 15)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 4096)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 3)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 511)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.SpeechInputContractTests.ChatVoiceDialogs_RouteDisabledTtsCapabilityToPermissions_AndPreserveFallbackForMissingSetup",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 480)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 3)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 511)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 160)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 4097)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.SpeechInputContractTests.AudioPipeline_UsesManagedEnergyVad_NotNativeVad",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 4096)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 17)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.NaNAndPostGainInfinities_PreserveClassification(position: 0)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 480)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 960)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 4)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 4)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 16000)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 8)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ThresholdNeighborhood_8193AdjacentAmplitudes_PreserveExactDecisions(threshold: 0.00800000038)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ThresholdNeighborhood_8193AdjacentAmplitudes_PreserveExactDecisions(threshold: 0.0299999993)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.SpeechInputContractTests.VoiceService_DoesNotLoadNativeVad_OnRecordStartup",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 32)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 32)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 4097)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 960)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 15)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 2)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 16)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 3)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 512)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 7)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 16000)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 160)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 7)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 17)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 960)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 31)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 1)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 1024)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 2)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 4095)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 511)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 480)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 33)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 31)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.SpeechInputContractTests.ChatVoiceDialogs_RouteDisabledSttCapabilityToPermissions_AndMissingModelToVoiceSettings",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.AdversarialReductions_PreserveDecisionAndInclusiveFallback(threshold: 0.00800000038)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 2)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 512)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 33)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 8)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.GuardEndpoints_AreClosedExactDoubleIntervals(threshold: 0.00800000038)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 33)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 0)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 0)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 512)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 31)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 513)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 17)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 16)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.SpeechInputContractTests.AudioPipeline_FirstAudioTimeout_UsesLocalizedActionableMessage",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 1600)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.NaNAndPostGainInfinities_PreserveClassification(position: 511)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 4096)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 32)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 4097)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 4095)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 160)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.EmptyRms_RemainsNaN_NotSilentZero",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 513)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 1024)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.NaNAndPostGainInfinities_PreserveClassification(position: 255)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 1)",
+          "Outcome": "Passed"
+        }
+      ]
+    },
+    {
+      "Suite": "Pure ISA-disabled",
+      "Command": "$env:DOTNET_EnableHWIntrinsic=\"0\"; dotnet test .\\tests\\OpenClaw.Tray.Tests\\OpenClaw.Tray.Tests.csproj --no-build --no-restore --filter \"FullyQualifiedName~AudioNumerics|FullyQualifiedName~SpeechInputContractTests\"",
+      "ExitCode": 0,
+      "Passed": 90,
+      "Skipped": 0,
+      "Total": 90,
+      "TrxCounters": {
+        "total": 90,
+        "executed": 90,
+        "passed": 90,
+        "failed": 0,
+        "error": 0,
+        "timeout": 0,
+        "aborted": 0,
+        "inconclusive": 0,
+        "passedButRunAborted": 0,
+        "notRunnable": 0,
+        "notExecuted": 0,
+        "disconnected": 0,
+        "warning": 0,
+        "completed": 0,
+        "inProgress": 0,
+        "pending": 0
+      },
+      "ResultOutcomes": {
+        "Passed": 90
+      },
+      "OriginalTrxSha256": "144b201dc671a9e513128b6bfeb6bac3722cd37c57c537f13da70b3f5602928c",
+      "Tests": [
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 17)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 4)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 1024)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.SpeechInputContractTests.AudioPipeline_UsesManagedEnergyVad_NotNativeVad",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 32)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 17)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 32)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.NaNAndPostGainInfinities_PreserveClassification(position: 511)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 1024)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 513)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 4097)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 4096)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 2)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 16000)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.SpeechInputContractTests.VoiceService_DoesNotLoadNativeVad_OnRecordStartup",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 511)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 4)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 511)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 8)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 2)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.NaNAndPostGainInfinities_PreserveClassification(position: 255)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 3)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 16000)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 16000)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 31)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 1)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 0)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 513)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ThresholdNeighborhood_8193AdjacentAmplitudes_PreserveExactDecisions(threshold: 0.0299999993)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 8)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 17)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 480)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.SpeechInputContractTests.ChatVoiceDialogs_RouteDisabledSttCapabilityToPermissions_AndMissingModelToVoiceSettings",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 1600)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 960)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 32)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.SpeechInputContractTests.ChatVoiceDialogs_RouteDisabledTtsCapabilityToPermissions_AndPreserveFallbackForMissingSetup",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 4095)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 0)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 160)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 1024)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 512)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.AdversarialReductions_PreserveDecisionAndInclusiveFallback(threshold: 0.00800000038)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 512)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 15)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 1600)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ThresholdNeighborhood_8193AdjacentAmplitudes_PreserveExactDecisions(threshold: 0.00800000038)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 160)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 4096)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 4097)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.GuardEndpoints_AreClosedExactDoubleIntervals(threshold: 0.00800000038)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 512)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 7)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 3)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 33)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 31)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 960)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 4095)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 7)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.EmptyRms_RemainsNaN_NotSilentZero",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 16)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.AdversarialReductions_PreserveDecisionAndInclusiveFallback(threshold: 0.0299999993)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 0)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 15)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 16)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.GuardEndpoints_AreClosedExactDoubleIntervals(threshold: 0.0299999993)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 31)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 960)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 160)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 480)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 1)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 513)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 4095)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.SpeechInputContractTests.AudioPipeline_FirstAudioTimeout_UsesLocalizedActionableMessage",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 16)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 4)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 8)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 4097)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.NaNAndPostGainInfinities_PreserveClassification(position: 0)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 7)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 4096)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 511)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 33)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 480)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 1600)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.ShapesSignalsAndOffsetSlices_PreserveBoundsFallbackAndInput(length: 1)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 33)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 3)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(length: 15)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.Tests.AudioNumericsTests.UnsupportedVadShapesAndThresholds_UseOriginalOrder(length: 2)",
+          "Outcome": "Passed"
+        }
+      ]
+    },
+    {
+      "Suite": "Actual pipeline",
+      "Command": "dotnet test .\\tests\\OpenClaw.Tray.UITests\\OpenClaw.Tray.UITests.csproj -r win-x64 -p:Platform=x64 --no-build --no-restore --filter \"FullyQualifiedName~AudioPipelineNumericsTests|FullyQualifiedName~AudioPipelineFirstAudioTimeoutTests\"",
+      "ExitCode": 0,
+      "Passed": 29,
+      "Skipped": 0,
+      "Total": 29,
+      "TrxCounters": {
+        "total": 29,
+        "executed": 29,
+        "passed": 29,
+        "failed": 0,
+        "error": 0,
+        "timeout": 0,
+        "aborted": 0,
+        "inconclusive": 0,
+        "passedButRunAborted": 0,
+        "notRunnable": 0,
+        "notExecuted": 0,
+        "disconnected": 0,
+        "warning": 0,
+        "completed": 0,
+        "inProgress": 0,
+        "pending": 0
+      },
+      "ResultOutcomes": {
+        "Passed": 29
+      },
+      "OriginalTrxSha256": "1e8b29a93f9c60272c1d20cf53029562ced6296f52177df67c5e7863c74ed2a5",
+      "Tests": [
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.FixedCapture_PreservesPostGainSampleBitsAndMeter_ButBypassesVad(pcm16: False, length: 7)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.StopBeforeTimeout_PreventsLateError",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.RecordingStoppedError_CancelsTimeout_AndKeepsExistingErrorRoute",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.HysteresisAndSegmentation_MatchScalarTraceAtExactConsumedChunks(callbackSize: 512, pcm16: False)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.TimeoutAndStop_AreSerializedWithoutLateError",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.FixedCapture_PreservesPostGainSampleBitsAndMeter_ButBypassesVad(pcm16: False, length: 480)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.FixedCapture_PreservesPostGainSampleBitsAndMeter_ButBypassesVad(pcm16: True, length: 480)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.FixedCapture_PreservesPostGainSampleBitsAndMeter_ButBypassesVad(pcm16: False, length: 1600)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.CleanRecordingStopBeforeFirstAudio_DoesNotDisableTimeout",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.HysteresisAndSegmentation_MatchScalarTraceAtExactConsumedChunks(callbackSize: 160, pcm16: True)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.StopDuringStartup_WaitsForInitializationThenCleansUp",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.FirstNonemptyAudio_CancelsTimeout",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.Prebuffer_OnsetPreservesTenChunksInOriginalSampleOrder",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.FixedCapture_PreservesPostGainSampleBitsAndMeter_ButBypassesVad(pcm16: True, length: 7)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.HysteresisAndSegmentation_MatchScalarTraceAtExactConsumedChunks(callbackSize: 480, pcm16: False)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.EmptyMutedCancelledAndStaleCallbacks_EmitNoNumericalEvents",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.FixedDurationCapture_DoesNotArmStreamingWatchdog",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.StartupCancellation_ReturnsToStoppedWithoutMicrophoneError",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.Restart_DoesNotRetainPriorWatchdog",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.FixedCaptureRecordingError_CleansUpAndCanRestart",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.FixedCapture_PreservesPostGainSampleBitsAndMeter_ButBypassesVad(pcm16: True, length: 1600)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.HysteresisAndSegmentation_MatchScalarTraceAtExactConsumedChunks(callbackSize: 160, pcm16: False)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.FixedCapture_PreservesPostGainSampleBitsAndMeter_ButBypassesVad(pcm16: True, length: 960)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.NoCallback_StopsAndDisposesCapture_AndReportsError",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.FixedCaptureLateTeardown_CannotStopRestartedStream",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.HysteresisAndSegmentation_MatchScalarTraceAtExactConsumedChunks(callbackSize: 512, pcm16: True)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.FixedCapture_PreservesPostGainSampleBitsAndMeter_ButBypassesVad(pcm16: False, length: 960)",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineNumericsTests.NaNInput_EmitsNaNMeterAndDoesNotStartSpeech",
+          "Outcome": "Passed"
+        },
+        {
+          "Name": "OpenClaw.Tray.UITests.AudioPipelineFirstAudioTimeoutTests.ConcurrentStopAndDispose_AreIdempotent",
+          "Outcome": "Passed"
+        }
+      ]
+    }
+  ],
+  "SourceFingerprints": [
+    {
+      "Path": "benchmarks/OpenClaw.Audio.Benchmarks/AudioBenchmarkInputs.cs",
+      "GitBlob": "71fa57e2bedde2011de8ea845f793e7688719d4c",
+      "Sha256": "c4812e2bb5f6aa645473206f7072675ed90c1390c49f52cdb0913873e104a825"
+    },
+    {
+      "Path": "benchmarks/OpenClaw.Audio.Benchmarks/AudioGainBenchmarks.cs",
+      "GitBlob": "3c8f9e5befa89bd182695165a122a41ed3f16208",
+      "Sha256": "b6c3dda900821e42d3e728bf9b28a3e0e2fb5f30d82a6a4d3351ee0df497eda2"
+    },
+    {
+      "Path": "benchmarks/OpenClaw.Audio.Benchmarks/AudioRmsBenchmarks.cs",
+      "GitBlob": "ad854fab2b1ae3f8703cf15e410f80046c7d9499",
+      "Sha256": "ee80c27ff06ca45625b62008806654e2ae5c8307905bbbecf621206dabe84fd8"
+    },
+    {
+      "Path": "benchmarks/OpenClaw.Audio.Benchmarks/AudioStageBenchmarks.cs",
+      "GitBlob": "db9401a7a86244a7ce0eb68a750a672319bf9cb2",
+      "Sha256": "eaca4f54e4ab8eb6d82dcd04567e25a2dc3ba2c3fdfe5721aaf6a6ed7ed358a3"
+    },
+    {
+      "Path": "benchmarks/OpenClaw.Audio.Benchmarks/AudioVadExperiment.cs",
+      "GitBlob": "65f806292c6c7ccf94caf00c9b5097b80d51eec6",
+      "Sha256": "194a4a02e2ec805c74dbd3531dd378f48edd80d33e792f7a60e169b86d44981f"
+    },
+    {
+      "Path": "benchmarks/OpenClaw.Audio.Benchmarks/OpenClaw.Audio.Benchmarks.csproj",
+      "GitBlob": "76c9f15c3ee9116d36eaf50d1765c3bf38a126aa",
+      "Sha256": "6edc4948dda2861223d1f237f3815bea43f88212caa4c3d14e913dedd79dc902"
+    },
+    {
+      "Path": "benchmarks/OpenClaw.Audio.Benchmarks/Program.cs",
+      "GitBlob": "8bc09ca48b9ae96275dae584b1d00e6a9cee96a0",
+      "Sha256": "74fdbf12c8062170c7d0033a44be79aca7d531a5fc7ab63750f9e87a4d8753cc"
+    },
+    {
+      "Path": "src/OpenClaw.Tray.WinUI/OpenClaw.Tray.WinUI.csproj",
+      "GitBlob": "8a4245d06a8fea35fea55058abaa38cd19d48aca",
+      "Sha256": "7bed9551ac1dbc9a9b7acb68d68502f0efa5f58842ad1e2caa700073adf30089"
+    },
+    {
+      "Path": "src/OpenClaw.Tray.WinUI/Services/AudioNumerics.cs",
+      "GitBlob": "54564a83b84cfd872db8b98a3a2496f13313cbae",
+      "Sha256": "3114f769075d54688ef384b85735a2351dafb7b4f7c3d5e9355b96aac284fa30"
+    },
+    {
+      "Path": "src/OpenClaw.Tray.WinUI/Services/AudioPipeline.cs",
+      "GitBlob": "116905fc074b694c5cecaa4568ae35539f29f687",
+      "Sha256": "a1a206dfc8f645dd10243a5071dfeec85a506b49ea5bd856853b2b3ef641ba83"
+    },
+    {
+      "Path": "tests/OpenClaw.Tray.Tests/AudioNumericsReference.cs",
+      "GitBlob": "3962403c23817dce705e5bf6abe3f10afeafefa9",
+      "Sha256": "98ea14cf07979332c7af478ea91dd5815e73891f0aa825c8be7fa3e681b2060f"
+    },
+    {
+      "Path": "tests/OpenClaw.Tray.Tests/AudioNumericsTests.cs",
+      "GitBlob": "6326ab0090918e76fa1b883b7dd007f7a43a567b",
+      "Sha256": "b525e319b42d20c8867910c91a7848a5d1bbd31253152e1270257a98ab693b69"
+    },
+    {
+      "Path": "tests/OpenClaw.Tray.Tests/OpenClaw.Tray.Tests.csproj",
+      "GitBlob": "c3f2dcb45844cb835e7fda01bfc9ac4df546455e",
+      "Sha256": "0ae13358cf09f4a1de121b5bb77af49bd2faf210d760711fc61154ca90b5843c"
+    },
+    {
+      "Path": "tests/OpenClaw.Tray.UITests/AudioPipelineNumericsTests.cs",
+      "GitBlob": "7a9b9cf0a66b5b5384cbc5cbd093f42a13295ae2",
+      "Sha256": "ffa16f9f6acfccf62dbb9de9d85fb096685a41456b4a15bcdfe47e6f7f8971f5"
+    },
+    {
+      "Path": "tests/OpenClaw.Tray.UITests/OpenClaw.Tray.UITests.csproj",
+      "GitBlob": "6680c99d591fbf31114db13a157e77422c79e9b7",
+      "Sha256": "410c3d2e569ec33e66c5c7d28957d7895a6ffb852fab7576cbb562ce627f7157"
+    }
+  ],
+  "RequiredBuild": {
+    "Command": ".\\build.ps1",
+    "ExitCode": 1,
+    "PassedComponents": [
+      "Shared",
+      "Cli",
+      "WinNodeCli",
+      "SetupEngine"
+    ],
+    "FailedComponent": "WinUI",
+    "FailureCode": "ERR_SSL_SSL/TLS_ALERT_HANDSHAKE_FAILURE",
+    "FailedDownload": "https://registry.npmjs.org/node-pty/-/node-pty-1.2.0-beta.12.tgz",
+    "Status": "Unresolved npm TLS prerequisite; scoped compile/copy is not a passing full build."
+  },
+  "ScopedRecovery": {
+    "NuGet": "Process-only RestoreConfigFile using official HTTPS NuGet v2; v3 TLS failed.",
+    "Path": "Short process-only PATH avoids CMD's 8191-character limit.",
+    "VcRuntime": "Existing Visual Studio 2022 Enterprise VC++ 14.44.35211; existing CopyOpenClawVCRuntimeToOutput target used for actual x64 output.",
+    "Temp": "New task-only directory, current-user ownership verified before adding only that user's inheritable Allow FullControl; prior ACL entries/inheritance preserved.",
+    "Isolation": "OPENCLAW_REPO_ROOT, OPENCLAW_TRAY_DATA_DIR, TEMP and TMP set per process. No primary-checkout, shared-directory ACL, machine-wide, certificate or account changes.",
+    "PipelineCompile": "Compile real WinUI with SkipMxcNodeBridgeRestore=true; unrelated missing wxc-exec post-build copy remains blocked. Run existing CopySetupAssetsLooseForConsumerCopy, build UITests with BuildProjectReferences=false, compare tray assembly hashes, then execute no-build."
+  },
+  "PinnedPackage": {
+    "Name": "System.Numerics.Tensors",
+    "Version": "10.0.12",
+    "RepositoryCommit": "95017c711e6afc1085133d440e42b4bd78155701",
+    "NupkgSha256": "7E8917F90FE72467008B9363BB0FB6286E9D174D6D9D15529FF5CAC4EC781CD1"
+  },
+  "Review": {
+    "DirectReview": "Production delta, independent oracle, mutation reset, composed cases and evaluator reviewed; no blocking issue found.",
+    "StructuredReviewCommand": "python .\\.agents\\skills\\autoreview\\scripts\\autoreview --mode commit --commit 0a2e7ca8d1bc4caaf7413ce541ca005821e5066a",
+    "StructuredReviewResult": "Blocked: codex executable unavailable. No clean autoreview claim."
+  },
+  "Unverified": [
+    "Native ARM64 performance",
+    "Live microphone/native voice integration",
+    "Visible UI proof",
+    "Gateway-mediated voice path",
+    "Whole-application latency",
+    "Transcription speed/quality",
+    "Battery savings",
+    "Complete app build pending npm TLS recovery"
+  ],
+  "Publication": {
+    "ForkBranch": "https://github.com/luisquintanilla/openclaw-windows-node/tree/perf/tensorprimitives-audio",
+    "Proposal": "https://github.com/openclaw/openclaw-windows-node/issues/1524",
+    "Policy": "User explicitly allowed qualified discussion/fork publication despite unrelated npm blocker. This does not waive validation or establish PR/merge readiness. Parent owns issue updates."
+  }
+}

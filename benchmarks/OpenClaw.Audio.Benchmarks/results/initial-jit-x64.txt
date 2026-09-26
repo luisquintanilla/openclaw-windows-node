@@ -1,0 +1,536 @@
+; Assembly listing for method OpenClaw.Audio.Testing.AudioNumericsReference:CalculateRms(System.ReadOnlySpan`1[float]):float (FullOpts)
+; Emitting BLENDED_CODE for generic X64 + VEX + EVEX on Windows
+; FullOpts code
+; optimized code
+; rsp based frame
+; fully interruptible
+; No PGO data
+
+G_M000_IG01:                ;; offset=0x0000
+ 
+G_M000_IG02:                ;; offset=0x0000
+       mov      rax, bword ptr [rcx]
+       mov      ecx, dword ptr [rcx+0x08]
+       vxorps   xmm0, xmm0, xmm0
+       test     ecx, ecx
+       jle      SHORT G_M000_IG05
+ 
+G_M000_IG03:                ;; offset=0x000E
+       xor      edx, edx
+       mov      r8d, ecx
+       align    [13 bytes for IG04]
+ 
+G_M000_IG04:                ;; offset=0x0020
+       vmovss   xmm1, dword ptr [rax+rdx]
+       vmulss   xmm1, xmm1, xmm1
+       vaddss   xmm0, xmm1, xmm0
+       add      rdx, 4
+       dec      r8d
+       jne      SHORT G_M000_IG04
+ 
+G_M000_IG05:                ;; offset=0x0036
+       vxorps   xmm1, xmm1, xmm1
+       vcvtsi2ss xmm1, xmm1, ecx
+       vdivss   xmm0, xmm0, xmm1
+       vsqrtss  xmm0, xmm0, xmm0
+ 
+G_M000_IG06:                ;; offset=0x0046
+       ret      
+ 
+; Total bytes of code 71
+
+; Assembly listing for method OpenClawTray.Services.AudioNumerics:CalculateRms(System.ReadOnlySpan`1[float]):float (FullOpts)
+; Emitting BLENDED_CODE for generic X64 + VEX + EVEX on Windows
+; FullOpts code
+; optimized code
+; rsp based frame
+; partially interruptible
+; No PGO data
+; 0 inlinees with PGO data; 4 single block inlinees; 1 inlinees without PGO data
+
+G_M000_IG01:                ;; offset=0x0000
+       push     rsi
+       push     rbx
+       sub      rsp, 56
+       xor      eax, eax
+       mov      qword ptr [rsp+0x28], rax
+       mov      qword ptr [rsp+0x30], rax
+ 
+G_M000_IG02:                ;; offset=0x0012
+       mov      rbx, bword ptr [rcx]
+       mov      esi, dword ptr [rcx+0x08]
+       mov      ecx, esi
+       sub      ecx, 32
+       cmp      ecx, 0xFE0
+       jbe      SHORT G_M000_IG05
+ 
+G_M000_IG03:                ;; offset=0x0025
+       mov      bword ptr [rsp+0x28], rbx
+       mov      dword ptr [rsp+0x30], esi
+       lea      rcx, [rsp+0x28]
+       call     [OpenClawTray.Services.AudioNumerics:CalculateScalarRms(System.ReadOnlySpan`1[float]):float]
+       nop      
+ 
+G_M000_IG04:                ;; offset=0x003A
+       add      rsp, 56
+       pop      rbx
+       pop      rsi
+       ret      
+ 
+G_M000_IG05:                ;; offset=0x0041
+       mov      bword ptr [rsp+0x28], rbx
+       mov      dword ptr [rsp+0x30], esi
+       lea      rcx, [rsp+0x28]
+       xor      edx, edx
+       call     [System.Numerics.Tensors.TensorPrimitives:Aggregate[float,System.Numerics.Tensors.TensorPrimitives+StatefulUnaryAdapterOperator`2[System.Numerics.Tensors.TensorPrimitives+SquaredOperator`1[float],float],System.Numerics.Tensors.TensorPrimitives+AddOperator`1[float]](System.ReadOnlySpan`1[float],System.Numerics.Tensors.TensorPrimitives+StatefulUnaryAdapterOperator`2[System.Numerics.Tensors.TensorPrimitives+SquaredOperator`1[float],float]):float]
+       vxorps   xmm1, xmm1, xmm1
+       vcvtsi2ss xmm1, xmm1, esi
+       vdivss   xmm0, xmm0, xmm1
+       vsqrtss  xmm0, xmm0, xmm0
+       vmovd    ecx, xmm0
+       mov      eax, 0x7F800000
+       andn     ecx, ecx, eax
+       je       SHORT G_M000_IG03
+ 
+G_M000_IG06:                ;; offset=0x0077
+       add      rsp, 56
+       pop      rbx
+       pop      rsi
+       ret      
+ 
+; Total bytes of code 126
+
+; Assembly listing for method System.Numerics.Tensors.TensorPrimitives:Aggregate[float,System.Numerics.Tensors.TensorPrimitives+StatefulUnaryAdapterOperator`2[System.Numerics.Tensors.TensorPrimitives+SquaredOperator`1[float],float],System.Numerics.Tensors.TensorPrimitives+AddOperator`1[float]](System.ReadOnlySpan`1[float],System.Numerics.Tensors.TensorPrimitives+StatefulUnaryAdapterOperator`2[System.Numerics.Tensors.TensorPrimitives+SquaredOperator`1[float],float]):float (FullOpts)
+; Emitting BLENDED_CODE for generic X64 + VEX + EVEX on Windows
+; FullOpts code
+; optimized code
+; rsp based frame
+; partially interruptible
+; No PGO data
+; 0 inlinees with PGO data; 143 single block inlinees; 13 inlinees without PGO data
+
+G_M000_IG01:                ;; offset=0x0000
+       sub      rsp, 40
+       mov      dword ptr [rsp+0x38], edx
+ 
+G_M000_IG02:                ;; offset=0x0008
+       mov      rdx, bword ptr [rcx]
+       mov      r8d, dword ptr [rcx+0x08]
+       cmp      r8, 16
+       jae      G_M000_IG13
+ 
+G_M000_IG03:                ;; offset=0x0019
+       vxorps   xmm0, xmm0, xmm0
+       cmp      r8, 15
+       ja       G_M000_IG12
+       cmp      r8d, 15
+       ja       G_M000_IG12
+ 
+G_M000_IG04:                ;; offset=0x0031
+       mov      ecx, r8d
+       lea      rax, [reloc @RWD00]
+       mov      eax, dword ptr [rax+4*rcx]
+       lea      r10, G_M000_IG02
+       add      rax, r10
+       jmp      rax
+ 
+G_M000_IG05:                ;; offset=0x004A
+       vmovups  ymm0, ymmword ptr [rdx]
+       vmulps   ymm0, ymm0, ymm0
+       vmovups  ymm1, ymmword ptr [rdx+4*r8-0x20]
+       vmulps   ymm1, ymm1, ymm1
+       and      r8, 7
+       shl      r8d, 4
+       add      r8d, 8
+       mov      edx, r8d
+       mov      rcx, 0x172D6A9C8D8
+       vmovups  ymm2, ymmword ptr [rcx+4*rdx]
+       vxorps   ymm3, ymm3, ymm3
+       vpternlogd ymm2, ymm3, ymm1, -84
+       vaddps   ymm0, ymm2, ymm0
+       vmovaps  ymm1, ymm0
+       vpermilps xmm2, xmm1, -79
+       vaddps   xmm1, xmm2, xmm1
+       vpermilps xmm2, xmm1, 78
+       vaddps   xmm1, xmm2, xmm1
+       vextractf128 xmm0, ymm0
+       vpermilps xmm2, xmm0, -79
+       vaddps   xmm0, xmm2, xmm0
+       vpermilps xmm2, xmm0, 78
+       vaddps   xmm0, xmm2, xmm0
+       vaddss   xmm0, xmm1, xmm0
+       jmp      G_M000_IG12
+ 
+G_M000_IG06:                ;; offset=0x00C5
+       vmovups  ymm0, ymmword ptr [rdx]
+       vmulps   ymm0, ymm0, ymm0
+       vmovaps  ymm1, ymm0
+       vpermilps xmm2, xmm1, -79
+       vaddps   xmm1, xmm2, xmm1
+       vpermilps xmm2, xmm1, 78
+       vaddps   xmm1, xmm2, xmm1
+       vextractf128 xmm0, ymm0
+       vpermilps xmm2, xmm0, -79
+       vaddps   xmm0, xmm2, xmm0
+       vpermilps xmm2, xmm0, 78
+       vaddps   xmm0, xmm2, xmm0
+       vaddss   xmm0, xmm1, xmm0
+       jmp      G_M000_IG12
+ 
+G_M000_IG07:                ;; offset=0x0108
+       vmovups  xmm0, xmmword ptr [rdx]
+       vmulps   xmm0, xmm0, xmm0
+       vmovups  xmm1, xmmword ptr [rdx+4*r8-0x10]
+       vmulps   xmm1, xmm1, xmm1
+       mov      rdx, r8
+       and      rdx, 3
+       shl      edx, 4
+       add      edx, 12
+       mov      ecx, edx
+       mov      rdx, 0x172D6A9C8D8
+       vmovups  xmm2, xmmword ptr [rdx+4*rcx]
+       vxorps   xmm3, xmm3, xmm3
+       vpternlogd xmm2, xmm3, xmm1, -84
+       vaddps   xmm0, xmm2, xmm0
+       vpermilps xmm1, xmm0, -79
+       vaddps   xmm0, xmm1, xmm0
+       vpermilps xmm1, xmm0, 78
+       vaddps   xmm0, xmm1, xmm0
+       jmp      SHORT G_M000_IG12
+ 
+G_M000_IG08:                ;; offset=0x015E
+       vmovups  xmm0, xmmword ptr [rdx]
+       vmulps   xmm0, xmm0, xmm0
+       vpermilps xmm1, xmm0, -79
+       vaddps   xmm0, xmm1, xmm0
+       vpermilps xmm1, xmm0, 78
+       vaddps   xmm0, xmm1, xmm0
+       jmp      SHORT G_M000_IG12
+ 
+G_M000_IG09:                ;; offset=0x017C
+       vmovss   xmm0, dword ptr [rdx+0x08]
+       vmulss   xmm0, xmm0, xmm0
+       vxorps   xmm1, xmm1, xmm1
+       vaddss   xmm0, xmm0, xmm1
+ 
+G_M000_IG10:                ;; offset=0x018D
+       vmovss   xmm1, dword ptr [rdx+0x04]
+       vmulss   xmm1, xmm1, xmm1
+       vaddss   xmm0, xmm1, xmm0
+ 
+G_M000_IG11:                ;; offset=0x019A
+       vmovss   xmm1, dword ptr [rdx]
+       vmulss   xmm1, xmm1, xmm1
+       vaddss   xmm0, xmm1, xmm0
+ 
+G_M000_IG12:                ;; offset=0x01A6
+       jmp      SHORT G_M000_IG14
+ 
+G_M000_IG13:                ;; offset=0x01A8
+       mov      rcx, rdx
+       mov      rdx, r8
+       movzx    r8, byte  ptr [rsp+0x38]
+       call     [System.Numerics.Tensors.TensorPrimitives:<Aggregate>g__Vectorized512|72_3[float,System.Numerics.Tensors.TensorPrimitives+StatefulUnaryAdapterOperator`2[System.Numerics.Tensors.TensorPrimitives+SquaredOperator`1[float],float],System.Numerics.Tensors.TensorPrimitives+AddOperator`1[float]](byref,nuint,System.Numerics.Tensors.TensorPrimitives+StatefulUnaryAdapterOperator`2[System.Numerics.Tensors.TensorPrimitives+SquaredOperator`1[float],float]):float]
+ 
+G_M000_IG14:                ;; offset=0x01BA
+       nop      
+ 
+G_M000_IG15:                ;; offset=0x01BB
+       vzeroupper 
+       add      rsp, 40
+       ret      
+ 
+RWD00  	dd	0000019Eh ; case G_M000_IG12
+       	dd	00000192h ; case G_M000_IG11
+       	dd	00000185h ; case G_M000_IG10
+       	dd	00000174h ; case G_M000_IG09
+       	dd	00000156h ; case G_M000_IG08
+       	dd	00000100h ; case G_M000_IG07
+       	dd	00000100h ; case G_M000_IG07
+       	dd	00000100h ; case G_M000_IG07
+       	dd	000000BDh ; case G_M000_IG06
+       	dd	00000042h ; case G_M000_IG05
+       	dd	00000042h ; case G_M000_IG05
+       	dd	00000042h ; case G_M000_IG05
+       	dd	00000042h ; case G_M000_IG05
+       	dd	00000042h ; case G_M000_IG05
+       	dd	00000042h ; case G_M000_IG05
+       	dd	00000042h ; case G_M000_IG05
+
+; Total bytes of code 451
+
+; Assembly listing for method System.Numerics.Tensors.TensorPrimitives:<Aggregate>g__Vectorized512|72_3[float,System.Numerics.Tensors.TensorPrimitives+StatefulUnaryAdapterOperator`2[System.Numerics.Tensors.TensorPrimitives+SquaredOperator`1[float],float],System.Numerics.Tensors.TensorPrimitives+AddOperator`1[float]](byref,nuint,System.Numerics.Tensors.TensorPrimitives+StatefulUnaryAdapterOperator`2[System.Numerics.Tensors.TensorPrimitives+SquaredOperator`1[float],float]):float (FullOpts)
+; Emitting BLENDED_CODE for generic X64 + VEX + EVEX on Windows
+; FullOpts code
+; optimized code
+; rsp based frame
+; fully interruptible
+; No PGO data
+; 0 inlinees with PGO data; 72 single block inlinees; 2 inlinees without PGO data
+
+G_M000_IG01:                ;; offset=0x0000
+       push     rax
+       xor      eax, eax
+       mov      qword ptr [rsp], rax
+ 
+G_M000_IG02:                ;; offset=0x0007
+       vxorps   ymm0, ymm0, ymm0
+       vmovups  zmm1, zmmword ptr [rcx]
+       vmulps   zmm1, zmm1, zmm1
+       vmovups  zmm2, zmmword ptr [rcx+4*rdx-0x40]
+       vmulps   zmm2, zmm2, zmm2
+       xor      eax, eax
+       cmp      rdx, 128
+       jbe      G_M000_IG06
+ 
+G_M000_IG03:                ;; offset=0x0034
+       mov      bword ptr [rsp], rcx
+       mov      eax, 16
+       add      rcx, 64
+       add      rdx, -16
+       cmp      rdx, 128
+       jb       G_M000_IG05
+       align    [0 bytes for IG04]
+ 
+G_M000_IG04:                ;; offset=0x0052
+       vmovups  zmm3, zmmword ptr [rcx]
+       vmulps   zmm3, zmm3, zmm3
+       vmovups  zmm4, zmmword ptr [rcx+0x40]
+       vmulps   zmm4, zmm4, zmm4
+       vmovups  zmm5, zmmword ptr [rcx+0x80]
+       vmulps   zmm5, zmm5, zmm5
+       vmovups  zmm16, zmmword ptr [rcx+0xC0]
+       vaddps   zmm0, zmm0, zmm3
+       vaddps   zmm3, zmm0, zmm4
+       vaddps   zmm4, zmm3, zmm5
+       vmulps   zmm5, zmm16, zmm16
+       vaddps   zmm0, zmm5, zmm4
+       vmovups  zmm3, zmmword ptr [rcx+0x100]
+       vmulps   zmm3, zmm3, zmm3
+       vmovups  zmm4, zmmword ptr [rcx+0x140]
+       vmulps   zmm4, zmm4, zmm4
+       vmovups  zmm5, zmmword ptr [rcx+0x180]
+       vmulps   zmm5, zmm5, zmm5
+       vmovups  zmm16, zmmword ptr [rcx+0x1C0]
+       vaddps   zmm0, zmm0, zmm3
+       vaddps   zmm0, zmm0, zmm4
+       vaddps   zmm0, zmm0, zmm5
+       vmulps   zmm3, zmm16, zmm16
+       vaddps   zmm0, zmm3, zmm0
+       add      rcx, 512
+       add      rdx, -128
+       cmp      rdx, 128
+       jae      G_M000_IG04
+ 
+G_M000_IG05:                ;; offset=0x0101
+       xor      r8d, r8d
+       mov      bword ptr [rsp], r8
+ 
+G_M000_IG06:                ;; offset=0x0108
+       mov      r8d, eax
+       shl      r8d, 4
+       mov      r10, 0x172D6A9BA18
+       vmovups  zmm3, zmmword ptr [r10+4*r8]
+       vxorps   ymm4, ymm4, ymm4
+       vpternlogd zmm3, zmm4, zmm1, -84
+       vaddps   zmm0, zmm3, zmm0
+       mov      r8, rdx
+       shr      r8, 4
+       mov      r10, r8
+       shl      r10, 4
+       mov      r9, rdx
+       sub      r9, r10
+       test     rax, rax
+       sete     al
+       movzx    rax, al
+       sub      r8, rax
+       sub      rdx, r9
+       cmp      r8, 7
+       ja       G_M000_IG17
+ 
+G_M000_IG07:                ;; offset=0x015E
+       cmp      r8d, 7
+       ja       G_M000_IG17
+ 
+G_M000_IG08:                ;; offset=0x0168
+       mov      eax, r8d
+       lea      r8, [reloc @RWD00]
+       mov      r8d, dword ptr [r8+4*rax]
+       lea      r10, G_M000_IG02
+       add      r8, r10
+       jmp      r8
+ 
+G_M000_IG09:                ;; offset=0x0183
+       vmovups  zmm1, zmmword ptr [rcx+4*rdx-0x1C0]
+       vmulps   zmm1, zmm1, zmm1
+       vaddps   zmm0, zmm1, zmm0
+ 
+G_M000_IG10:                ;; offset=0x0197
+       vmovups  zmm1, zmmword ptr [rcx+4*rdx-0x180]
+       vmulps   zmm1, zmm1, zmm1
+       vaddps   zmm0, zmm1, zmm0
+ 
+G_M000_IG11:                ;; offset=0x01AB
+       vmovups  zmm1, zmmword ptr [rcx+4*rdx-0x140]
+       vmulps   zmm1, zmm1, zmm1
+       vaddps   zmm0, zmm1, zmm0
+ 
+G_M000_IG12:                ;; offset=0x01BF
+       vmovups  zmm1, zmmword ptr [rcx+4*rdx-0x100]
+       vmulps   zmm1, zmm1, zmm1
+       vaddps   zmm0, zmm1, zmm0
+ 
+G_M000_IG13:                ;; offset=0x01D3
+       vmovups  zmm1, zmmword ptr [rcx+4*rdx-0xC0]
+       vmulps   zmm1, zmm1, zmm1
+       vaddps   zmm0, zmm1, zmm0
+ 
+G_M000_IG14:                ;; offset=0x01E7
+       vmovups  zmm1, zmmword ptr [rcx+4*rdx-0x80]
+       vmulps   zmm1, zmm1, zmm1
+       vaddps   zmm0, zmm1, zmm0
+ 
+G_M000_IG15:                ;; offset=0x01FB
+       vmovups  zmm1, zmmword ptr [rcx+4*rdx-0x40]
+       vmulps   zmm1, zmm1, zmm1
+       vaddps   zmm0, zmm1, zmm0
+ 
+G_M000_IG16:                ;; offset=0x020F
+       shl      r9d, 4
+       mov      eax, r9d
+       mov      rcx, 0x172D6A9C8D8
+       vmovups  zmm1, zmmword ptr [rcx+4*rax]
+       vxorps   ymm3, ymm3, ymm3
+       vpternlogd zmm1, zmm3, zmm2, -84
+       vaddps   zmm0, zmm1, zmm0
+ 
+G_M000_IG17:                ;; offset=0x0238
+       vmovaps  zmm1, zmm0
+       vmovaps  ymm2, ymm1
+       vpermilps xmm3, xmm2, -79
+       vaddps   xmm2, xmm3, xmm2
+       vpermilps xmm3, xmm2, 78
+       vaddps   xmm2, xmm3, xmm2
+       vextractf128 xmm1, ymm1
+       vpermilps xmm3, xmm1, -79
+       vaddps   xmm1, xmm3, xmm1
+       vpermilps xmm3, xmm1, 78
+       vaddps   xmm1, xmm3, xmm1
+       vaddss   xmm1, xmm2, xmm1
+       vextractf32x8 ymm0, zmm0, 1
+       vmovaps  ymm2, ymm0
+       vpermilps xmm3, xmm2, -79
+       vaddps   xmm2, xmm3, xmm2
+       vpermilps xmm3, xmm2, 78
+       vaddps   xmm2, xmm3, xmm2
+       vextractf128 xmm0, ymm0
+       vpermilps xmm3, xmm0, -79
+       vaddps   xmm0, xmm3, xmm0
+       vpermilps xmm3, xmm0, 78
+       vaddps   xmm0, xmm3, xmm0
+       vaddss   xmm0, xmm2, xmm0
+       vaddss   xmm0, xmm1, xmm0
+ 
+G_M000_IG18:                ;; offset=0x02B5
+       vzeroupper 
+       add      rsp, 8
+       ret      
+ 
+RWD00  	dd	00000208h ; case G_M000_IG16
+       	dd	000001F4h ; case G_M000_IG15
+       	dd	000001E0h ; case G_M000_IG14
+       	dd	000001CCh ; case G_M000_IG13
+       	dd	000001B8h ; case G_M000_IG12
+       	dd	000001A4h ; case G_M000_IG11
+       	dd	00000190h ; case G_M000_IG10
+       	dd	0000017Ch ; case G_M000_IG09
+
+; Total bytes of code 701
+
+; Assembly listing for method OpenClawTray.Services.AudioNumerics:CalculateVadRms(System.ReadOnlySpan`1[float],float):float (FullOpts)
+; Emitting BLENDED_CODE for generic X64 + VEX + EVEX on Windows
+; FullOpts code
+; optimized code
+; rsp based frame
+; partially interruptible
+; No PGO data
+; 0 inlinees with PGO data; 4 single block inlinees; 2 inlinees without PGO data
+
+G_M000_IG01:                ;; offset=0x0000
+       push     rsi
+       push     rbx
+       sub      rsp, 56
+       xor      eax, eax
+       mov      qword ptr [rsp+0x28], rax
+       mov      qword ptr [rsp+0x30], rax
+ 
+G_M000_IG02:                ;; offset=0x0012
+       mov      rbx, bword ptr [rcx]
+       mov      esi, dword ptr [rcx+0x08]
+       cmp      esi, 512
+       jne      G_M000_IG07
+ 
+G_M000_IG03:                ;; offset=0x0024
+       vucomiss xmm1, dword ptr [reloc @RWD00]
+       jp       SHORT G_M000_IG05
+       jne      SHORT G_M000_IG05
+ 
+G_M000_IG04:                ;; offset=0x0030
+       vmovss   dword ptr [rsp+0x58], xmm1
+       jmp      SHORT G_M000_IG06
+ 
+G_M000_IG05:                ;; offset=0x0038
+       vmovss   dword ptr [rsp+0x58], xmm1
+       vucomiss xmm1, dword ptr [reloc @RWD04]
+       jp       SHORT G_M000_IG07
+       jne      SHORT G_M000_IG07
+ 
+G_M000_IG06:                ;; offset=0x004A
+       mov      bword ptr [rsp+0x28], rbx
+       mov      dword ptr [rsp+0x30], 512
+       lea      rcx, [rsp+0x28]
+       xor      edx, edx
+       call     [System.Numerics.Tensors.TensorPrimitives:Aggregate[float,System.Numerics.Tensors.TensorPrimitives+StatefulUnaryAdapterOperator`2[System.Numerics.Tensors.TensorPrimitives+SquaredOperator`1[float],float],System.Numerics.Tensors.TensorPrimitives+AddOperator`1[float]](System.ReadOnlySpan`1[float],System.Numerics.Tensors.TensorPrimitives+StatefulUnaryAdapterOperator`2[System.Numerics.Tensors.TensorPrimitives+SquaredOperator`1[float],float]):float]
+       vdivss   xmm0, xmm0, dword ptr [reloc @RWD08]
+       vsqrtss  xmm0, xmm0, xmm0
+       vmovd    ecx, xmm0
+       mov      eax, 0x7F800000
+       andn     ecx, ecx, eax
+       je       SHORT G_M000_IG07
+       vcvtss2sd xmm1, xmm1, xmm0
+       vcvtss2sd xmm2, xmm2, dword ptr [rsp+0x58]
+       vmulsd   xmm3, xmm2, qword ptr [reloc @RWD16]
+       vucomisd xmm1, xmm3
+       jb       SHORT G_M000_IG09
+       vmulsd   xmm2, xmm2, qword ptr [reloc @RWD24]
+       vucomisd xmm2, xmm1
+       jb       SHORT G_M000_IG09
+ 
+G_M000_IG07:                ;; offset=0x00A6
+       mov      bword ptr [rsp+0x28], rbx
+       mov      dword ptr [rsp+0x30], esi
+       lea      rcx, [rsp+0x28]
+       call     [OpenClawTray.Services.AudioNumerics:CalculateScalarRms(System.ReadOnlySpan`1[float]):float]
+       nop      
+ 
+G_M000_IG08:                ;; offset=0x00BB
+       add      rsp, 56
+       pop      rbx
+       pop      rsi
+       ret      
+ 
+G_M000_IG09:                ;; offset=0x00C2
+       add      rsp, 56
+       pop      rbx
+       pop      rsi
+       ret      
+ 
+RWD00  	dd	3CF5C28Fh		;      0.03
+RWD04  	dd	3C03126Fh		;     0.008
+RWD08  	dd	44000000h		;       512
+RWD12  	dd	00000000h
+RWD16  	dq	3FEFF80000000000h	;  0.999023438
+RWD24  	dq	3FF0040000000000h	;   1.00097656
+
+; Total bytes of code 201
+

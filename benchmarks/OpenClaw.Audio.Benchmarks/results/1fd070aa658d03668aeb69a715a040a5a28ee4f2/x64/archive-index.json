@@ -1,0 +1,300 @@
+{
+  "MeasuredRevision": "1fd070aa658d03668aeb69a715a040a5a28ee4f2",
+  "Description": "All three runs. Full JSON/raw measurement CSV are losslessly gzip-compressed. No measurement or noisy/outlier row was removed. Standard summaries are uncompressed.",
+  "Files": [
+    {
+      "Path": "run-1/audio-corpus.json",
+      "StoredBytes": 11896,
+      "UncompressedBytes": 11896,
+      "StoredSha256": "5cdfda2d7f0d49768e3ae955137c34f64fd4150467431e0212005e9f96593bd9",
+      "UncompressedSha256": "5cdfda2d7f0d49768e3ae955137c34f64fd4150467431e0212005e9f96593bd9"
+    },
+    {
+      "Path": "run-1/results/OpenClaw.Audio.Benchmarks.AudioGainBenchmarks-measurements.csv.gz",
+      "StoredBytes": 171099,
+      "UncompressedBytes": 7611059,
+      "StoredSha256": "bb6bbfbddb419ca9d5a205aafeff59dc992db39e234bcf59290b1194c1b74541",
+      "UncompressedSha256": "203e644897fb6314f8b4c6795a81029bb370cba28a7bb29eb47008102985ee71"
+    },
+    {
+      "Path": "run-1/results/OpenClaw.Audio.Benchmarks.AudioGainBenchmarks-report-full.json.gz",
+      "StoredBytes": 209542,
+      "UncompressedBytes": 3115521,
+      "StoredSha256": "60218c8cc70644b9f3d11e5ab967565ad548fd45d928d0f30f80b928acbbd048",
+      "UncompressedSha256": "7e34abe029fbfd6704ce9001483d76467cab386ca8ef5853b8b492052379dee1"
+    },
+    {
+      "Path": "run-1/results/OpenClaw.Audio.Benchmarks.AudioGainBenchmarks-report-github.md",
+      "StoredBytes": 10477,
+      "UncompressedBytes": 10477,
+      "StoredSha256": "97a75fb433c24d825f8d2d9e321d43cd361d218b0767eac12878bb611d090283",
+      "UncompressedSha256": "97a75fb433c24d825f8d2d9e321d43cd361d218b0767eac12878bb611d090283"
+    },
+    {
+      "Path": "run-1/results/OpenClaw.Audio.Benchmarks.AudioGainBenchmarks-report.csv",
+      "StoredBytes": 20786,
+      "UncompressedBytes": 20786,
+      "StoredSha256": "5484fedb84275829a939a0bd2fd131e6c42431007823124e93f7f52acda74cb0",
+      "UncompressedSha256": "5484fedb84275829a939a0bd2fd131e6c42431007823124e93f7f52acda74cb0"
+    },
+    {
+      "Path": "run-1/results/OpenClaw.Audio.Benchmarks.AudioRmsBenchmarks-measurements.csv.gz",
+      "StoredBytes": 110314,
+      "UncompressedBytes": 4688375,
+      "StoredSha256": "8703f937c46689c19cd8943fab7b0ca8918a9fe10f1606ece2fa2202caa28b5e",
+      "UncompressedSha256": "83ae6c709872fcb2e0bbe49813615897c4e8fd99e50b619df82fbdd82d8d750e"
+    },
+    {
+      "Path": "run-1/results/OpenClaw.Audio.Benchmarks.AudioRmsBenchmarks-report-full.json.gz",
+      "StoredBytes": 135985,
+      "UncompressedBytes": 2019454,
+      "StoredSha256": "ad0444405a7f147e01056885ae816f7551b01d7cb21b591f29eaae67539d0054",
+      "UncompressedSha256": "91efaeabfb0792265d196a2b5af7f6bb6dad6978f54fd2600e31e8a19be08dc7"
+    },
+    {
+      "Path": "run-1/results/OpenClaw.Audio.Benchmarks.AudioRmsBenchmarks-report-github.md",
+      "StoredBytes": 7084,
+      "UncompressedBytes": 7084,
+      "StoredSha256": "65e6cd74c231093b51e9a6c2f82a7805bfc0086db9899489dff887263e8209e7",
+      "UncompressedSha256": "65e6cd74c231093b51e9a6c2f82a7805bfc0086db9899489dff887263e8209e7"
+    },
+    {
+      "Path": "run-1/results/OpenClaw.Audio.Benchmarks.AudioRmsBenchmarks-report.csv",
+      "StoredBytes": 13688,
+      "UncompressedBytes": 13688,
+      "StoredSha256": "62a35bb72d06f7fe62f2341538a9f9cf69019a74a4325c4c05684325081bd8e7",
+      "UncompressedSha256": "62a35bb72d06f7fe62f2341538a9f9cf69019a74a4325c4c05684325081bd8e7"
+    },
+    {
+      "Path": "run-1/results/OpenClaw.Audio.Benchmarks.AudioStageBenchmarks-measurements.csv.gz",
+      "StoredBytes": 54880,
+      "UncompressedBytes": 2308499,
+      "StoredSha256": "a8cded80e77de9215658ffdb8abc303a5ff680ddc3b28bb2c584e7dba1975b3d",
+      "UncompressedSha256": "ebaa827024a49569122a13b41d9ca00a5ca185bd3121f181273096629c591647"
+    },
+    {
+      "Path": "run-1/results/OpenClaw.Audio.Benchmarks.AudioStageBenchmarks-report-full.json.gz",
+      "StoredBytes": 65280,
+      "UncompressedBytes": 960807,
+      "StoredSha256": "4716b25d3a1e86f1d64fc859221796212f2e545040f22d4b0dec7ad4e32f00d6",
+      "UncompressedSha256": "7327bed4b13dc70d447b62a91ed2f36436572254c807dfc2a740b226c2191520"
+    },
+    {
+      "Path": "run-1/results/OpenClaw.Audio.Benchmarks.AudioStageBenchmarks-report-github.md",
+      "StoredBytes": 4421,
+      "UncompressedBytes": 4421,
+      "StoredSha256": "ce7ecc3d04aade4fb4f3dbce7a8dcee71a6114d3fb6869d4e8822053c0af5697",
+      "UncompressedSha256": "ce7ecc3d04aade4fb4f3dbce7a8dcee71a6114d3fb6869d4e8822053c0af5697"
+    },
+    {
+      "Path": "run-1/results/OpenClaw.Audio.Benchmarks.AudioStageBenchmarks-report.csv",
+      "StoredBytes": 8791,
+      "UncompressedBytes": 8791,
+      "StoredSha256": "be39bbb80142527b3b183ea3ebf9798d88cebed1a9ae0e871e30074b35173018",
+      "UncompressedSha256": "be39bbb80142527b3b183ea3ebf9798d88cebed1a9ae0e871e30074b35173018"
+    },
+    {
+      "Path": "run-2/audio-corpus.json",
+      "StoredBytes": 11896,
+      "UncompressedBytes": 11896,
+      "StoredSha256": "5cdfda2d7f0d49768e3ae955137c34f64fd4150467431e0212005e9f96593bd9",
+      "UncompressedSha256": "5cdfda2d7f0d49768e3ae955137c34f64fd4150467431e0212005e9f96593bd9"
+    },
+    {
+      "Path": "run-2/results/OpenClaw.Audio.Benchmarks.AudioGainBenchmarks-measurements.csv.gz",
+      "StoredBytes": 119329,
+      "UncompressedBytes": 5302506,
+      "StoredSha256": "b61ac645337bc09de2541a61e87798128be161035005f9479902145022ca178d",
+      "UncompressedSha256": "182043e8ee3dc3e6d4d6b0da41b9b56e28e3311057efa11e43731a82123f2a3f"
+    },
+    {
+      "Path": "run-2/results/OpenClaw.Audio.Benchmarks.AudioGainBenchmarks-report-full.json.gz",
+      "StoredBytes": 156156,
+      "UncompressedBytes": 2227334,
+      "StoredSha256": "db4235cf5d0dfaaa90ad9468c0a45305c83856adc3a3105a3720ae8d1aef2a58",
+      "UncompressedSha256": "be13e6e2c861854dcf2004bf8da0f14d6fc5dddded351bf7715d2051eaa9f998"
+    },
+    {
+      "Path": "run-2/results/OpenClaw.Audio.Benchmarks.AudioGainBenchmarks-report-github.md",
+      "StoredBytes": 10477,
+      "UncompressedBytes": 10477,
+      "StoredSha256": "b2f2bd5e707fd17011f1ae99e938b0da167dc04ea1d1417167c55fa924523b60",
+      "UncompressedSha256": "b2f2bd5e707fd17011f1ae99e938b0da167dc04ea1d1417167c55fa924523b60"
+    },
+    {
+      "Path": "run-2/results/OpenClaw.Audio.Benchmarks.AudioGainBenchmarks-report.csv",
+      "StoredBytes": 20766,
+      "UncompressedBytes": 20766,
+      "StoredSha256": "f79cc40903e959941d62d53a1fad009e32142cb073d58c0afd38d4f94956460e",
+      "UncompressedSha256": "f79cc40903e959941d62d53a1fad009e32142cb073d58c0afd38d4f94956460e"
+    },
+    {
+      "Path": "run-2/results/OpenClaw.Audio.Benchmarks.AudioRmsBenchmarks-measurements.csv.gz",
+      "StoredBytes": 76483,
+      "UncompressedBytes": 3269096,
+      "StoredSha256": "4ecf32d2e8dc9f250d35f044e60104cba4a243d6707aeb65f7163b840e1a15c3",
+      "UncompressedSha256": "23c5ad1596ef8634633455a7c82a9e016439ddf7d0a39b75a3fe1ad70dc126bb"
+    },
+    {
+      "Path": "run-2/results/OpenClaw.Audio.Benchmarks.AudioRmsBenchmarks-report-full.json.gz",
+      "StoredBytes": 97090,
+      "UncompressedBytes": 1445346,
+      "StoredSha256": "ef1a14a3468ba16801506aae1ae6f9cdb51f1cb5de5836cdec09570da8a49256",
+      "UncompressedSha256": "e426b0e605dce150fa8c5ca65d6d981a4cc8aa3f0c02b86e96aee81921c4332b"
+    },
+    {
+      "Path": "run-2/results/OpenClaw.Audio.Benchmarks.AudioRmsBenchmarks-report-github.md",
+      "StoredBytes": 7038,
+      "UncompressedBytes": 7038,
+      "StoredSha256": "036ac3f4f6edb4e2ff96e2d206dbac102ecc7c56816a9cb1e132003d790d37df",
+      "UncompressedSha256": "036ac3f4f6edb4e2ff96e2d206dbac102ecc7c56816a9cb1e132003d790d37df"
+    },
+    {
+      "Path": "run-2/results/OpenClaw.Audio.Benchmarks.AudioRmsBenchmarks-report.csv",
+      "StoredBytes": 13645,
+      "UncompressedBytes": 13645,
+      "StoredSha256": "22541b116e58ceba98c1a5312969a0ae8a07ce803cd3dfeddfe308d7899a19a9",
+      "UncompressedSha256": "22541b116e58ceba98c1a5312969a0ae8a07ce803cd3dfeddfe308d7899a19a9"
+    },
+    {
+      "Path": "run-2/results/OpenClaw.Audio.Benchmarks.AudioStageBenchmarks-measurements.csv.gz",
+      "StoredBytes": 33672,
+      "UncompressedBytes": 1418219,
+      "StoredSha256": "9340193ab6c9d840f165bdb5d5be419c9afe5a52450c6a8ec8fe3da0e84532e1",
+      "UncompressedSha256": "487b3b81282784c854f0948a13c16179f694f8a741752887d7c4fc462222c517"
+    },
+    {
+      "Path": "run-2/results/OpenClaw.Audio.Benchmarks.AudioStageBenchmarks-report-full.json.gz",
+      "StoredBytes": 39254,
+      "UncompressedBytes": 618710,
+      "StoredSha256": "746dde95dc71cbdb777317c51c565121bf08bd6b0cac18f4e58bc8aa5b6c3031",
+      "UncompressedSha256": "1e85ca327ac75c023e71bd9809a85569aea7aa74592cd8bb3e607a4d12f08713"
+    },
+    {
+      "Path": "run-2/results/OpenClaw.Audio.Benchmarks.AudioStageBenchmarks-report-github.md",
+      "StoredBytes": 4421,
+      "UncompressedBytes": 4421,
+      "StoredSha256": "46aff45035be99b014527ea57daab96dc2c1e275e31b01e0781d928973b3c9e8",
+      "UncompressedSha256": "46aff45035be99b014527ea57daab96dc2c1e275e31b01e0781d928973b3c9e8"
+    },
+    {
+      "Path": "run-2/results/OpenClaw.Audio.Benchmarks.AudioStageBenchmarks-report.csv",
+      "StoredBytes": 8791,
+      "UncompressedBytes": 8791,
+      "StoredSha256": "8aba4d4ba61aad35241c7289163e2af9b64fa414c280ef8896fc220a66d3d374",
+      "UncompressedSha256": "8aba4d4ba61aad35241c7289163e2af9b64fa414c280ef8896fc220a66d3d374"
+    },
+    {
+      "Path": "run-3/audio-corpus.json",
+      "StoredBytes": 11896,
+      "UncompressedBytes": 11896,
+      "StoredSha256": "5cdfda2d7f0d49768e3ae955137c34f64fd4150467431e0212005e9f96593bd9",
+      "UncompressedSha256": "5cdfda2d7f0d49768e3ae955137c34f64fd4150467431e0212005e9f96593bd9"
+    },
+    {
+      "Path": "run-3/results/OpenClaw.Audio.Benchmarks.AudioGainBenchmarks-measurements.csv.gz",
+      "StoredBytes": 119273,
+      "UncompressedBytes": 5308838,
+      "StoredSha256": "595804ce830462e8a8416b1fec2d521a5c6bf6e3d0f8fc95afa839ef88bd0230",
+      "UncompressedSha256": "1643b1cb2523602f6d78c360d997c78890134a2eb778086adc608d9c55fde7fc"
+    },
+    {
+      "Path": "run-3/results/OpenClaw.Audio.Benchmarks.AudioGainBenchmarks-report-full.json.gz",
+      "StoredBytes": 155053,
+      "UncompressedBytes": 2229791,
+      "StoredSha256": "17dbb5c9305a9213e46c43c4fcb08c098a33362c980e9726261aab4258e0254e",
+      "UncompressedSha256": "6d23d816152cb67631403c6e04fe6d855dcdc42a7a66c8296e4f3e74a36f836e"
+    },
+    {
+      "Path": "run-3/results/OpenClaw.Audio.Benchmarks.AudioGainBenchmarks-report-github.md",
+      "StoredBytes": 10355,
+      "UncompressedBytes": 10355,
+      "StoredSha256": "6c9382c7e208ccbec765df05b8df82a6bd36fccd02d1f8673dfd504dffd573ef",
+      "UncompressedSha256": "6c9382c7e208ccbec765df05b8df82a6bd36fccd02d1f8673dfd504dffd573ef"
+    },
+    {
+      "Path": "run-3/results/OpenClaw.Audio.Benchmarks.AudioGainBenchmarks-report.csv",
+      "StoredBytes": 20754,
+      "UncompressedBytes": 20754,
+      "StoredSha256": "b5dd79bb91b5dbfe2fe82a61cade83bda4f84855392ffd29654e7b34a4789a16",
+      "UncompressedSha256": "b5dd79bb91b5dbfe2fe82a61cade83bda4f84855392ffd29654e7b34a4789a16"
+    },
+    {
+      "Path": "run-3/results/OpenClaw.Audio.Benchmarks.AudioRmsBenchmarks-measurements.csv.gz",
+      "StoredBytes": 90816,
+      "UncompressedBytes": 3875842,
+      "StoredSha256": "daa51f8ada14ddfb32bb024cb551f855cc1dd37c95b8df07fc16bd0a93b3f75f",
+      "UncompressedSha256": "9749f94d37c0885fab9bea43fa89d9a8ae9d74f64cfc68e0a32ca21a1abb9f8d"
+    },
+    {
+      "Path": "run-3/results/OpenClaw.Audio.Benchmarks.AudioRmsBenchmarks-report-full.json.gz",
+      "StoredBytes": 114349,
+      "UncompressedBytes": 1690540,
+      "StoredSha256": "4755884ea8fdbc3133755a614c260bbb9f7d443de21a1cb339e9f14461d6b7dd",
+      "UncompressedSha256": "f1e1e8d6c2927fc7724be2db633ecd88984872ad9b2cd1829c32f49804e0c6bc"
+    },
+    {
+      "Path": "run-3/results/OpenClaw.Audio.Benchmarks.AudioRmsBenchmarks-report-github.md",
+      "StoredBytes": 7038,
+      "UncompressedBytes": 7038,
+      "StoredSha256": "beed41a441af0d6f6b08b124c95637d8961941d8a80ab559ebe6b42f99b5bb2a",
+      "UncompressedSha256": "beed41a441af0d6f6b08b124c95637d8961941d8a80ab559ebe6b42f99b5bb2a"
+    },
+    {
+      "Path": "run-3/results/OpenClaw.Audio.Benchmarks.AudioRmsBenchmarks-report.csv",
+      "StoredBytes": 13651,
+      "UncompressedBytes": 13651,
+      "StoredSha256": "036b94e34fb4a7bfbd86c4d69cef021daecd90f46f32fdb5be3027918d987c33",
+      "UncompressedSha256": "036b94e34fb4a7bfbd86c4d69cef021daecd90f46f32fdb5be3027918d987c33"
+    },
+    {
+      "Path": "run-3/results/OpenClaw.Audio.Benchmarks.AudioStageBenchmarks-measurements.csv.gz",
+      "StoredBytes": 35930,
+      "UncompressedBytes": 1515094,
+      "StoredSha256": "860ac1015670ce8c6bd264a5f8d40baaa10b4e8c0efff968ea83b2c058b8ca51",
+      "UncompressedSha256": "8ecd87dd42bcff160ed0c92af294511de3d95811c877b00aa596b5bcd0fc8943"
+    },
+    {
+      "Path": "run-3/results/OpenClaw.Audio.Benchmarks.AudioStageBenchmarks-report-full.json.gz",
+      "StoredBytes": 45430,
+      "UncompressedBytes": 656253,
+      "StoredSha256": "a6827f94fb9ecf8587c84f2bb44ca1df3d5b4ea6eaff0b23b98a3cca5ed6ca2d",
+      "UncompressedSha256": "9a8be34b2ca806913ad5339887c7653286ab17b13f0313f4c9fb7d025e909271"
+    },
+    {
+      "Path": "run-3/results/OpenClaw.Audio.Benchmarks.AudioStageBenchmarks-report-github.md",
+      "StoredBytes": 4079,
+      "UncompressedBytes": 4079,
+      "StoredSha256": "f3153db9ff0e5069b6b3869c0a521ec58a51d0344a9622154dc44066f2e4b4d6",
+      "UncompressedSha256": "f3153db9ff0e5069b6b3869c0a521ec58a51d0344a9622154dc44066f2e4b4d6"
+    },
+    {
+      "Path": "run-3/results/OpenClaw.Audio.Benchmarks.AudioStageBenchmarks-report.csv",
+      "StoredBytes": 8587,
+      "UncompressedBytes": 8587,
+      "StoredSha256": "1ebf88f0b5ca73e338aa6cba4a1706693b2971ecc157781c6a20eddf50b81eb6",
+      "UncompressedSha256": "1ebf88f0b5ca73e338aa6cba4a1706693b2971ecc157781c6a20eddf50b81eb6"
+    },
+    {
+      "Path": "analysis/all-comparisons.csv",
+      "StoredBytes": 50088,
+      "UncompressedBytes": 50088,
+      "StoredSha256": "a01a8a4ea951e3e31b605c662686b7d995a7dac41273a3ef81a8154c28420b3f",
+      "UncompressedSha256": "a01a8a4ea951e3e31b605c662686b7d995a7dac41273a3ef81a8154c28420b3f"
+    },
+    {
+      "Path": "analysis/all-statistics.csv",
+      "StoredBytes": 43842,
+      "UncompressedBytes": 43842,
+      "StoredSha256": "4f4448e46f5a0c527ce714294f4bffb960f32be8b019c74af5b6e154d4abf31c",
+      "UncompressedSha256": "4f4448e46f5a0c527ce714294f4bffb960f32be8b019c74af5b6e154d4abf31c"
+    },
+    {
+      "Path": "analysis/gate-results.json",
+      "StoredBytes": 93270,
+      "UncompressedBytes": 93270,
+      "StoredSha256": "d63181b669f7c496dc80856aad71343a47cbc00dcf80c2c01a4c4e471d471d9b",
+      "UncompressedSha256": "d63181b669f7c496dc80856aad71343a47cbc00dcf80c2c01a4c4e471d471d9b"
+    }
+  ]
+}
