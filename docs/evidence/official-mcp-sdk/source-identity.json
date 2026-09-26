@@ -1,0 +1,17 @@
+{
+  "baselineCommit": "273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+  "testedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+  "implementationCommit": "74aa38b74844a973e75cec374c7348c84a483b54",
+  "verification": "All six production/proof input SHA256s in sdk-confirmed.command.json match the working-tree files. Each committed blob was compared against that input and differs only by Git CRLF-to-LF normalization. The commit was created after validation; documentation changed after the source freeze. No compilation or test rerun is implied by this identity record.",
+  "committedBlobSha256": {
+    "src/OpenClaw.Shared/Mcp/McpToolBridge.cs": "2d5d6f8cad57f754e410f0216c3ad189b3a66848c85d0d5e4696ac9d7d9b5ee2",
+    "src/OpenClaw.Shared/Mcp/McpHttpServer.cs": "eec6298c43c6eb3096955da35935332da6c2ab4b5061ee953447be502d888017",
+    "src/OpenClaw.Shared/OpenClaw.Shared.csproj": "8f031e01a27c8903e1734bf138fd5ac6c7bd33b37797a9d1bae9ee2bef3e248b",
+    "tests/OpenClaw.Mcp.Sdk.Tests/SdkBridgeProof.cs": "1649971553825246be97b5b3c4c6b7a6d12dae468e5e5ad9f835dbd0b09f5bda",
+    "tests/OpenClaw.Mcp.Sdk.Tests/SdkBridgeProofTests.cs": "18343b6969fb51119bce4bf8de591dc9888a04ba7bd95a762cb271262b46e331",
+    "tests/OpenClaw.Mcp.Sdk.Tests/OpenClaw.Mcp.Sdk.Tests.csproj": "58a3e7c1afadf4c505db16636da11a09563c9284ed292dd7b9f0ccb44de8817e"
+  },
+  "binaryProvenance": "provenance.json",
+  "chronology": "chronology.json",
+  "acceptance": "Protocol-core proof passed. Repeated candidate full Shared and reduced interaction failures remain unresolved. Not merge-ready."
+}

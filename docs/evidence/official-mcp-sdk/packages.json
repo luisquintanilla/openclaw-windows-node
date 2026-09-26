@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "parameters": "--include-transitive",
+  "projects": [
+    {
+      "path": "[checkout]/tests/OpenClaw.Mcp.Sdk.Tests/OpenClaw.Mcp.Sdk.Tests.csproj",
+      "frameworks": [
+        {
+          "framework": "net10.0",
+          "topLevelPackages": [
+            {
+              "id": "Microsoft.NET.Test.Sdk",
+              "requestedVersion": "18.6.0",
+              "resolvedVersion": "18.6.0"
+            },
+            {
+              "id": "ModelContextProtocol.Core",
+              "requestedVersion": "2.2.0",
+              "resolvedVersion": "2.2.0"
+            },
+            {
+              "id": "VCRuntime.CefSharp.140",
+              "requestedVersion": "1.0.5",
+              "resolvedVersion": "1.0.5"
+            },
+            {
+              "id": "xunit",
+              "requestedVersion": "2.9.3",
+              "resolvedVersion": "2.9.3"
+            },
+            {
+              "id": "xunit.runner.visualstudio",
+              "requestedVersion": "3.1.5",
+              "resolvedVersion": "3.1.5"
+            }
+          ],
+          "transitivePackages": [
+            {
+              "id": "BouncyCastle.Cryptography",
+              "resolvedVersion": "2.6.2"
+            },
+            {
+              "id": "Microsoft.CodeCoverage",
+              "resolvedVersion": "18.6.0"
+            },
+            {
+              "id": "Microsoft.Extensions.AI.Abstractions",
+              "resolvedVersion": "10.8.3"
+            },
+            {
+              "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "resolvedVersion": "10.0.10"
+            },
+            {
+              "id": "Microsoft.Extensions.Logging.Abstractions",
+              "resolvedVersion": "10.0.10"
+            },
+            {
+              "id": "Microsoft.ML.OnnxRuntime",
+              "resolvedVersion": "1.30.0"
+            },
+            {
+              "id": "Microsoft.ML.OnnxRuntime.Managed",
+              "resolvedVersion": "1.30.0"
+            },
+            {
+              "id": "Microsoft.TestPlatform.ObjectModel",
+              "resolvedVersion": "18.6.0"
+            },
+            {
+              "id": "Microsoft.TestPlatform.TestHost",
+              "resolvedVersion": "18.6.0"
+            },
+            {
+              "id": "Newtonsoft.Json",
+              "resolvedVersion": "13.0.3"
+            },
+            {
+              "id": "System.Numerics.Tensors",
+              "resolvedVersion": "9.0.0"
+            },
+            {
+              "id": "Whisper.net",
+              "resolvedVersion": "1.9.0"
+            },
+            {
+              "id": "Whisper.net.Runtime",
+              "resolvedVersion": "1.9.1"
+            },
+            {
+              "id": "Whisper.net.Runtime.Metal",
+              "resolvedVersion": "1.9.1"
+            },
+            {
+              "id": "xunit.abstractions",
+              "resolvedVersion": "2.0.3"
+            },
+            {
+              "id": "xunit.analyzers",
+              "resolvedVersion": "1.18.0"
+            },
+            {
+              "id": "xunit.assert",
+              "resolvedVersion": "2.9.3"
+            },
+            {
+              "id": "xunit.core",
+              "resolvedVersion": "2.9.3"
+            },
+            {
+              "id": "xunit.extensibility.core",
+              "resolvedVersion": "2.9.3"
+            },
+            {
+              "id": "xunit.extensibility.execution",
+              "resolvedVersion": "2.9.3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

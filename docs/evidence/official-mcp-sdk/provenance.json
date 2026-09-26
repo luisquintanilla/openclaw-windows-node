@@ -1,0 +1,148 @@
+{
+  "files": [
+    {
+      "bytes": 2025472,
+      "lastWriteUtc": "2026-09-26T10:22:33.9990389Z",
+      "path": "src\\OpenClaw.Shared\\bin\\Debug\\net10.0\\OpenClaw.Shared.dll",
+      "productVersion": "0.0.1-luisquintanilla-official-mcp-sdk-integration.1+1399.Branch.luisquintanilla-official-mcp-sdk-integration.Sha.273b0182745a3093c0e09f306ca8a1fff6ef3c5a.273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+      "fileVersion": "0.0.1.0",
+      "sha256": "21c5701bbb0e7ea1d0578db40030c61130127def097c50b895ca23611da2f3fd"
+    },
+    {
+      "bytes": 3094528,
+      "lastWriteUtc": "2026-09-26T10:25:31.3161405Z",
+      "path": "tests\\OpenClaw.Shared.Tests\\bin\\Debug\\net10.0\\OpenClaw.Shared.Tests.dll",
+      "productVersion": "1.0.0+273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+      "fileVersion": "1.0.0.0",
+      "sha256": "795bba3414be51caababb0cf9689ad0e7d6f65773993d52a46a1458017eb69c1"
+    },
+    {
+      "bytes": 4214272,
+      "lastWriteUtc": "2026-09-26T10:34:58.8361042Z",
+      "path": "tests\\OpenClaw.Tray.Tests\\bin\\Debug\\net10.0\\OpenClaw.Tray.Tests.dll",
+      "productVersion": "1.0.0+273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+      "fileVersion": "1.0.0.0",
+      "sha256": "df6a4b299841afd3701578e2a268f7c74708a55291a7c5f71f785fac6d33c391"
+    },
+    {
+      "bytes": 89088,
+      "lastWriteUtc": "2026-09-26T10:39:51.5120792Z",
+      "path": "tests\\OpenClaw.WinNode.Cli.Tests\\bin\\Debug\\net10.0\\OpenClaw.WinNode.Cli.Tests.dll",
+      "productVersion": "1.0.0+273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+      "fileVersion": "1.0.0.0",
+      "sha256": "3f9b149edd153b59257484a0615c4049f876d1fd1d4645c495133424cbabe094"
+    },
+    {
+      "bytes": 84480,
+      "lastWriteUtc": "2026-09-26T10:24:22.4972840Z",
+      "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\bin\\Debug\\net10.0\\OpenClaw.Mcp.Sdk.Tests.dll",
+      "productVersion": "1.0.0+273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+      "fileVersion": "1.0.0.0",
+      "sha256": "cb7d1729f84299114a58e3faed9a0355eebb05691d3f7630e14da3af6f018551"
+    },
+    {
+      "bytes": 2025472,
+      "lastWriteUtc": "2026-09-26T10:22:33.9990389Z",
+      "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\bin\\Debug\\net10.0\\OpenClaw.Shared.dll",
+      "productVersion": "0.0.1-luisquintanilla-official-mcp-sdk-integration.1+1399.Branch.luisquintanilla-official-mcp-sdk-integration.Sha.273b0182745a3093c0e09f306ca8a1fff6ef3c5a.273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+      "fileVersion": "0.0.1.0",
+      "sha256": "21c5701bbb0e7ea1d0578db40030c61130127def097c50b895ca23611da2f3fd"
+    },
+    {
+      "bytes": 1296896,
+      "lastWriteUtc": "2026-08-13T08:55:28.0000000Z",
+      "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\bin\\Debug\\net10.0\\ModelContextProtocol.Core.dll",
+      "productVersion": "2.2.0+6fa3825973949a9c4f0cd8af344e15a8db09dc35",
+      "fileVersion": "2.2.0.0",
+      "sha256": "b1752096ea9d2f38ba88e467f04aea43fb300d9a54d881c165f62b69028ee3ab"
+    },
+    {
+      "bytes": 672056,
+      "lastWriteUtc": "2026-07-27T19:58:28.0000000Z",
+      "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\bin\\Debug\\net10.0\\Microsoft.Extensions.AI.Abstractions.dll",
+      "productVersion": "10.8.3+ccb356f31db9d894807c4fd0c97c2f41553d1524",
+      "fileVersion": "10.800.326.37702",
+      "sha256": "bcc8f693103eb00505179f154b1b3a996b85d067e112facd724fd9d695f17a5e"
+    },
+    {
+      "bytes": 25727,
+      "lastWriteUtc": "2026-09-26T10:23:32.4487911Z",
+      "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\bin\\Debug\\net10.0\\OpenClaw.Mcp.Sdk.Tests.deps.json",
+      "productVersion": null,
+      "fileVersion": null,
+      "sha256": "973e5b1b4cad2282471da62419cab5be79e3d41b9e7d8d7347f7382c64e841ca"
+    },
+    {
+      "bytes": 318,
+      "lastWriteUtc": "2026-09-26T10:23:32.5348512Z",
+      "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\bin\\Debug\\net10.0\\OpenClaw.Mcp.Sdk.Tests.runtimeconfig.json",
+      "productVersion": null,
+      "fileVersion": null,
+      "sha256": "f0c3aeb0de8768c419a86c1dc92e79d302ce70a018d1a86de3efb13bd0f00a4c"
+    },
+    {
+      "bytes": 2022400,
+      "lastWriteUtc": "2026-09-26T10:24:49.4953635Z",
+      "path": "artifacts\\mcp-sdk-proof\\baseline\\src\\OpenClaw.Shared\\bin\\Debug\\net10.0\\OpenClaw.Shared.dll",
+      "productVersion": "0.0.1-luisquintanilla-official-mcp-sdk-integration.1+1399.Branch.luisquintanilla-official-mcp-sdk-integration.Sha.273b0182745a3093c0e09f306ca8a1fff6ef3c5a.273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+      "fileVersion": "0.0.1.0",
+      "sha256": "3e26d5a2be4c038b1975e089614e301dbd47b971831d450f90c743f218d80050"
+    },
+    {
+      "bytes": 3094528,
+      "lastWriteUtc": "2026-09-26T10:24:57.5643976Z",
+      "path": "artifacts\\mcp-sdk-proof\\baseline\\tests\\OpenClaw.Shared.Tests\\bin\\Debug\\net10.0\\OpenClaw.Shared.Tests.dll",
+      "productVersion": "1.0.0+273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+      "fileVersion": "1.0.0.0",
+      "sha256": "de9f6b0b999e1adb08d092162379f94841c2cfaa7209fe59851a34ef5087f3c4"
+    },
+    {
+      "bytes": 3825664,
+      "lastWriteUtc": "2026-09-26T10:27:40.7681634Z",
+      "path": "src\\OpenClaw.Tray.WinUI\\bin\\Debug\\net10.0-windows10.0.22621.0\\win-x64\\OpenClaw.Tray.WinUI.dll",
+      "productVersion": "0.0.1-luisquintanilla-official-mcp-sdk-integration.1+1399.Branch.luisquintanilla-official-mcp-sdk-integration.Sha.273b0182745a3093c0e09f306ca8a1fff6ef3c5a.273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+      "fileVersion": "0.0.1.0",
+      "sha256": "5e7b6f034e6a4dd31bcb219c6092aa584dc846195e53a8a9c181173490645720"
+    },
+    {
+      "bytes": 557728,
+      "lastWriteUtc": "2026-08-20T14:56:16.1069340Z",
+      "path": "src\\OpenClaw.Tray.WinUI\\bin\\Debug\\net10.0-windows10.0.22621.0\\win-x64\\msvcp140.dll",
+      "productVersion": "14.44.35211.0",
+      "fileVersion": "14.44.35211.0",
+      "sha256": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9"
+    }
+  ],
+  "baselineCommit": "273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+  "note": "Captured after final checks, not a per-invocation binary snapshot. Earlier overwritten binaries are not recoverable. Baseline archive runs use baselineCommit, not outer candidate indexTree recorded by git.",
+  "capturedUtc": "2026-09-26T10:46:18.5688929+00:00",
+  "baselineTree": "02bc63e1c805415c3a168b893bef29cd9e2d0cf6",
+  "candidateTestedTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+  "sourceFiles": [
+    {
+      "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4",
+      "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs"
+    },
+    {
+      "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1",
+      "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs"
+    },
+    {
+      "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada",
+      "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj"
+    },
+    {
+      "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136",
+      "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs"
+    },
+    {
+      "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8",
+      "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs"
+    },
+    {
+      "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca",
+      "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj"
+    }
+  ],
+  "baselineArchiveSha256": "ec2a85645cef20f2a2b7a692273116f5f1796a988ffd654f87ca3094e08fdc2a"
+}

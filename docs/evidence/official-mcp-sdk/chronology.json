@@ -1,0 +1,1631 @@
+[
+  {
+    "name": "sdk-initial",
+    "startedUtc": "2026-09-26T10:22:19.8036357+00:00",
+    "endedUtc": "2026-09-26T10:22:35.4257701+00:00",
+    "durationSeconds": 15.6221344,
+    "exitCode": 1,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+      "--logger",
+      "trx;LogFileName=sdk-initial.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "5d4dbb532a61df4ad82e2a6ee6c0626c0977382e",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "e613648db794b78124e17045171775ffb409d344b8e8cd23f9d4b5d32ccf1ad7"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "sdk-second",
+    "startedUtc": "2026-09-26T10:22:58.7685133+00:00",
+    "endedUtc": "2026-09-26T10:23:03.6658967+00:00",
+    "durationSeconds": 4.8973834,
+    "exitCode": 1,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+      "--no-restore",
+      "--logger",
+      "trx;LogFileName=sdk-second.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "4e82cfcfc5760c0655470f4f531c17ff7a4147c8",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "8920e4da7a5a74df677ad31a56a1f5ec634b645ed59bc8c21664a302dae16aed"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "sdk-third",
+    "startedUtc": "2026-09-26T10:23:28.8973937+00:00",
+    "endedUtc": "2026-09-26T10:23:42.2106576+00:00",
+    "durationSeconds": 13.3132639,
+    "exitCode": 1,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+      "--no-restore",
+      "--logger",
+      "trx;LogFileName=sdk-third.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "7d4ae73b6169f2b594badb3d887cba7c7908e441",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "ccd4868e6cbc7ba49c4bb504081e23d3fdaa1e1619bcad2bac0c87a458c45bcd"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": {
+      "failed": 1,
+      "skipped": 0,
+      "passed": 31,
+      "total": 32
+    },
+    "failedTests": [
+      "OpenClaw.Mcp.Sdk.Tests.SdkBridgeProofTests.RawInitialize_UsesExplicitExpectedNegotiation(requested: \"2099-01-01\", expected: \"2025-11-25\")"
+    ],
+    "skippedTests": [],
+    "rawTrxSha256": "bd9da2e65fe3907d7a2ab79e93fe45a15d83142660b90ec524970eac9be4b2e1",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "sdk-final",
+    "startedUtc": "2026-09-26T10:24:18.5549681+00:00",
+    "endedUtc": "2026-09-26T10:24:30.6707824+00:00",
+    "durationSeconds": 12.1158143,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+      "--no-restore",
+      "--logger",
+      "trx;LogFileName=sdk-final.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs"
+      },
+      {
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs"
+      },
+      {
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada",
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj"
+      },
+      {
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs"
+      },
+      {
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs"
+      },
+      {
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj"
+      }
+    ],
+    "counts": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 32,
+      "total": 32
+    },
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": "b540068198ad5b8f87f207bd4e0add42470e0278d0434fde7667e4c12213a197",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "baseline-mcp",
+    "startedUtc": "2026-09-26T10:24:39.9540210+00:00",
+    "endedUtc": "2026-09-26T10:25:05.6964195+00:00",
+    "durationSeconds": 25.7423985,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+      "--filter",
+      "FullyQualifiedName~McpToolBridgeTests|FullyQualifiedName~McpHttpServerTests|FullyQualifiedName~McpHttpServerTelemetryTests",
+      "--logger",
+      "trx;LogFileName=baseline-mcp.trx",
+      "--results-directory",
+      "[checkout]\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "baseline",
+    "effectiveBaselineCommit": "273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "sha256": "a9b422f3ee6be08094ed8f31f3a8fd14cd2b874891e86cb456d3dc054d1b570b",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs"
+      },
+      {
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs"
+      },
+      {
+        "sha256": "496874eca0779cf07e160a876dca63e1e821147a9b24373facfc2b6ec52894c3",
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj"
+      }
+    ],
+    "counts": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 89,
+      "total": 89
+    },
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": "a9e68626168f38d73aff08b55b25be486f280806ae84d8d98f1f0737367a3dfa",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "candidate-mcp",
+    "startedUtc": "2026-09-26T10:25:16.6677004+00:00",
+    "endedUtc": "2026-09-26T10:25:39.2273939+00:00",
+    "durationSeconds": 22.5596935,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+      "--filter",
+      "FullyQualifiedName~McpToolBridgeTests|FullyQualifiedName~McpHttpServerTests|FullyQualifiedName~McpHttpServerTelemetryTests",
+      "--logger",
+      "trx;LogFileName=candidate-mcp.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 89,
+      "total": 89
+    },
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": "38cf36a74ad816af95a9b2371b7d4d93eef12ffdfc872517e247a9a6a9965a49",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "full-build",
+    "startedUtc": "2026-09-26T10:25:47.0746895+00:00",
+    "endedUtc": "2026-09-26T10:29:05.3799215+00:00",
+    "durationSeconds": 198.305232,
+    "exitCode": 1,
+    "executable": "pwsh",
+    "arguments": [
+      "-NoProfile",
+      "-File",
+      ".\\build.ps1",
+      "-NoTrustRepository"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "shared-full",
+    "startedUtc": "2026-09-26T10:29:18.7733225+00:00",
+    "endedUtc": "2026-09-26T10:30:32.0056585+00:00",
+    "durationSeconds": 73.232336,
+    "exitCode": 1,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+      "--no-restore",
+      "--logger",
+      "trx;LogFileName=shared-full.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": {
+      "failed": 1,
+      "skipped": 32,
+      "passed": 4106,
+      "total": 4139
+    },
+    "failedTests": [
+      "OpenClaw.Shared.Tests.Mxc.MxcConfigBuilderTests.Build_BootstrapsShellPathAndGrantsBackendSafePathDirsReadonly"
+    ],
+    "skippedTests": [
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_FilesystemAccessMatrix_EnforcesReadwriteAndReadonlyPaths",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ThrowsBeforeInitialize",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithCwd",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CustomEnv_DeniesBeforeMxcUnavailableHostFallback",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV3_HasCorrectFormat",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV2_HasCorrectFormat",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_InvalidCommand_ReturnsError",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CompletesPromptly_WhenOrphanChildProcessHoldsStdoutHandle",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_Timeout_KillsProcess",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_EchoCmd_ExecutesInsideAppContainer",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_GeneratesNewKeypair",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CapturesStderr",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DirectArgvWithWindowsUiAccess_ExecutesInsideAppContainer",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_NonZeroExitCode",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_LeavesNoTempFileBehind",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Cmd",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenForRole_Node_PreservesOperatorToken",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CmdDir_ReadsGrantedCustomFolder",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Powershell",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_PersistsAcrossReload",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_PreservesNonTokenFields_AfterAtomicWrite",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ProducesDeterministicSignature",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_PipelineSmokeTest_WithDenyPaths_ReturnsResult",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_LeavesNoTempFileBehind",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithEnvVars",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_LoadsExistingKeypair",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenWithScopes_PersistsScopesAcrossReload",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DefaultShell_ExecutesInsideAppContainer",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.DifferentDirs_ProduceDifferentIdentities",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_DiffersForDifferentNonces",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildDebugPayload_HasCorrectFormat",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.PublicKeyBase64Url_IsValidBase64Url"
+    ],
+    "rawTrxSha256": "ac63c10d23b45eecb186b22c2fe93a57dec0f156243a9e7940d6223c60264c52",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "temp-acl-recovery",
+    "startedUtc": "2026-09-26T10:31:38.8890239+00:00",
+    "endedUtc": "2026-09-26T10:31:39.9947483+00:00",
+    "durationSeconds": 1.1057244,
+    "exitCode": 0,
+    "executable": "pwsh",
+    "arguments": [
+      "-NoProfile",
+      "-File",
+      "[session-files]\\Repair-McpTaskTempAcl.ps1"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs"
+      },
+      {
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs"
+      },
+      {
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada",
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj"
+      },
+      {
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs"
+      },
+      {
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs"
+      },
+      {
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "shared-final",
+    "startedUtc": "2026-09-26T10:31:48.8115241+00:00",
+    "endedUtc": "2026-09-26T10:32:59.3389114+00:00",
+    "durationSeconds": 70.5273873,
+    "exitCode": 1,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+      "--no-restore",
+      "--logger",
+      "trx;LogFileName=shared-final.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": {
+      "failed": 1,
+      "skipped": 32,
+      "passed": 4106,
+      "total": 4139
+    },
+    "failedTests": [
+      "OpenClaw.Shared.Tests.McpHttpServerTests.Dispose_DuringInFlightHandler_DoesNotSurfaceObjectDisposedException"
+    ],
+    "skippedTests": [
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_FilesystemAccessMatrix_EnforcesReadwriteAndReadonlyPaths",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenForRole_Node_PreservesOperatorToken",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_DiffersForDifferentNonces",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.DifferentDirs_ProduceDifferentIdentities",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_NonZeroExitCode",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CmdDir_ReadsGrantedCustomFolder",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_PersistsAcrossReload",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DirectArgvWithWindowsUiAccess_ExecutesInsideAppContainer",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CompletesPromptly_WhenOrphanChildProcessHoldsStdoutHandle",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ThrowsBeforeInitialize",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Cmd",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_PipelineSmokeTest_WithDenyPaths_ReturnsResult",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_GeneratesNewKeypair",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_InvalidCommand_ReturnsError",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV3_HasCorrectFormat",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_LeavesNoTempFileBehind",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_LeavesNoTempFileBehind",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenWithScopes_PersistsScopesAcrossReload",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV2_HasCorrectFormat",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildDebugPayload_HasCorrectFormat",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_LoadsExistingKeypair",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_PreservesNonTokenFields_AfterAtomicWrite",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_Timeout_KillsProcess",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Powershell",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithCwd",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DefaultShell_ExecutesInsideAppContainer",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ProducesDeterministicSignature",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_EchoCmd_ExecutesInsideAppContainer",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CustomEnv_DeniesBeforeMxcUnavailableHostFallback",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.PublicKeyBase64Url_IsValidBase64Url",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CapturesStderr",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithEnvVars"
+    ],
+    "rawTrxSha256": "1022ab0d1779e246e90168991da010ada0674d5148753fcc7186f96a601cc774",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "baseline-shared-full",
+    "startedUtc": "2026-09-26T10:33:15.9217598+00:00",
+    "endedUtc": "2026-09-26T10:34:34.0707565+00:00",
+    "durationSeconds": 78.1489967,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+      "--no-restore",
+      "--logger",
+      "trx;LogFileName=baseline-shared-full.trx",
+      "--results-directory",
+      "[checkout]\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "baseline",
+    "effectiveBaselineCommit": "273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "a9b422f3ee6be08094ed8f31f3a8fd14cd2b874891e86cb456d3dc054d1b570b"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "496874eca0779cf07e160a876dca63e1e821147a9b24373facfc2b6ec52894c3"
+      }
+    ],
+    "counts": {
+      "failed": 0,
+      "skipped": 32,
+      "passed": 4107,
+      "total": 4139
+    },
+    "failedTests": [],
+    "skippedTests": [
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_LoadsExistingKeypair",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildDebugPayload_HasCorrectFormat",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CompletesPromptly_WhenOrphanChildProcessHoldsStdoutHandle",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithEnvVars",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_PipelineSmokeTest_WithDenyPaths_ReturnsResult",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ThrowsBeforeInitialize",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DefaultShell_ExecutesInsideAppContainer",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_PreservesNonTokenFields_AfterAtomicWrite",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV2_HasCorrectFormat",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_EchoCmd_ExecutesInsideAppContainer",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_Timeout_KillsProcess",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_FilesystemAccessMatrix_EnforcesReadwriteAndReadonlyPaths",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_LeavesNoTempFileBehind",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Powershell",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Cmd",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CmdDir_ReadsGrantedCustomFolder",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV3_HasCorrectFormat",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.DifferentDirs_ProduceDifferentIdentities",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CustomEnv_DeniesBeforeMxcUnavailableHostFallback",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ProducesDeterministicSignature",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_PersistsAcrossReload",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_DiffersForDifferentNonces",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithCwd",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenForRole_Node_PreservesOperatorToken",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_InvalidCommand_ReturnsError",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_GeneratesNewKeypair",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_NonZeroExitCode",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CapturesStderr",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenWithScopes_PersistsScopesAcrossReload",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.PublicKeyBase64Url_IsValidBase64Url",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_LeavesNoTempFileBehind",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DirectArgvWithWindowsUiAccess_ExecutesInsideAppContainer"
+    ],
+    "rawTrxSha256": "ee8153969f71733d5a2c6cb92aec7bd28faeeb317805823367ad2e9a71998cab",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "tray-initial",
+    "startedUtc": "2026-09-26T10:34:44.1755653+00:00",
+    "endedUtc": "2026-09-26T10:36:13.9183592+00:00",
+    "durationSeconds": 89.7427939,
+    "exitCode": 1,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Tray.Tests\\OpenClaw.Tray.Tests.csproj",
+      "--logger",
+      "trx;LogFileName=tray-initial.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": {
+      "failed": 1,
+      "skipped": 0,
+      "passed": 3071,
+      "total": 3072
+    },
+    "failedTests": [
+      "OpenClaw.Tray.Tests.NativeSpeechStackRuntimeTests.TrayBuildOutput_NativeTtsStack_LoadsWithAppLocalVCRuntime"
+    ],
+    "skippedTests": [],
+    "rawTrxSha256": "c7cfab37812092f20173492774a1fe33b3b0fd70e21669925ceac9819e748992",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "tray-targetdir",
+    "startedUtc": "2026-09-26T10:36:38.9535528+00:00",
+    "endedUtc": "2026-09-26T10:36:40.0463669+00:00",
+    "durationSeconds": 1.0928141,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "msbuild",
+      ".\\src\\OpenClaw.Tray.WinUI\\OpenClaw.Tray.WinUI.csproj",
+      "-p:RuntimeIdentifier=win-x64",
+      "-getProperty:TargetDir,TargetPath,OpenClawVCRuntimeArch,OpenClawVsInstallRoot"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "tray-runtime-recovery",
+    "startedUtc": "2026-09-26T10:36:47.5218890+00:00",
+    "endedUtc": "2026-09-26T10:36:48.9540692+00:00",
+    "durationSeconds": 1.4321802,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "msbuild",
+      ".\\src\\OpenClaw.Tray.WinUI\\OpenClaw.Tray.WinUI.csproj",
+      "-t:CopyOpenClawVCRuntimeToOutput;CopySetupAssetsLooseForConsumerCopy",
+      "-p:RuntimeIdentifier=win-x64",
+      "-p:SkipMxcNodeBridgeRestore=true",
+      "-verbosity:minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "tray-final",
+    "startedUtc": "2026-09-26T10:36:56.5901669+00:00",
+    "endedUtc": "2026-09-26T10:38:16.1751104+00:00",
+    "durationSeconds": 79.5849435,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Tray.Tests\\OpenClaw.Tray.Tests.csproj",
+      "--no-restore",
+      "--logger",
+      "trx;LogFileName=tray-final.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 3072,
+      "total": 3072
+    },
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": "6786ea90ae0b73feba44a3baf75b7a101af9db688109fe265b014f1e0068f7b9",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "shared-confirmed",
+    "startedUtc": "2026-09-26T10:38:22.9465715+00:00",
+    "endedUtc": "2026-09-26T10:39:32.7219560+00:00",
+    "durationSeconds": 69.7753845,
+    "exitCode": 1,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+      "--no-restore",
+      "--logger",
+      "trx;LogFileName=shared-confirmed.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs"
+      },
+      {
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs"
+      },
+      {
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada",
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj"
+      },
+      {
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs"
+      },
+      {
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs"
+      },
+      {
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj"
+      }
+    ],
+    "counts": {
+      "failed": 1,
+      "skipped": 32,
+      "passed": 4106,
+      "total": 4139
+    },
+    "failedTests": [
+      "OpenClaw.Shared.Tests.McpHttpServerTests.Dispose_DuringInFlightHandler_DoesNotSurfaceObjectDisposedException"
+    ],
+    "skippedTests": [
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_LoadsExistingKeypair",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_PipelineSmokeTest_WithDenyPaths_ReturnsResult",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithEnvVars",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV3_HasCorrectFormat",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_PersistsAcrossReload",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CompletesPromptly_WhenOrphanChildProcessHoldsStdoutHandle",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_NonZeroExitCode",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_DiffersForDifferentNonces",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_FilesystemAccessMatrix_EnforcesReadwriteAndReadonlyPaths",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_LeavesNoTempFileBehind",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_GeneratesNewKeypair",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.DifferentDirs_ProduceDifferentIdentities",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildDebugPayload_HasCorrectFormat",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CmdDir_ReadsGrantedCustomFolder",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ThrowsBeforeInitialize",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_PreservesNonTokenFields_AfterAtomicWrite",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_LeavesNoTempFileBehind",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DirectArgvWithWindowsUiAccess_ExecutesInsideAppContainer",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_EchoCmd_ExecutesInsideAppContainer",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV2_HasCorrectFormat",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithCwd",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CustomEnv_DeniesBeforeMxcUnavailableHostFallback",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_InvalidCommand_ReturnsError",
+      "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DefaultShell_ExecutesInsideAppContainer",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CapturesStderr",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenForRole_Node_PreservesOperatorToken",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Powershell",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.PublicKeyBase64Url_IsValidBase64Url",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenWithScopes_PersistsScopesAcrossReload",
+      "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ProducesDeterministicSignature",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_Timeout_KillsProcess",
+      "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Cmd"
+    ],
+    "rawTrxSha256": "c9d56ad3a2002d7ae1100b2853089cd4e1f28cc0f2b5a3565c0ea9fa98f34520",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "winnode-initial",
+    "startedUtc": "2026-09-26T10:39:43.6824243+00:00",
+    "endedUtc": "2026-09-26T10:40:03.4471266+00:00",
+    "durationSeconds": 19.7647023,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.WinNode.Cli.Tests\\OpenClaw.WinNode.Cli.Tests.csproj",
+      "--logger",
+      "trx;LogFileName=winnode-initial.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs"
+      },
+      {
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs"
+      },
+      {
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada",
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj"
+      },
+      {
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs"
+      },
+      {
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs"
+      },
+      {
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj"
+      }
+    ],
+    "counts": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 127,
+      "total": 127
+    },
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": "06862717be2efcf3de50a3f8d3cfab243acca140eb1a348814500d6a84d45bc9",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "baseline-http-drain-interaction",
+    "startedUtc": "2026-09-26T10:40:45.0571216+00:00",
+    "endedUtc": "2026-09-26T10:41:00.3302349+00:00",
+    "durationSeconds": 15.2731133,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+      "--no-restore",
+      "--filter",
+      "FullyQualifiedName~BoundedProcessWaitTests|FullyQualifiedName~McpHttpServerTests",
+      "--logger",
+      "trx;LogFileName=baseline-http-drain-interaction.trx",
+      "--results-directory",
+      "[checkout]\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "baseline",
+    "effectiveBaselineCommit": "273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "a9b422f3ee6be08094ed8f31f3a8fd14cd2b874891e86cb456d3dc054d1b570b"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "496874eca0779cf07e160a876dca63e1e821147a9b24373facfc2b6ec52894c3"
+      }
+    ],
+    "counts": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 32,
+      "total": 32
+    },
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": "f32b89d9fe4635ab09970db657590bae244ebbaa4e9d6998f508dedd8b30a2d5",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "baseline-drain-diagnostic",
+    "startedUtc": "2026-09-26T10:42:00.3457438+00:00",
+    "endedUtc": "2026-09-26T10:42:05.6855773+00:00",
+    "durationSeconds": 5.3398335,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "run",
+      "--project",
+      "[session-files]\\drain-diagnostic\\DrainDiagnostic.csproj",
+      "--",
+      "[checkout]\\artifacts\\mcp-sdk-proof\\baseline\\src\\OpenClaw.Shared\\bin\\Debug\\net10.0\\OpenClaw.Shared.dll",
+      "[checkout]\\artifacts\\mcp-sdk-proof\\baseline\\tests\\OpenClaw.Shared.TestHost\\bin\\Debug\\net10.0\\OpenClaw.Shared.TestHost.exe"
+    ],
+    "sourceRole": "baseline",
+    "effectiveBaselineCommit": "273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "candidate-drain-diagnostic",
+    "startedUtc": "2026-09-26T10:42:23.6863682+00:00",
+    "endedUtc": "2026-09-26T10:42:26.3987499+00:00",
+    "durationSeconds": 2.7123817,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "run",
+      "--no-build",
+      "--project",
+      "[session-files]\\drain-diagnostic\\DrainDiagnostic.csproj",
+      "--",
+      "[checkout]\\src\\OpenClaw.Shared\\bin\\Debug\\net10.0\\OpenClaw.Shared.dll",
+      "[checkout]\\tests\\OpenClaw.Shared.TestHost\\bin\\Debug\\net10.0\\OpenClaw.Shared.TestHost.exe"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs"
+      },
+      {
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs"
+      },
+      {
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada",
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj"
+      },
+      {
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs"
+      },
+      {
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs"
+      },
+      {
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "candidate-http-drain-interaction",
+    "startedUtc": "2026-09-26T10:42:34.7955000+00:00",
+    "endedUtc": "2026-09-26T10:42:47.6944198+00:00",
+    "durationSeconds": 12.8989198,
+    "exitCode": 1,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+      "--no-restore",
+      "--filter",
+      "FullyQualifiedName~BoundedProcessWaitTests|FullyQualifiedName~McpHttpServerTests",
+      "--logger",
+      "trx;LogFileName=candidate-http-drain-interaction.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs"
+      },
+      {
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs"
+      },
+      {
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada",
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj"
+      },
+      {
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs"
+      },
+      {
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs"
+      },
+      {
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj"
+      }
+    ],
+    "counts": {
+      "failed": 1,
+      "skipped": 0,
+      "passed": 31,
+      "total": 32
+    },
+    "failedTests": [
+      "OpenClaw.Shared.Tests.McpHttpServerTests.Dispose_DuringInFlightHandler_DoesNotSurfaceObjectDisposedException"
+    ],
+    "skippedTests": [],
+    "rawTrxSha256": "eabf58e9b59152cd885a18be402a1c5297631d9135f990d84087cd6f1c4e748c",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "baseline-pre-canceled-diagnostic",
+    "startedUtc": "2026-09-26T10:43:30.1684541+00:00",
+    "endedUtc": "2026-09-26T10:43:33.7150088+00:00",
+    "durationSeconds": 3.5465547,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "run",
+      "--project",
+      "[session-files]\\drain-diagnostic\\DrainDiagnostic.csproj",
+      "--",
+      "[checkout]\\artifacts\\mcp-sdk-proof\\baseline\\src\\OpenClaw.Shared\\bin\\Debug\\net10.0\\OpenClaw.Shared.dll",
+      "[checkout]\\artifacts\\mcp-sdk-proof\\baseline\\tests\\OpenClaw.Shared.TestHost\\bin\\Debug\\net10.0\\OpenClaw.Shared.TestHost.exe",
+      "already-canceled"
+    ],
+    "sourceRole": "baseline",
+    "effectiveBaselineCommit": "273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs"
+      },
+      {
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs"
+      },
+      {
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada",
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj"
+      },
+      {
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs"
+      },
+      {
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs"
+      },
+      {
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "candidate-pre-canceled-diagnostic",
+    "startedUtc": "2026-09-26T10:43:42.2546943+00:00",
+    "endedUtc": "2026-09-26T10:43:43.7610507+00:00",
+    "durationSeconds": 1.5063564,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "run",
+      "--no-build",
+      "--project",
+      "[session-files]\\drain-diagnostic\\DrainDiagnostic.csproj",
+      "--",
+      "[checkout]\\src\\OpenClaw.Shared\\bin\\Debug\\net10.0\\OpenClaw.Shared.dll",
+      "[checkout]\\tests\\OpenClaw.Shared.TestHost\\bin\\Debug\\net10.0\\OpenClaw.Shared.TestHost.exe",
+      "already-canceled"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "sdk-confirmed",
+    "startedUtc": "2026-09-26T10:44:32.8823258+00:00",
+    "endedUtc": "2026-09-26T10:44:52.4835486+00:00",
+    "durationSeconds": 19.6012228,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+      "--no-restore",
+      "--logger",
+      "trx;LogFileName=sdk-confirmed.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs"
+      },
+      {
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs"
+      },
+      {
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada",
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj"
+      },
+      {
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs"
+      },
+      {
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs"
+      },
+      {
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj"
+      }
+    ],
+    "counts": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 32,
+      "total": 32
+    },
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": "4506c0326f736af6b9ef489628e96d46fa7b361c246680b086ec8ce8c2a1432e",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "candidate-mcp-confirmed",
+    "startedUtc": "2026-09-26T10:45:00.3777001+00:00",
+    "endedUtc": "2026-09-26T10:45:12.4144183+00:00",
+    "durationSeconds": 12.0367182,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "test",
+      ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+      "--no-restore",
+      "--filter",
+      "FullyQualifiedName~McpToolBridgeTests|FullyQualifiedName~McpHttpServerTests|FullyQualifiedName~McpHttpServerTelemetryTests",
+      "--logger",
+      "trx;LogFileName=candidate-mcp-confirmed.trx",
+      "--results-directory",
+      ".\\artifacts\\mcp-sdk-proof\\raw",
+      "--verbosity",
+      "minimal"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": {
+      "failed": 0,
+      "skipped": 0,
+      "passed": 89,
+      "total": 89
+    },
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": "99faa69bb424f4e3b8bbb764f1c66b8380fec108af20e8ec2d369ba3cc8084dc",
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "sdk-packages",
+    "startedUtc": "2026-09-26T10:45:27.5385175+00:00",
+    "endedUtc": "2026-09-26T10:45:29.3074235+00:00",
+    "durationSeconds": 1.768906,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "list",
+      ".\\tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+      "package",
+      "--include-transitive",
+      "--no-restore",
+      "--format",
+      "json"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs"
+      },
+      {
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs"
+      },
+      {
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada",
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj"
+      },
+      {
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs"
+      },
+      {
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs"
+      },
+      {
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "dotnet-environment",
+    "startedUtc": "2026-09-26T10:45:27.5433379+00:00",
+    "endedUtc": "2026-09-26T10:45:28.3516593+00:00",
+    "durationSeconds": 0.8083214,
+    "exitCode": 0,
+    "executable": "dotnet",
+    "arguments": [
+      "--info"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs",
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs",
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1"
+      },
+      {
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj",
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs",
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs",
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8"
+      },
+      {
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj",
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  },
+  {
+    "name": "collect-provenance",
+    "startedUtc": "2026-09-26T10:46:17.6254389+00:00",
+    "endedUtc": "2026-09-26T10:46:21.2688520+00:00",
+    "durationSeconds": 3.6434131,
+    "exitCode": 0,
+    "executable": "pwsh",
+    "arguments": [
+      "-NoProfile",
+      "-File",
+      "[session-files]\\Collect-McpProvenance.ps1"
+    ],
+    "sourceRole": "candidate",
+    "effectiveBaselineCommit": null,
+    "recordedIndexTree": "d2bf4410b0feab640e2a40a21cfd191f54f16c4c",
+    "sourceFiles": [
+      {
+        "sha256": "68c79f55e3bac30b9530688c426aa41cb5c546e26a6c34c6078bf1c489a72ca4",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpToolBridge.cs"
+      },
+      {
+        "sha256": "de9c81beb75294b09795e01acf249166ef773056e30f8e2090b1c287031bbcf1",
+        "path": "src\\OpenClaw.Shared\\Mcp\\McpHttpServer.cs"
+      },
+      {
+        "sha256": "41030a32ba42b746c46373eece4d275cd494bb57692468920284c36f959a9ada",
+        "path": "src\\OpenClaw.Shared\\OpenClaw.Shared.csproj"
+      },
+      {
+        "sha256": "09dcf7f73e4f2788781efad082d10beb1913159723b3845473ca4bd7611c3136",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProof.cs"
+      },
+      {
+        "sha256": "0e5665ffc1210ef9a69cd8283e0131633257e521654eac057a62b9ceabc984b8",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\SdkBridgeProofTests.cs"
+      },
+      {
+        "sha256": "f98e70c9be1dd4d86f877be0cc757b6a869766e7a8f49d08afab875ae79b53ca",
+        "path": "tests\\OpenClaw.Mcp.Sdk.Tests\\OpenClaw.Mcp.Sdk.Tests.csproj"
+      }
+    ],
+    "counts": null,
+    "failedTests": [],
+    "skippedTests": [],
+    "rawTrxSha256": null,
+    "binarySnapshot": "provenance.json is a post-run snapshot, not per-invocation attestation; see limitations in VALIDATION.md"
+  }
+]
