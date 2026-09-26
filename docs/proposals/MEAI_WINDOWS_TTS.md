@@ -91,7 +91,7 @@ No synthesis text, audio or native object is copied into `RawRepresentation`.
 
 ## Package evidence and compatibility
 
-- Candidate pin: `Microsoft.Extensions.AI.Abstractions` **10.9.0**, in the tray
+- Verified pin: `Microsoft.Extensions.AI.Abstractions` **10.9.0**, in the tray
   project and its source-linked pure test project. No `Microsoft.Extensions.AI`
   middleware, ML.NET or additional engine is added.
 - [Official NuGet metadata](https://www.nuget.org/api/v2/Packages(Id='Microsoft.Extensions.AI.Abstractions',Version='10.9.0'))
@@ -106,8 +106,10 @@ No synthesis text, audio or native object is copied into `RawRepresentation`.
 - Existing Whisper.net 1.9.0 already brings MEAI Abstractions >=10.0.0 into the
   dependency graph. This is an explicit compatible-version selection, not a
   claim that MEAI is a wholly new dependency. The independent STT proposal uses
-  the same 10.9.0 candidate pin. Exact restored graphs and binary compatibility
-  must be checked before claiming they work together.
+  the same 10.9.0 pin. The actual restored WinUI graph selects the `net10.0`
+  Abstractions asset with no added dependencies in the neutral, `win-x64` and
+  `win-arm64` graphs. This branch compiled and ran the Windows path on x64;
+  combining the independent STT branch and running ARM64 remain unverified.
 - Prior art: [ML.NET audio MEAI integration](https://github.com/luisquintanilla/mlnet-audio-custom-transforms/blob/main/docs/meai-integration.md).
   Its engine and middleware are not imported. Its diagnostic/version guidance
   is not substituted for the exact release source above.
@@ -143,10 +145,30 @@ interface is not proposed.
 
 ## Validation and reproduction
 
-**Not run yet.** Implementation was prepared while the coordinating session's
-host validation gate was closed. No build, restore, test or native inference
-has been executed for this pilot. This section will be updated with observed
-results before the proposal is handed off.
+Validated locally on Windows x64 with SDK 10.0.401 and runtime 10.0.12 at
+source `2c4ec89c2196cccce484b97e29cf54d6c5804d7a`.
+The [evidence report](evidence/meai-windows-tts/README.md) and
+[allowlisted command/test ledger](evidence/meai-windows-tts/validation.json)
+preserve the commands, original UTC timestamps, candidate SHAs, failures,
+recoveries, package graph, hashes and selected method inventories.
+
+| Check | Passed | Failed | Skipped |
+|---|---:|---:|---:|
+| Focused adapter plus existing Piper/cloud contract tests | 46 | 0 | 0 |
+| Final actual-service suite, including the three native cases | 26 | 0 | 0 |
+| Final full Shared suite | 4,107 | 0 | 32 |
+| Final full Tray suite | 3,100 | 0 | 0 |
+
+The three explicitly enabled native cases passed through the actual service,
+default adapter, existing Windows voice resolver and native synthesis with only
+playback replaced. They produced four nonempty PCM16 mono WAVs at 16,000 Hz.
+This is observed output on one host, not a fixed-format promise for other voices.
+Counts overlap; focused results must not be added to the full Tray total.
+
+**Full build remains blocked.** The one required `build.ps1` attempt failed
+fetching the locked `node-pty` package over TLS. Scoped WinUI harness compilation
+is not a successful full build. Initial environment/test failures and the
+one source-level test compilation fix are retained in the evidence report.
 
 Baseline expectations come from
 [`TextToSpeechService` at 273b018](https://github.com/openclaw/openclaw-windows-node/blob/273b0182745a3093c0e09f306ca8a1fff6ef3c5a/src/OpenClaw.Tray.WinUI/Services/TextToSpeech/TextToSpeechService.cs)
@@ -157,7 +179,7 @@ independently of the new adapter:
 | Baseline expectation | Pilot expectation |
 |---|---|
 | Explicit Windows voice ID or display name must resolve; stale configured voice uses the OS default. | Same native resolver and policy. Silent native tests cover installed ID, missing explicit ID and stale configured ID. |
-| Node text is trimmed and bounded to 5,000 characters; direct Windows service calls are not capped by the node limit. | Node behavior unchanged. Direct adapter and actual-service tests forward 5,001 characters to a safe synthesis fake without truncation or rejection. |
+| Node text is trimmed, nonblank and bounded to 5,000 characters; direct Windows service calls forward text without those managed guards. | Node behavior unchanged. Direct adapter and actual-service tests forward empty, whitespace-only and 5,001-character strings to a safe synthesis fake without trimming or rejection. Native blank/long-input acceptance is not claimed. |
 | Unready configured provider falls back to Windows; explicit provider is strict; fallback drops provider-specific voice/model. | Same resolver, ready-set and argument rewrite. Fake service tests cover each provider; silent native proof also exercises unready default Piper through the real adapter. |
 | Cancellation is passed to Windows synthesis and independently to MediaPlayer playback. | Same tokens at both stages, plus post-synthesis checks before exposing audio. No stronger native-abort promise. |
 | Per-call synthesizer and source stream remain alive until playback returns, then are disposed. | Per-call synthesizer/source stream/reader are disposed after copying the WAV. A separate playback stream stays alive until playback returns. This lifetime change and the extra copies are intentional. |
@@ -193,22 +215,25 @@ These native
 cases retain the production service, its default client construction, the real
 adapter, voice resolution, OS synthesis and WAV copy. Only playback is replaced.
 Other service cases replace both the synthesis client and playback, except the
-long-text regression, which keeps the real adapter with a safe synthesis callback.
+blank/long-text and terminal-disposal regressions, which keep the real adapter
+with a safe synthesis callback.
 
-The original host has a reported baseline full-build failure downloading a
-locked npm dependency through TLS. That report is not a passing build for this
-branch. Do not disable TLS, change lockfiles or call scoped compilation a full
-build.
+The full-build attempt reproduced the reported host TLS failure downloading
+`node-pty-1.2.0-beta.12.tgz`. It was not retried. No TLS, lockfile, global
+configuration or credential workaround was used.
 
 If that baseline npm blocker prevents building the focused test harness,
 `-p:SkipMxcNodeBridgeRestore=true -p:VerifyWxcExecShipped=false` may be used only
 for the explicitly labeled TTS harness build. The first avoids the unrelated
-MXC npm restore; the second avoids demanding its missing shipping executable.
-Neither option proves shipping-output completeness, sandbox behavior, full
-build correctness or deployment. They are not included in the normal commands
-above or a full-build success claim.
+MXC npm restore; the second disables the shipping verification target, but does
+not disable the separate `CopyWxcExecToOutput` target. These two flags alone did
+not yield a successful harness build. The evidence report records compilation
+of the production dependencies, existing loose-asset/runtime copy targets and
+the subsequent harness-only `BuildProjectReferences=false` build. None of these
+steps proves shipping-output completeness, sandbox behavior, full build
+correctness or deployment.
 
-| Requirement | Named evidence to execute |
+| Requirement | Named evidence in the recorded runs |
 |---|---|
 | "data-content/container checks" | `GetAudioAsync_MapsVoiceAndReturnsOwnedPcmWav`, `NativeWindows_DefaultAndStaleConfiguredVoiceReturnSilentPcmWav` |
 | "selection/fallback/explicit-provider failure" | `SpeakAsync_UnreadyConfiguredProviderFallsBackOfflineAndDropsProviderSpecificOptions`, `SpeakAsync_ExplicitUnavailableProviderNeverCallsWindowsOrPlayback` |
