@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.AI;
 using OpenClaw.Shared;
 using OpenClaw.Shared.Audio;
 using OpenClaw.Shared.Capabilities;
@@ -12,6 +13,8 @@ using Windows.Media.Core;
 using Windows.Media.Playback;
 using Windows.Media.SpeechSynthesis;
 using Windows.Storage.Streams;
+
+#pragma warning disable MEAI001 // Experimental speech API, pinned to Microsoft.Extensions.AI.Abstractions 10.9.0.
 
 namespace OpenClawTray.Services;
 
@@ -21,6 +24,8 @@ public sealed class TextToSpeechService : IDisposable
     private readonly SettingsManager _settings;
     private readonly ElevenLabsTextToSpeechClient _elevenLabsClient;
     private readonly MiniMaxTextToSpeechClient _miniMaxClient;
+    private readonly ITextToSpeechClient _windowsClient;
+    private readonly Func<byte[], string, bool, CancellationToken, Task> _playWindowsAudioAsync;
     private readonly PiperVoiceManager _piperVoices;
     private readonly object _piperLock = new();
     private PiperTextToSpeechClient? _piperClient;  // lazily loaded; reused across calls for the same voice
@@ -38,15 +43,21 @@ public sealed class TextToSpeechService : IDisposable
         IOpenClawLogger logger,
         SettingsManager settings,
         ElevenLabsTextToSpeechClient elevenLabsClient,
-        MiniMaxTextToSpeechClient miniMaxClient)
+        MiniMaxTextToSpeechClient miniMaxClient,
+        ITextToSpeechClient? windowsClient = null,
+        Func<byte[], string, bool, CancellationToken, Task>? playWindowsAudioAsync = null,
+        PiperVoiceManager? piperVoices = null)
     {
         _logger = logger;
         _settings = settings;
         _elevenLabsClient = elevenLabsClient;
         _miniMaxClient = miniMaxClient;
+        // This service owns the client. The client never owns playback or settings.
+        _windowsClient = windowsClient ?? new WindowsTextToSpeechClient(SynthesizeWindowsWavAsync);
+        _playWindowsAudioAsync = playWindowsAudioAsync ?? PlayWindowsAudioAsync;
         // Piper voices live under the same data directory as Whisper models
         // so the user has a single "AI assets" folder to point at.
-        _piperVoices = new PiperVoiceManager(SettingsManager.SettingsDirectoryPath, logger);
+        _piperVoices = piperVoices ?? new PiperVoiceManager(SettingsManager.SettingsDirectoryPath, logger);
     }
 
     /// <summary>Exposed so Settings UI can drive download/delete from the same instance.</summary>
@@ -54,6 +65,7 @@ public sealed class TextToSpeechService : IDisposable
 
     public async Task<TtsSpeakResult> SpeakAsync(TtsSpeakArgs args, CancellationToken cancellationToken = default)
     {
+        ArgumentNullException.ThrowIfNull(args);
         // Resolve the provider that should actually serve this call. When the
         // configured/default provider isn't usable (no ElevenLabs key, Piper
         // voice not downloaded), fall back to Windows TTS so the assistant can
@@ -232,6 +244,27 @@ public sealed class TextToSpeechService : IDisposable
 
     private async Task SpeakWithWindowsAsync(TtsSpeakArgs args, CancellationToken cancellationToken)
     {
+        var response = await _windowsClient.GetAudioAsync(
+            args.Text, new TextToSpeechOptions { VoiceId = args.VoiceId }, cancellationToken).ConfigureAwait(false);
+        cancellationToken.ThrowIfCancellationRequested();
+        if (response?.Contents is not { Count: 1 } contents
+            || contents[0] is not DataContent audio
+            || !string.Equals(audio.MediaType, "audio/wav", StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("Windows TTS did not return a single WAV audio result.");
+
+        WindowsTextToSpeechClient.ValidateWav(audio.Data.Span);
+        await _playWindowsAudioAsync(audio.Data.ToArray(), "audio/wav", args.Interrupt, cancellationToken).ConfigureAwait(false);
+    }
+
+    private async Task PlayWindowsAudioAsync(byte[] wav, string contentType, bool interrupt, CancellationToken cancellationToken)
+    {
+        using var stream = await CreateStreamAsync(wav, cancellationToken).ConfigureAwait(false);
+        await PlayStreamAsync(stream, contentType, interrupt, cancellationToken).ConfigureAwait(false);
+    }
+
+    private async Task<byte[]> SynthesizeWindowsWavAsync(string text, string? voiceId, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
         using var synthesizer = new SpeechSynthesizer();
 
         // Distinguish an explicit per-call voice from the configured default.
@@ -240,8 +273,8 @@ public sealed class TextToSpeechService : IDisposable
         // would break the always-available fallback guarantee (a provider that
         // fell back to Windows would still fail). In that case we silently use
         // the synthesizer's system default voice.
-        var explicitVoice = !string.IsNullOrWhiteSpace(args.VoiceId);
-        var requestedVoice = explicitVoice ? args.VoiceId : _settings.TtsWindowsVoiceId;
+        var explicitVoice = !string.IsNullOrWhiteSpace(voiceId);
+        var requestedVoice = explicitVoice ? voiceId : _settings.TtsWindowsVoiceId;
         if (!string.IsNullOrWhiteSpace(requestedVoice))
         {
             requestedVoice = requestedVoice.Trim();
@@ -265,10 +298,17 @@ public sealed class TextToSpeechService : IDisposable
         }
 
         using var stream = await synthesizer
-            .SynthesizeTextToStreamAsync(args.Text)
+            .SynthesizeTextToStreamAsync(text)
             .AsTask(cancellationToken)
             .ConfigureAwait(false);
-        await PlayStreamAsync(stream, stream.ContentType, args.Interrupt, cancellationToken).ConfigureAwait(false);
+        using var reader = new DataReader(stream);
+        var size = checked((uint)stream.Size);
+        var loaded = await reader.LoadAsync(size).AsTask(cancellationToken).ConfigureAwait(false);
+        if (loaded != size)
+            throw new InvalidOperationException("Windows TTS audio stream was incomplete.");
+        var wav = new byte[size];
+        reader.ReadBytes(wav);
+        return wav;
     }
 
     private async Task SpeakWithElevenLabsAsync(TtsSpeakArgs args, CancellationToken cancellationToken)
@@ -463,6 +503,7 @@ public sealed class TextToSpeechService : IDisposable
         // Playback may still release the gate after an interrupt during shutdown.
         _elevenLabsClient.Dispose();
         _miniMaxClient.Dispose();
+        _windowsClient.Dispose();
         lock (_piperLock)
         {
             // slopwatch-ignore: SW003 Cleanup is best-effort; failure cannot improve caller state and the original outcome is preserved.
