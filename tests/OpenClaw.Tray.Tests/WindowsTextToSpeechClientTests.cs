@@ -65,10 +65,20 @@ public sealed class WindowsTextToSpeechClientTests
     [Theory]
     [InlineData("")]
     [InlineData(" \t\r\n")]
-    public async Task GetAudioAsync_EmptyTextFailsBeforeSynthesis(string text)
+    public async Task GetAudioAsync_DirectCallsForwardEmptyAndWhitespaceText(string text)
     {
-        using var client = NeverSynthesize();
-        await Assert.ThrowsAsync<ArgumentException>(() => client.GetAudioAsync(text));
+        var calls = 0;
+        using var client = new WindowsTextToSpeechClient((input, _, _) =>
+        {
+            Assert.Equal(text, input);
+            calls++;
+            return Task.FromResult(Wav());
+        });
+
+        var response = await client.GetAudioAsync(text);
+
+        Assert.Equal(1, calls);
+        Assert.Equal(Wav(), Assert.IsType<DataContent>(Assert.Single(response.Contents)).Data.ToArray());
     }
 
     [Fact]

@@ -63,11 +63,13 @@ add language/speed options or reinterpret the existing provider-specific `model`
 argument for Windows. Windows language and speaking defaults still come from
 the selected OS voice.
 
-Null/empty/whitespace text fails before native synthesis. Nonempty text is not
-trimmed or length-capped by the adapter. The node capability retains its
-original text normalization and 5,000-character limit at that boundary.
-Direct Windows service/client calls retain support for longer text, subject
-to the existing Windows backend's own constraints.
+Null text fails before native synthesis, as required by the MEAI contract.
+All non-null strings, including empty and whitespace-only strings, pass through
+without trimming or length caps. The node capability retains its original
+nonblank validation, text normalization and 5,000-character limit at that boundary.
+Direct Windows service/client calls retain forwarding of longer or blank text,
+subject to the existing Windows backend's own constraints. The fake regression
+tests prove forwarding, not native acceptance of those inputs.
 
 The response contains the complete, unmodified RIFF/WAVE returned by Windows,
 with its actual format chunk, sample rate and channels. There is no resampling
@@ -200,7 +202,7 @@ above or a full-build success claim.
 |---|---|
 | "data-content/container checks" | `GetAudioAsync_MapsVoiceAndReturnsOwnedPcmWav`, `NativeWindows_DefaultAndStaleConfiguredVoiceReturnSilentPcmWav` |
 | "selection/fallback/explicit-provider failure" | `SpeakAsync_UnreadyConfiguredProviderFallsBackOfflineAndDropsProviderSpecificOptions`, `SpeakAsync_ExplicitUnavailableProviderNeverCallsWindowsOrPlayback` |
-| "malformed/null/empty input" | `GetAudioAsync_NullTextFailsBeforeSynthesis`, `GetAudioAsync_EmptyTextFailsBeforeSynthesis`, `SpeakAsync_RejectsMalformedSynthesisResponseBeforePlayback` |
+| "malformed/null/empty input" | `GetAudioAsync_NullTextFailsBeforeSynthesis`, `GetAudioAsync_DirectCallsForwardEmptyAndWhitespaceText`, `SpeakAsync_DirectWindowsPathForwardsEmptyAndWhitespaceText`, `SpeakAsync_RejectsMalformedSynthesisResponseBeforePlayback`; existing `Speak_ReturnsError_WhenTextMissing` retains node-only nonblank validation. |
 | "text limits" | `GetAudioAsync_DirectCallsPreserveTextLongerThanNodeLimit`, `SpeakAsync_DirectWindowsPathPreservesTextLongerThanNodeLimit`; existing `Speak_ReturnsError_WhenTextTooLong` retains the node-only guard. |
 | "option mapping" | `GetAudioAsync_MapsVoiceAndReturnsOwnedPcmWav`, `GetAudioAsync_UnsupportedOptionsFailBeforeSynthesis` |
 | "cancellation before/during/after synthesis" | `GetAudioAsync_AlreadyCanceledDoesNotStartSynthesis`, `GetAudioAsync_CancellationDuringSynthesisPropagatesAndReleasesOperation`, `GetAudioAsync_CancellationAfterBackendCompletionDoesNotPublishAudio` |

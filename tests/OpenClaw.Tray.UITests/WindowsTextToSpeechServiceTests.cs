@@ -17,6 +17,28 @@ public sealed class WindowsTextToSpeechServiceTests
     private static byte[] Wav() => Convert.FromHexString(
         "524946462C00000057415645666D74201000000001000100401F0000803E000002001000646174610800000000000100FFFF0000");
 
+    [Theory]
+    [InlineData("")]
+    [InlineData(" \t\r\n")]
+    public async Task SpeakAsync_DirectWindowsPathForwardsEmptyAndWhitespaceText(string text)
+    {
+        var calls = 0;
+        using var adapter = new WindowsTextToSpeechClient((input, _, _) =>
+        {
+            Assert.Equal(text, input);
+            calls++;
+            return Task.FromResult(Wav());
+        });
+        using var fixture = new Fixture(speechClient: adapter);
+
+        var result = await fixture.Service.SpeakAsync(new() { Text = text, Provider = "windows" });
+
+        Assert.True(result.Spoken);
+        Assert.Equal(1, calls);
+        Assert.Equal(1, fixture.PlayCalls);
+        Assert.Equal(Wav(), fixture.Audio);
+    }
+
     [Fact]
     public async Task SpeakAsync_DirectWindowsPathPreservesTextLongerThanNodeLimit()
     {

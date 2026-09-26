@@ -30,7 +30,7 @@ internal sealed class WindowsTextToSpeechClient(
         CancellationToken cancellationToken = default)
     {
         ObjectDisposedException.ThrowIf(Volatile.Read(ref _disposed) != 0, this);
-        ArgumentException.ThrowIfNullOrWhiteSpace(text);
+        ArgumentNullException.ThrowIfNull(text);
 
         ValidateOptions(options);
         cancellationToken.ThrowIfCancellationRequested();
