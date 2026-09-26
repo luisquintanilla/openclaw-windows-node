@@ -127,6 +127,80 @@ These features need the gateway to send `node.invoke` commands:
 | `ollama.models` | Discover local Ollama chat models | Requires Share Windows Ollama in Permissions; reads the separately installed Ollama service on `127.0.0.1:11434` |
 | `ollama.chat` | Run bounded local Ollama inference | Requires Share Windows Ollama, gateway command approval, and an exact local model returned by `ollama.models` |
 
+### Local Whisper speech client
+
+`SpeechToTextService` consumes the `ISpeechToTextClient` already shipped by
+Whisper.net 1.9.0, with an explicit Microsoft.Extensions.AI.Abstractions 10.9.0
+reference. The package is stable, but its speech APIs are experimental
+(`MEAI001`). No middleware, exporter, cloud provider, or native engine upgrade
+is included.
+
+The service still explicitly loads the same GGML model, converts 16 kHz mono
+float samples to PCM16 WAV, normalizes BCP-47 tags to a two-letter language or
+`auto`, and sets `max(1, processor count / 2)` threads. `TextLanguage` stays
+unset: the pinned adapter treats any nonempty value as English translation.
+Each adapter streaming update represents a complete Whisper segment despite its
+`TextUpdating` kind. The service preserves order and timestamps, trims nonempty
+text, and returns the normalized requested language (including `auto`), not a
+newly inferred language label. This is not a generic promise about other MEAI
+providers or live bidirectional audio streaming.
+
+The service owns both the eager factory and its adapter. One gate covers
+transcription, reload, unload, and disposal so model replacement cannot free
+an in-flight processor's model. Production `VoiceService` callers await async
+load and disposal; contended lifecycle operations must not block the UI thread.
+Legacy synchronous lifecycle calls retain their idle behavior but now fail
+immediately when busy, without changing ownership. This is an intentional
+concurrency-contract change from the original unsafe overlapping disposal.
+The service retains the factory until cleanup
+even if the lazy adapter has not used it; the pinned factory's disposal is
+idempotent. The WAV stream belongs to the service and is disposed after
+enumeration; the adapter must leave caller streams open. Cancellation is checked
+before, during, and after enumeration because the pinned adapter can end its
+iterator normally when cancellation is requested. Partial transcripts never
+become a successful canceled utterance.
+
+Whisper.net 1.9.0's `GetService` throws `NotImplementedException`. This integration
+does not call it or expose a general-purpose MEAI client; correcting metadata
+discovery is an upstream prerequisite for broader middleware reuse. Model
+downloads, capture, resampling, VAD, utterance boundaries, readiness, permissions,
+and the three `stt.*` command schemas remain OpenClaw-owned and unchanged.
+
+Focused offline checks:
+
+```powershell
+dotnet test .\tests\OpenClaw.Shared.Tests\OpenClaw.Shared.Tests.csproj `
+  --filter "FullyQualifiedName~SpeechToTextServiceTests|FullyQualifiedName~SpeechToTextLifecycleContractTests|FullyQualifiedName~SpeechToTextLanguageNormalizationTests|FullyQualifiedName~SttCapabilityTests|FullyQualifiedName~McpToolBridgeTests"
+```
+
+`SpeechToTextNativeProofTests` is separately opt-in. Supply only the public
+`ggml-tiny.bin` model from Hugging Face `ggerganov/whisper.cpp` revision
+`5359861c739e955e79d9a303bcbc70fb988958b1` (MIT, 77,691,713 bytes, catalog SHA-256)
+and `samples/jfk.wav` from `ggml-org/whisper.cpp` revision
+`d09f61a708f3487afa956ff578e60eae5e7a233c` (public presidential speech sample,
+352,078 bytes, Git blob `3184d372cd2f8b804d3a540c70ec50d927b335d2`).
+The test verifies asset identities and never downloads, plays, or records audio.
+Keep binaries outside version control.
+
+```powershell
+$env:OPENCLAW_RUN_WHISPER_PROOF = '1'
+$env:OPENCLAW_WHISPER_PROOF_ASSETS = '<approved-public-asset-directory>'
+dotnet test .\tests\OpenClaw.Shared.Tests\OpenClaw.Shared.Tests.csproj `
+  --filter FullyQualifiedName~SpeechToTextNativeProofTests --logger "console;verbosity=detailed"
+```
+
+The proof compares an independent frozen copy of the original direct Whisper
+processor path with the actual service for `en-US` and `auto`, twice each.
+Output includes hashes of ordered text/times/language, segment counts, actual
+backend, and diagnostic durations, never transcript payloads. It also checks
+caller-stream ownership, deterministic pre-canceled admission, and unused-model
+cleanup. Controlled fake tests establish in-flight cancellation and rejection of
+partial success at the service boundary. Neither those fakes nor pre-canceled
+admission establish native mid-flight abort behavior, which remains unverified.
+This small fixture comparison is not accuracy, latency, microphone, UI, gateway,
+or ARM64 proof. Run it separately from ordinary suites and remove the opt-in
+variables afterward.
+
 ### Cancelling an invocation
 
 The gateway may send the `node.invoke.cancel` event with

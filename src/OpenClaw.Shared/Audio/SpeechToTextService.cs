@@ -2,28 +2,49 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.AI;
 using Whisper.net;
+
+#pragma warning disable MEAI001 // Experimental speech contract, pinned to Abstractions 10.9.0.
 
 namespace OpenClaw.Shared.Audio;
 
 /// <summary>
-/// Owns Whisper model loading and PCM conversion.
+/// Consumes Whisper.net's speech client while owning model loading and PCM conversion.
 /// Transcription, model replacement, unloading, and disposal share one gate.
 /// </summary>
 public sealed class SpeechToTextService : IDisposable, IAsyncDisposable
 {
     private readonly IOpenClawLogger _logger;
     private readonly SemaphoreSlim _gate = new(1, 1);
-    private WhisperFactory? _factory;
+    private readonly Func<string, (IDisposable Model, Func<ISpeechToTextClient> CreateClient)> _createModel;
+    private IDisposable? _factory;
+    private ISpeechToTextClient? _client;
     private string? _loadedModelPath;
     private bool _disposed;
 
-    public bool IsModelLoaded => Volatile.Read(ref _factory) != null;
+    public bool IsModelLoaded => Volatile.Read(ref _client) != null;
     public string? LoadedModelPath => Volatile.Read(ref _loadedModelPath);
 
     public SpeechToTextService(IOpenClawLogger logger)
     {
         _logger = logger;
+        _createModel = CreateWhisperClient;
+    }
+
+    // The service owns both resources. The seam does not register alternative engines.
+    internal SpeechToTextService(IOpenClawLogger logger,
+        Func<string, (IDisposable Model, Func<ISpeechToTextClient> CreateClient)> createModel)
+    {
+        _logger = logger;
+        _createModel = createModel;
+    }
+
+    private static (IDisposable Model, Func<ISpeechToTextClient> CreateClient) CreateWhisperClient(string modelPath)
+    {
+        // Preserve eager loading/readiness rather than the adapter's lazy path constructor.
+        var factory = WhisperFactory.FromPath(modelPath);
+        return (factory, () => new WhisperSpeechToTextClient(() => factory));
     }
 
     /// <summary>Load a model when idle. Use LoadModelAsync if transcription may be active.</summary>
@@ -64,12 +85,22 @@ public sealed class SpeechToTextService : IDisposable, IAsyncDisposable
         ReleaseModel();
         try
         {
-            _factory = WhisperFactory.FromPath(modelPath);
+            var (factory, createClient) = _createModel(modelPath);
+            _factory = factory;
+            var client = createClient();
             _loadedModelPath = modelPath;
+            _client = client;
         }
         catch
         {
-            ReleaseModel();
+            try
+            {
+                ReleaseModel();
+            }
+            catch (Exception cleanupError)
+            {
+                _logger.Error("Whisper model cleanup failed after loading failure.", cleanupError);
+            }
             throw;
         }
         _logger.Info($"Whisper model loaded: {modelPath}");
@@ -120,13 +151,14 @@ public sealed class SpeechToTextService : IDisposable, IAsyncDisposable
         string language = "auto",
         CancellationToken cancellationToken = default)
     {
-        // Enter native processing off the caller context even when admission is
-        // uncontended, so lifecycle completion does not depend on the UI thread.
+        // The pinned adapter captures its starting context internally. Always leave
+        // the UI context before entering it, including uncontended admission, so
+        // async lifecycle and transcription never depend on a blocked UI continuation.
         await _gate.WaitAsync(cancellationToken).ConfigureAwait(ConfigureAwaitOptions.ForceYielding);
         try
         {
             ObjectDisposedException.ThrowIf(_disposed, this);
-            var factory = _factory ??
+            var client = _client ??
                 throw new InvalidOperationException("No Whisper model is loaded. Call LoadModel first.");
             cancellationToken.ThrowIfCancellationRequested();
             // Whisper.net's WithLanguage expects either "auto" or a 2-letter
@@ -135,15 +167,20 @@ public sealed class SpeechToTextService : IDisposable, IAsyncDisposable
             // public docs advertise; normalize down here so Whisper actually
             // sees something it understands.
             var whisperLang = NormalizeForWhisper(language);
-            var builder = factory.CreateBuilder()
-                .WithLanguage(whisperLang)
+            var options = new SpeechToTextOptions
+                {
+                    SpeechLanguage = whisperLang,
+                    SpeechSampleRate = 16000
+                    // TextLanguage must stay unset: Whisper interprets any value as translation.
+                }
                 .WithThreads(Math.Max(1, Environment.ProcessorCount / 2));
 
-            using var processor = builder.Build();
             using var wavStream = PcmToWavStream(samples, 16000);
 
             var results = new List<TranscriptionResult>();
-            await foreach (var segment in processor.ProcessAsync(wavStream, cancellationToken)
+            // In Whisper.net 1.9.0 each update is one complete native segment, despite
+            // its TextUpdating kind. GetTextAsync flattens these segment boundaries.
+            await foreach (var segment in client.GetStreamingTextAsync(wavStream, options, cancellationToken)
                 .ConfigureAwait(false))
             {
                 cancellationToken.ThrowIfCancellationRequested();
@@ -153,13 +190,17 @@ public sealed class SpeechToTextService : IDisposable, IAsyncDisposable
                     results.Add(new TranscriptionResult
                     {
                         Text = text,
-                        Start = segment.Start,
-                        End = segment.End,
+                        Start = segment.StartTime ??
+                            throw new InvalidOperationException("Whisper segment is missing its start time."),
+                        End = segment.EndTime ??
+                            throw new InvalidOperationException("Whisper segment is missing its end time."),
                         Language = whisperLang
                     });
                 }
             }
 
+            // The shipped adapter may break its iterator on cancellation. Never
+            // turn that successful enumeration into a successful partial utterance.
             cancellationToken.ThrowIfCancellationRequested();
             return results;
         }
@@ -244,10 +285,34 @@ public sealed class SpeechToTextService : IDisposable, IAsyncDisposable
 
     private void ReleaseModel()
     {
+        var client = _client;
         var factory = _factory;
+        _client = null;
         _factory = null;
         _loadedModelPath = null;
-        factory?.Dispose();
+        Exception? clientFailure = null;
+        try
+        {
+            client?.Dispose();
+        }
+        catch (Exception error)
+        {
+            clientFailure = error;
+            throw;
+        }
+        finally
+        {
+            // Before first transcription the lazy adapter does not own the eager
+            // factory yet. Afterward WhisperFactory.Dispose is idempotent (1.9.0).
+            try
+            {
+                factory?.Dispose();
+            }
+            catch (Exception cleanupError) when (clientFailure != null)
+            {
+                _logger.Error("Whisper model cleanup failed after client disposal failure.", cleanupError);
+            }
+        }
     }
 
     private void EnterQuiescentLifecycle()
@@ -292,3 +357,5 @@ public sealed class SpeechToTextService : IDisposable, IAsyncDisposable
         // disposal rather than race a disposed semaphore.
     }
 }
+
+#pragma warning restore MEAI001
