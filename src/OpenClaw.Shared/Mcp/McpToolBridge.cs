@@ -256,7 +256,7 @@ public class McpToolBridge
                     description = CommandDescriptions.TryGetValue(cmd, out var desc)
                         ? desc
                         : $"{cap.Category} capability: {cmd}",
-                    inputSchema = new
+                    inputSchema = McpAudioToolSchemas.ForCommand(cmd) ?? new
                     {
                         type = "object",
                         additionalProperties = true,

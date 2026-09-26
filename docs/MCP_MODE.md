@@ -20,7 +20,7 @@ The implementation is structured so that **adding a new node capability automati
 
 - **No remote authentication.** Loopback bind + Origin/Host checks keep the endpoint unreachable from any other machine. A local bearer token guards against untrusted local processes on the same box (see [Authentication](#authentication) below). We will revisit ACLs / multi-user when we want remote MCP, multiple users on one box, or shared dev VMs.
 - **No SSE / streaming.** Plain JSON-RPC request/response is enough for the synchronous capabilities we have today.
-- **No per-tool input schemas.** Capabilities don't expose schemas; MCP `inputSchema` is permissive (`{type: "object", additionalProperties: true}`). When/if `INodeCapability` grows a schema property, the MCP bridge picks it up with no other changes.
+- **No universal input validation layer.** Audio commands have curated discovery schemas; other commands keep the permissive object schema. Capability parsers, not the MCP bridge, still validate arguments. See [audio schema compatibility](MCP_AUDIO_SCHEMAS.md).
 - **No port configuration UI.** Default `8765` is hardcoded. Easy to lift into `SettingsManager` later.
 
 ## Architecture
@@ -38,7 +38,7 @@ The capability list lives on `NodeService`, *not* on `WindowsNodeClient`. That s
 `OpenClaw.Shared/Mcp/McpToolBridge.cs` is transport-agnostic JSON-RPC 2.0. It implements:
 
 - `initialize` - protocol version `2024-11-05`, server info.
-- `tools/list` - flattens `_capabilities` into MCP tools. Tool name = command name (`"screen.snapshot"`); known commands get curated descriptions from `McpToolBridge.CommandDescriptions`; unknown commands fall back to `"{category} capability: {command}"`. `inputSchema` is permissive.
+- `tools/list` - flattens `_capabilities` into MCP tools. Tool name = command name (`"screen.snapshot"`); known commands get curated descriptions from `McpToolBridge.CommandDescriptions`; unknown commands fall back to `"{category} capability: {command}"`. `McpAudioToolSchemas` supplies input metadata for the five existing STT/TTS commands. All schemas permit unknown properties; other commands keep the original empty object schema.
 - `tools/call` - finds the capability via `INodeCapability.CanHandle(name)`, builds a `NodeInvokeRequest` (the same struct the gateway path uses), calls `ExecuteAsync`, wraps the result as MCP `content[].text`. Tool failures come back as `result.isError = true`, not JSON-RPC errors (per MCP spec - JSON-RPC errors are reserved for protocol issues).
 - `ping`, `notifications/initialized` - protocol housekeeping.
 - `notifications/cancelled` - cancels the active request whose JSON-RPC ID is

@@ -306,6 +306,11 @@ Bounded fixed-duration mic capture + transcription.
 ```
 Returns `{ transcribed, text, durationMs, language, engineEffective: "whisper" }`.
 
+MCP discovery declares `maxDurationMs` required with an integer range of
+1..30000. Send a JSON integer token, not a quoted number or decimal/exponent
+notation. Language strings are trimmed; blank, null or non-string values
+select the configured language. Unknown properties are ignored, not aliases.
+
 ### stt.listen
 Mic capture with voice-activity detection. Returns when the user stops
 speaking or after `timeoutMs`. Result is the full silence-bounded
@@ -318,6 +323,11 @@ segment.
 }
 ```
 Returns `{ text, language, durationMs, segments[{ text, startMs, endMs }], engineEffective: "whisper" }`.
+
+`timeoutMs` is clamped to 1000..120000, rather than rejected outside that
+range. Omitted values, wrong JSON types and numbers that cannot be read as
+Int32 use 30000. Blank, null or non-string language values use `auto`.
+Discovery defaults are annotations; the capability performs these conversions.
 
 ### stt.status
 Engine readiness. No params. Carries no PII (no transcript history,
@@ -347,6 +357,13 @@ cloud API key, Piper voice not downloaded), the node falls back to Windows
 TTS so playback still happens. Explicit `provider` requests stay strict and
 do not silently reroute. Returns `{ spoken, provider, requestedProvider, fellBack, contentType, durationMs }`
 where `provider` is the provider that actually spoke.
+
+Text is trimmed, must remain nonblank, and is limited to 5000 UTF-16 code
+units after trimming. Provider names are trimmed and case-insensitive.
+Blank, null or non-string optional string fields act as omitted. Only JSON
+`true` enables `interrupt`. The MCP schema deliberately avoids a raw text
+`maxLength`, provider enum or strict optional-field types that would reject
+currently accepted calls. See `docs/MCP_AUDIO_SCHEMAS.md` for schema limitations.
 
 ### tts.status
 TTS provider readiness. No params. Carries no PII (no voice ids, no key
