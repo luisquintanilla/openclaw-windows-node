@@ -144,12 +144,12 @@ internal static class AudioBenchmarkInputs
     }
 
     private static bool GuardFallback(float[] samples, float threshold) =>
-        AudioNumerics.IsInsideVadGuard(MathF.Sqrt(TensorPrimitives.SumOfSquares(samples) / samples.Length), threshold);
+        AudioVadExperiment.IsInsideVadGuard(MathF.Sqrt(TensorPrimitives.SumOfSquares(samples) / samples.Length), threshold);
 
     private static void VerifyRms(float[] samples, float? threshold)
     {
         float expected = AudioNumericsReference.CalculateRms(samples);
-        float actual = threshold is float t ? AudioNumerics.CalculateVadRms(samples, t) : AudioNumerics.CalculateRms(samples);
+        float actual = threshold is float t ? AudioVadExperiment.CalculateVadRms(samples, t) : AudioNumerics.CalculateRms(samples);
         if (MathF.Abs(expected - actual) > (threshold.HasValue ? 1f / 16384 : 0.00025f) ||
             threshold is float active && (expected >= active) != (actual >= active))
             throw new InvalidOperationException("Corpus RMS/decision mismatch.");
@@ -160,7 +160,7 @@ internal static class AudioBenchmarkInputs
         var expected = (float[])source.Clone();
         var actual = (float[])source.Clone();
         AudioNumericsReference.ApplyGain(expected);
-        AudioGainExperiment.Apply(actual);
+        AudioNumerics.ApplyGain(actual);
         for (int i = 0; i < expected.Length; i++)
         {
             if (float.IsNaN(expected[i]) ? !float.IsNaN(actual[i]) :

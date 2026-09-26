@@ -1,7 +1,8 @@
 # Managed audio arithmetic experiment
 
-Status: local RMS candidates integrated for evaluation, not a qualified optimization.
-Production candidate selection is pending correctness and performance gates.
+Status: meter plus gain selected from the initial three-run experiment.
+Original scalar VAD is restored. Final-source measurement and mandatory full-build
+validation are still pending, so this is not a qualified or published optimization.
 No application, transcription, battery, or cross-architecture speedup is claimed.
 
 ## Reproduction
@@ -130,8 +131,64 @@ and PGO remain enabled for recorded BDN runs.
 This is conditional analysis, not empirical proof of all runtimes or of native
 voice integration. Arbitrary external changes to floating-point control state
 are outside the argument; live native voice proof remains unverified. Random
-tests support the argument but cannot replace it. Gain is a separate two-pass
-benchmark-only experiment.
+tests support the argument but cannot replace it. The guarded VAD above is now
+only `AudioVadExperiment` in the benchmark project, source-linked into its
+numerical tests. It is not compiled into the shipping app.
+
+The selected gain method is the same two-pass in-place multiply/clamp experiment,
+now owned by `AudioNumerics.ApplyGain` and source-linked into tests and benchmarks.
+Finite output bits, signed zero, and exceptional-value classification match the
+independent scalar oracle. The pipeline retains its original scalar VAD loop,
+including accumulation order, both thresholds, comparisons, and state machine.
+
+## Initial campaign and final selection
+
+Measured source: `32eac4a9c5c6571d5ac6da6f2c1a0124b387cca4`.
+Three complete serial Release invocations executed 145 cases each, with no
+failures and zero reported managed allocation in all 435 rows.
+Durations were 3:12:34, 2:46:44, and 3:13:12.
+All summaries, full JSON and raw measurement CSV exports, corpus manifests,
+per-row statistics/comparisons, gate results, and checksums are under
+[`results/32eac4a9c5c6571d5ac6da6f2c1a0124b387cca4/x64`](results/32eac4a9c5c6571d5ac6da6f2c1a0124b387cca4/x64).
+The full JSON and raw measurement CSV files are losslessly gzip-compressed.
+Every archive was decompressed and compared byte-for-byte to its original;
+no measurement or noisy/outlier row was removed. `archive-index.json` records
+both stored and uncompressed SHA256 hashes.
+
+**Precision limitation: 128/145, 86/145, and 134/145 rows missed the requested
+2% relative-error target (348/435 overall).** All measurements, including these
+noisy rows and rejected experiments, are retained. The numbers below are not
+application or transcription speedups. Confidence limits are BDN's 99.9% limits,
+not 95% limits. A mean ratio and a conservative gate ratio are different metrics.
+
+| Candidate | Primary mean improvement across all three runs | Worst relevant conservative composed ratio | Selection |
+|---|---:|---:|---|
+| Bounded meter RMS | 93.77% to 94.76% at speech 480/960/1600 | 0.800849 versus scalar | Retain for final-source measurement |
+| Two-pass gain (includes reset copy) | 71.53% to 82.00% at speech 480/960/1600 | 0.875664 for meter+gain versus meter; 0.548164 versus scalar | Retain for final-source measurement |
+| Guarded VAD | All four quiet/speech primary rows passed | 1.331495 for meter+VAD versus meter, 100% fallback | Reject; original scalar VAD restored |
+| All candidates | Not an independent primary candidate | 1.133687 versus meter+gain, 100% fallback | Reject |
+
+The rejected VAD addition's worst mean ratio versus meter was 1.212773
+(21.28% slowdown), while its worst conservative ratio was 1.331495
+(33.15% slowdown). In run 2 that same workload's mean ratio was only 1.0145,
+but its conservative ratio 1.0558 still failed the 1.05 gate. Gains elsewhere
+cannot offset this failure. The guard and corpus have not been narrowed or tuned.
+The worst conservative meter+gain add-on row was run 3 ordinary audio:
+mean ratio 0.797905, conservative ratio 0.875664.
+
+After selection, the approved final matrix retains every meter/gain case and
+all six composed workloads for scalar, meter, and meter+gain: 93 cases per run.
+Already-rejected VAD methods and unchanged boundary diagnostics need not repeat.
+The full 145-case original matrix remains available through `--filter "*"`.
+Run the final matrix three times serially with distinct artifact directories:
+
+```powershell
+dotnet run -c Release --project .\benchmarks\OpenClaw.Audio.Benchmarks\OpenClaw.Audio.Benchmarks.csproj -- --filter "*AudioRmsBenchmarks*" "*AudioGainBenchmarks*" "*AudioStageBenchmarks.Scalar*" "*AudioStageBenchmarks.Meter" "*AudioStageBenchmarks.MeterGain*" --artifacts .\BenchmarkDotNet.Artifacts\audio-final-1
+```
+
+Final selection requires the actual source-linked meter/gain implementation to
+pass the same primary and composed gates on its new measured revision. No
+cutoffs, thresholds, corpus, reset rules, error targets, or acceptance gates change.
 
 ## Current validation and blockers
 
@@ -144,6 +201,20 @@ between production and test outputs. These are not final closeout results.
 Host: Windows build 26200, Intel i9-11950H, .NET SDK 10.0.401, runtime 10.0.12.
 Native ARM64, live microphone/UI, gateway and application-level performance
 are not verified.
+
+After restoring scalar VAD and promoting gain, the 90 pure/contract tests pass
+both normally and ISA-disabled. The real pipeline suite now has 29 passing
+cases, including large PCM16/float fixed-capture callbacks and exact scalar
+VAD probability bits. The initial Shared/tray failures were environment-related:
+the Shared test needs a direct-user ChangePermissions ACL on its temporary
+directory, and interrupted WinUI builds had not copied app-local VC++ DLLs.
+An authorized, newly created task-owned TEMP with only the current user's
+inheritable FullControl added resolves the exact Shared failure. The existing
+`CopyOpenClawVCRuntimeToOutput` target resolves all four native-runtime tests.
+No shared/root-directory ACL or machine-wide setting was changed.
+The subsequent complete mandatory-suite rerun passed Shared (4107 passed,
+32 skipped, 4139 total) and Tray (3157 passed, zero skipped). The full build
+still failed only at the unrelated WinUI npm dependency restore.
 
 Baseline recovery uses only process-scoped settings: short PATH (the inherited
 10,141-character PATH breaks CMD's 8191-character limit), an explicit official

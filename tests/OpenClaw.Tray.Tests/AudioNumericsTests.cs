@@ -82,17 +82,17 @@ public sealed class AudioNumericsTests
     {
         double lower = (double)threshold * (1 - 1.0 / 1024);
         double upper = (double)threshold * (1 + 1.0 / 1024);
-        Assert.False(AudioNumerics.IsInsideVadGuard(Math.BitDecrement(lower), threshold));
-        Assert.True(AudioNumerics.IsInsideVadGuard(lower, threshold));
-        Assert.True(AudioNumerics.IsInsideVadGuard(Math.BitIncrement(lower), threshold));
-        Assert.True(AudioNumerics.IsInsideVadGuard(Math.BitDecrement(upper), threshold));
-        Assert.True(AudioNumerics.IsInsideVadGuard(upper, threshold));
-        Assert.False(AudioNumerics.IsInsideVadGuard(Math.BitIncrement(upper), threshold));
+        Assert.False(AudioVadExperiment.IsInsideVadGuard(Math.BitDecrement(lower), threshold));
+        Assert.True(AudioVadExperiment.IsInsideVadGuard(lower, threshold));
+        Assert.True(AudioVadExperiment.IsInsideVadGuard(Math.BitIncrement(lower), threshold));
+        Assert.True(AudioVadExperiment.IsInsideVadGuard(Math.BitDecrement(upper), threshold));
+        Assert.True(AudioVadExperiment.IsInsideVadGuard(upper, threshold));
+        Assert.False(AudioVadExperiment.IsInsideVadGuard(Math.BitIncrement(upper), threshold));
     }
 
     [Theory]
     [MemberData(nameof(Shapes))]
-    public void GainExperiment_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(int length)
+    public void Gain_InPlaceSlices_PreserveEveryBitAndExceptionalClassification(int length)
     {
         float[] values = [-0f, 0f, float.Epsilon, -float.Epsilon, float.NaN,
             float.PositiveInfinity, float.NegativeInfinity, float.MaxValue, -float.MaxValue,
@@ -106,7 +106,7 @@ public sealed class AudioNumericsTests
             signal.CopyTo(expected, 3);
             var actual = (float[])expected.Clone();
             AudioNumericsReference.ApplyGain(expected.AsSpan(3, length));
-            AudioGainExperiment.Apply(actual.AsSpan(3, length));
+            AudioNumerics.ApplyGain(actual.AsSpan(3, length));
             for (int i = 0; i < expected.Length; i++)
                 AssertSameBitsOrNaN(expected[i], actual[i]);
         }
@@ -119,11 +119,11 @@ public sealed class AudioNumericsTests
         float[] samples = Signals(length).Last();
         float expected = AudioNumericsReference.CalculateRms(samples);
         foreach (float threshold in new[] { 0f, -0.03f, 0.1f, float.NaN, float.PositiveInfinity })
-            AssertSameBitsOrNaN(expected, AudioNumerics.CalculateVadRms(samples, threshold));
+            AssertSameBitsOrNaN(expected, AudioVadExperiment.CalculateVadRms(samples, threshold));
         if (length != 512)
         {
-            AssertSameBitsOrNaN(expected, AudioNumerics.CalculateVadRms(samples, 0.03f));
-            AssertSameBitsOrNaN(expected, AudioNumerics.CalculateVadRms(samples, 0.008f));
+            AssertSameBitsOrNaN(expected, AudioVadExperiment.CalculateVadRms(samples, 0.03f));
+            AssertSameBitsOrNaN(expected, AudioVadExperiment.CalculateVadRms(samples, 0.008f));
         }
     }
 
@@ -136,7 +136,7 @@ public sealed class AudioNumericsTests
         var samples = Enumerable.Repeat(0.1f, 512).ToArray();
         samples[position] = float.NaN;
         Assert.True(float.IsNaN(AudioNumerics.CalculateRms(samples)));
-        Assert.True(float.IsNaN(AudioNumerics.CalculateVadRms(samples, 0.03f)));
+        Assert.True(float.IsNaN(AudioVadExperiment.CalculateVadRms(samples, 0.03f)));
         foreach (float infinity in new[] { float.NegativeInfinity, float.PositiveInfinity })
         {
             samples[position] = infinity;
@@ -150,18 +150,18 @@ public sealed class AudioNumericsTests
     public void EmptyRms_RemainsNaN_NotSilentZero()
     {
         Assert.True(float.IsNaN(AudioNumerics.CalculateRms([])));
-        Assert.True(float.IsNaN(AudioNumerics.CalculateVadRms([], 0.03f)));
+        Assert.True(float.IsNaN(AudioVadExperiment.CalculateVadRms([], 0.03f)));
     }
 
     private static void AssertVad(float[] samples, float threshold)
     {
         var before = samples.Select(BitConverter.SingleToInt32Bits).ToArray();
         float expected = AudioNumericsReference.CalculateRms(samples);
-        float actual = AudioNumerics.CalculateVadRms(samples, threshold);
+        float actual = AudioVadExperiment.CalculateVadRms(samples, threshold);
         Assert.Equal(expected >= threshold, actual >= threshold);
         AssertCompatible(expected, actual, 1f / 16384);
         float vector = MathF.Sqrt(TensorPrimitives.SumOfSquares(samples) / samples.Length);
-        if (!float.IsFinite(vector) || AudioNumerics.IsInsideVadGuard(vector, threshold))
+        if (!float.IsFinite(vector) || AudioVadExperiment.IsInsideVadGuard(vector, threshold))
             AssertSameBitsOrNaN(expected, actual);
         Assert.Equal(before, samples.Select(BitConverter.SingleToInt32Bits));
     }

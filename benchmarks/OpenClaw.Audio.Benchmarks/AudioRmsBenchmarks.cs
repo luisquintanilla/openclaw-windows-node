@@ -50,7 +50,7 @@ public class AudioVadBenchmarks
     [Benchmark]
     public (float, bool) Guarded()
     {
-        float rms = AudioNumerics.CalculateVadRms(_samples, Threshold);
+        float rms = AudioVadExperiment.CalculateVadRms(_samples, Threshold);
         return (rms, rms >= Threshold);
     }
 }

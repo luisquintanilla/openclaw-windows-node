@@ -1,5 +1,6 @@
 using BenchmarkDotNet.Attributes;
 using OpenClaw.Audio.Testing;
+using OpenClawTray.Services;
 
 namespace OpenClaw.Audio.Benchmarks;
 
@@ -27,7 +28,7 @@ public class AudioGainBenchmarks
     public float[] Tensor()
     {
         _source.CopyTo(_work, 0);
-        AudioGainExperiment.Apply(_work);
+        AudioNumerics.ApplyGain(_work);
         return _work;
     }
     [Benchmark(Description = "copy only (diagnostic)")]

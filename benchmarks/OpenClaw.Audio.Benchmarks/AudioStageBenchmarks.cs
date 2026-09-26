@@ -37,7 +37,7 @@ public class AudioStageBenchmarks
             float[] work = _work[i];
             _source[i].CopyTo(work, 0);
             if (gain)
-                AudioGainExperiment.Apply(work);
+                AudioNumerics.ApplyGain(work);
             else
                 AudioNumericsReference.ApplyGain(work);
             float rms = meter ? AudioNumerics.CalculateRms(work) : AudioNumericsReference.CalculateRms(work);
@@ -45,7 +45,7 @@ public class AudioStageBenchmarks
             if (Scenario == "Fixed")
                 continue;
             float threshold = speaking ? 0.008f : 0.03f;
-            float energy = vad ? AudioNumerics.CalculateVadRms(work, threshold) : AudioNumericsReference.CalculateRms(work);
+            float energy = vad ? AudioVadExperiment.CalculateVadRms(work, threshold) : AudioNumericsReference.CalculateRms(work);
             bool speech = energy >= threshold;
             checksum += energy + (speech ? 1f : 0f);
             AudioBenchmarkInputs.Advance(speech, ref speaking, ref silence);

@@ -44,9 +44,15 @@ public sealed class AudioPipelineNumericsTests
     }
 
     [Theory]
-    [InlineData(false)]
-    [InlineData(true)]
-    public async Task FixedCapture_PreservesPostGainSampleBitsAndMeter_ButBypassesVad(bool pcm16)
+    [InlineData(false, 7)]
+    [InlineData(true, 7)]
+    [InlineData(false, 480)]
+    [InlineData(true, 480)]
+    [InlineData(false, 960)]
+    [InlineData(true, 960)]
+    [InlineData(false, 1600)]
+    [InlineData(true, 1600)]
+    public async Task FixedCapture_PreservesPostGainSampleBitsAndMeter_ButBypassesVad(bool pcm16, int length)
     {
         var capture = new Capture(pcm16);
         using var cancellation = new CancellationTokenSource();
@@ -61,9 +67,10 @@ public sealed class AudioPipelineNumericsTests
             if (state == AudioPipelineState.Listening)
                 listening.TrySetResult();
         };
-        float[] input = pcm16
+        float[] pattern = pcm16
             ? [-1, -0.2f, -0.01f, 0, 0.01f, 0.2f, 1]
             : [-1, -0.2f, -0.01f, -0f, 0f, 0.01f, 0.2f, 1, float.PositiveInfinity];
+        var input = Enumerable.Range(0, length).Select(i => pattern[i % pattern.Length]).ToArray();
         var expected = capture.RoundTrip(input);
         AudioNumericsReference.ApplyGain(expected);
         var resultTask = pipeline.CaptureFixedDurationAsync(10_000, cancellation.Token);
@@ -141,7 +148,8 @@ public sealed class AudioPipelineNumericsTests
         Assert.Contains(eligibility, x => x.Eligible);
         Assert.Contains(eligibility, x => !x.Eligible);
         for (int i = 0; i < actual.Count; i++)
-            Assert.InRange(MathF.Abs(actual[i].Probability - expected.Events[i].Probability), 0f, 1f / 16384);
+            Assert.Equal(BitConverter.SingleToInt32Bits(expected.Events[i].Probability),
+                BitConverter.SingleToInt32Bits(actual[i].Probability));
     }
 
     [Fact]
