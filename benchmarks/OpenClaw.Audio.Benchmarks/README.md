@@ -154,6 +154,17 @@ The full JSON and raw measurement CSV files are losslessly gzip-compressed.
 Every archive was decompressed and compared byte-for-byte to its original;
 no measurement or noisy/outlier row was removed. `archive-index.json` records
 both stored and uncompressed SHA256 hashes.
+The evidence-only `results\evaluate-results.py` accepts either original or
+compressed run directories. Reproduce the initial gates with:
+
+```powershell
+$evidence = ".\benchmarks\OpenClaw.Audio.Benchmarks\results\32eac4a9c5c6571d5ac6da6f2c1a0124b387cca4\x64"
+python .\benchmarks\OpenClaw.Audio.Benchmarks\results\evaluate-results.py --source-sha 32eac4a9c5c6571d5ac6da6f2c1a0124b387cca4 --run "$evidence\run-1" --run "$evidence\run-2" --run "$evidence\run-3" --output .\BenchmarkDotNet.Artifacts\initial-gates
+```
+
+Use `--retained` for the final 93-case matrix. Evaluation rejects incomplete,
+duplicate, dirty, smoke, mismatched-corpus, or mismatched-revision runs. It reports
+precision misses independently instead of silently excluding them from the gates.
 
 **Precision limitation: 128/145, 86/145, and 134/145 rows missed the requested
 2% relative-error target (348/435 overall).** All measurements, including these

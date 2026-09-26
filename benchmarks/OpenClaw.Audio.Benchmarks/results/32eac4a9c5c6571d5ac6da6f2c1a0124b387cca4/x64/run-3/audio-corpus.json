@@ -1,0 +1,441 @@
+{
+  "Revision": "32eac4a9c5c6571d5ac6da6f2c1a0124b387cca4",
+  "Dirty": false,
+  "Smoke": false,
+  "Runtime": ".NET 10.0.12",
+  "OS": "Microsoft Windows 10.0.26200",
+  "Architecture": "X64",
+  "Vector128": true,
+  "Vector256": true,
+  "Vector512": true,
+  "ServerGC": false,
+  "Tensors": "10.0.12",
+  "BenchmarkDotNet": "0.15.8",
+  "RelativeErrorTarget": 0.02,
+  "ErrorConfidence": "99.9%",
+  "PowerPlan": "Unchanged user plan",
+  "RuntimeOverrides": {
+    "DOTNET_EnableHWIntrinsic": null,
+    "DOTNET_TieredCompilation": null,
+    "DOTNET_TieredPGO": null,
+    "COMPlus_EnableHWIntrinsic": null,
+    "COMPlus_TieredCompilation": null,
+    "COMPlus_TieredPGO": null
+  },
+  "Corpus": [
+    {
+      "Group": "MeterGain",
+      "Profile": "Silence",
+      "Length": 480,
+      "Threshold": null,
+      "Hash": "155E437B946AC82AE591FF382B8D19EFDA9397B2282672DBABD91EC31CE8A651",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Low",
+      "Length": 480,
+      "Threshold": null,
+      "Hash": "50211856281114268A8512D2513A5F37FF2CB642729BB0F6936EE5875610F4A0",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Speech",
+      "Length": 480,
+      "Threshold": null,
+      "Hash": "12CD8168E8D53484F0EF383FE67196C8CEA4B6B03E7C46353ABA011CBBF72ED7",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Clipped",
+      "Length": 480,
+      "Threshold": null,
+      "Hash": "23DFFE2F5197EF9EDFA0994C5AEB958EF782FF9231F0C28B2F96FBAF500C0735",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Silence",
+      "Length": 512,
+      "Threshold": null,
+      "Hash": "E5A00AA9991AC8A5EE3109844D84A55583BD20572AD3FFCD42792F3C36B183AD",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Low",
+      "Length": 512,
+      "Threshold": null,
+      "Hash": "4CBC149AD29B7F8526C2BC5F3ECA175029EC830E89A211BC0F385AF5BF674F5B",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Speech",
+      "Length": 512,
+      "Threshold": null,
+      "Hash": "EB448ABD1BEC4561C19D1491C3B65299FA4BD105A793259DB8439CF8E390612E",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Clipped",
+      "Length": 512,
+      "Threshold": null,
+      "Hash": "8B6B03D31964EF017214BCD4BD10C9C28A6B7B865A44245C17149100D2D81BFD",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Silence",
+      "Length": 960,
+      "Threshold": null,
+      "Hash": "A8EAC8B0D3B1FDE368813438DD5BA415A796FD6DD0A2A42FB6A5A2DFB2429576",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Low",
+      "Length": 960,
+      "Threshold": null,
+      "Hash": "8EC86409DBCC0900BF20AB4911CCF935DD9160A4A371832A09BC495625FF9B3B",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Speech",
+      "Length": 960,
+      "Threshold": null,
+      "Hash": "9CF290C0990B2C9A38E8CE4B461E16ACC1FECB12168D217068369236F051E76C",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Clipped",
+      "Length": 960,
+      "Threshold": null,
+      "Hash": "F2CD111194339A5F328DD9E9E9E041206F021974A07E5AAA12DE64774CCDDBE3",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Silence",
+      "Length": 1600,
+      "Threshold": null,
+      "Hash": "56A43EF88DDFCD0F56F7DD973312C0E73D62F59655C01D7B4E59AAA3BE8B3FB6",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Low",
+      "Length": 1600,
+      "Threshold": null,
+      "Hash": "DBCF85DC8EEC20690B28155366408F43D7F041A533C5E6DCF6EF4301C9851F52",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Speech",
+      "Length": 1600,
+      "Threshold": null,
+      "Hash": "A2EE0C2BABB5282387EE2B480CA0635824F8CBAD3B0BC11769A238DE7E588955",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Clipped",
+      "Length": 1600,
+      "Threshold": null,
+      "Hash": "B62A0B836B5D6D031B374BB451D985EA02DEFBA2128FBACEF724925DAB27317D",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Silence",
+      "Length": 4096,
+      "Threshold": null,
+      "Hash": "4FE7B59AF6DE3B665B67788CC2F99892AB827EFAE3A467342B3BB4E3BC8E5BFE",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Low",
+      "Length": 4096,
+      "Threshold": null,
+      "Hash": "477CC3D241D21BD7D57509BDFE0EFBA6D7B2CB7AAC05C7CDADADD0D7F8C29960",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Speech",
+      "Length": 4096,
+      "Threshold": null,
+      "Hash": "7D65C8D348DE0BEEDF9BC1DD0D719D6B350741A67DDEC84EC76BEE898A83D800",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "MeterGain",
+      "Profile": "Clipped",
+      "Length": 4096,
+      "Threshold": null,
+      "Hash": "49D1589BA6183C0F6937BFD9421D5E5A81116AB3646163B90AA75F94E02660E3",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "Boundary",
+      "Profile": "Speech",
+      "Length": 16,
+      "Threshold": null,
+      "Hash": "A0D7CDCF756BC5AEF435A0B7333422DDDC93CE38433809ABC0E0E0E8C056CE17",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "Boundary",
+      "Profile": "Speech",
+      "Length": 31,
+      "Threshold": null,
+      "Hash": "E0A3139EE0B809C59B57E1D0A19EC202F01C998E4665C8B0E1B954EFC736651B",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "Boundary",
+      "Profile": "Speech",
+      "Length": 32,
+      "Threshold": null,
+      "Hash": "0EDBD14A059B6CBAF0E2433F542302E80B290D4E651F2C7D54A488D7D4E91119",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "Boundary",
+      "Profile": "Speech",
+      "Length": 33,
+      "Threshold": null,
+      "Hash": "CF9D0FCB4252F2616F1BC8113425FDA9A5E572EDD1C27FEDA4AF58BE275101BD",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "Boundary",
+      "Profile": "Speech",
+      "Length": 511,
+      "Threshold": null,
+      "Hash": "FB3823861FD30B025663CE186AC6FBA4A26D6D7660C96DD1B81708D4414C2876",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "Boundary",
+      "Profile": "Speech",
+      "Length": 513,
+      "Threshold": null,
+      "Hash": "35C96816CCA0B8D166A8D5982CCDB7D70724554A5A6A8436C6979A4449061159",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "Boundary",
+      "Profile": "Speech",
+      "Length": 4097,
+      "Threshold": null,
+      "Hash": "136C51CDF53EBFF969C4A28B13AA2DE1FDEA2A60717BDD30DC16645F45DD75A4",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "Boundary",
+      "Profile": "Speech",
+      "Length": 16000,
+      "Threshold": null,
+      "Hash": "EFA60C01AC17EBBCAF63EBFA7171902D3CD0DE228579A63A914BF3A105A88B8C",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "Vad",
+      "Profile": "Quiet",
+      "Length": 512,
+      "Threshold": 0.03,
+      "Hash": "D38AAE3E4D32F1FBEC2802F1FF96ED14EA28E75256FED84C5ED43B682A407E2A",
+      "Fallbacks": 0,
+      "Chunks": 1
+    },
+    {
+      "Group": "Vad",
+      "Profile": "Speech",
+      "Length": 512,
+      "Threshold": 0.03,
+      "Hash": "84DD6B2982719AEE2EE71B5F3EB2367BCCAD4928402583AD3C10FE216EEAAA96",
+      "Fallbacks": 0,
+      "Chunks": 1
+    },
+    {
+      "Group": "Vad",
+      "Profile": "Mixed",
+      "Length": 512,
+      "Threshold": 0.03,
+      "Hash": "3C831C52432106204A4F9F247E601EA6CC1D32275B35D5F6D7BF1E60F97D35FA",
+      "Fallbacks": 0,
+      "Chunks": 1
+    },
+    {
+      "Group": "Vad",
+      "Profile": "Below",
+      "Length": 512,
+      "Threshold": 0.03,
+      "Hash": "97CB805BA04F186330FB6441789C91A826D2934F3B912D2AE72859EEB3D25233",
+      "Fallbacks": 1,
+      "Chunks": 1
+    },
+    {
+      "Group": "Vad",
+      "Profile": "At",
+      "Length": 512,
+      "Threshold": 0.03,
+      "Hash": "6683F0788B2D2211008397906D96380519D452EAD4C272AC91B16E4017E0EEB8",
+      "Fallbacks": 1,
+      "Chunks": 1
+    },
+    {
+      "Group": "Vad",
+      "Profile": "Above",
+      "Length": 512,
+      "Threshold": 0.03,
+      "Hash": "5BC431A586D3770B3ADF9D645D5FFECA3D95BD9925E6114B7EDC0911C603B3C7",
+      "Fallbacks": 1,
+      "Chunks": 1
+    },
+    {
+      "Group": "Vad",
+      "Profile": "Quiet",
+      "Length": 512,
+      "Threshold": 0.008,
+      "Hash": "A947AEA7A1D6BC6740052A6022DD63A9E4506755B5FEFE749C015C4C25BCA0C8",
+      "Fallbacks": 0,
+      "Chunks": 1
+    },
+    {
+      "Group": "Vad",
+      "Profile": "Speech",
+      "Length": 512,
+      "Threshold": 0.008,
+      "Hash": "2065D407B0F6B2661BAAEE54C611B8F725969E9FAC8AA592F8A951FC13E1FD7B",
+      "Fallbacks": 0,
+      "Chunks": 1
+    },
+    {
+      "Group": "Vad",
+      "Profile": "Mixed",
+      "Length": 512,
+      "Threshold": 0.008,
+      "Hash": "3C831C52432106204A4F9F247E601EA6CC1D32275B35D5F6D7BF1E60F97D35FA",
+      "Fallbacks": 0,
+      "Chunks": 1
+    },
+    {
+      "Group": "Vad",
+      "Profile": "Below",
+      "Length": 512,
+      "Threshold": 0.008,
+      "Hash": "3A5E88787B749142B2F8E546BBC4DA078E020DDCC400FE2CD7C66F411FA3CB47",
+      "Fallbacks": 1,
+      "Chunks": 1
+    },
+    {
+      "Group": "Vad",
+      "Profile": "At",
+      "Length": 512,
+      "Threshold": 0.008,
+      "Hash": "FB909D575E7B38EE119E692FA550AA4FB12D478F03AA3440348EF463CEC20DA9",
+      "Fallbacks": 1,
+      "Chunks": 1
+    },
+    {
+      "Group": "Vad",
+      "Profile": "Above",
+      "Length": 512,
+      "Threshold": 0.008,
+      "Hash": "3E9B42FF7710E63356E87607D2674E15F62B3A6342A75981EBCBCE456613EBF9",
+      "Fallbacks": 1,
+      "Chunks": 1
+    },
+    {
+      "Group": "Stage",
+      "Profile": "Fixed",
+      "Length": 1600,
+      "Threshold": null,
+      "Hash": "F762FC2B4864E650DA80C1D2FDBB2DA05A26BEB51C5134CF77D45D7B8812C2F7",
+      "Fallbacks": 0,
+      "Chunks": 0
+    },
+    {
+      "Group": "Stage",
+      "Profile": "Ordinary",
+      "Length": 512,
+      "Threshold": null,
+      "Hash": "E22649BDD64729BCB7240DFA246E186F300740E80D82316CBF96CB25BC3008D8",
+      "Fallbacks": 0,
+      "Chunks": 20
+    },
+    {
+      "Group": "Stage",
+      "Profile": "Clipped",
+      "Length": 512,
+      "Threshold": null,
+      "Hash": "A03AFB0375224B717529D6E49583A93A64D09C16AC35FF74CE87710944153629",
+      "Fallbacks": 0,
+      "Chunks": 20
+    },
+    {
+      "Group": "Stage",
+      "Profile": "Fallback10",
+      "Length": 512,
+      "Threshold": null,
+      "Hash": "860C7C8FF9DA1FB2C9BD028E75261B4A140AE64E7F1E81C447FFBF05FF4B0B05",
+      "Fallbacks": 2,
+      "Chunks": 20
+    },
+    {
+      "Group": "Stage",
+      "Profile": "Fallback50",
+      "Length": 512,
+      "Threshold": null,
+      "Hash": "88BC59909512C51666F3BB5F9D3902FF13405A90684B599B39F03F9AE79EADDD",
+      "Fallbacks": 10,
+      "Chunks": 20
+    },
+    {
+      "Group": "Stage",
+      "Profile": "Fallback100",
+      "Length": 512,
+      "Threshold": null,
+      "Hash": "0EF8535E0EA7F21CB10937101A18D90842493492E30B582221A10A52CFE6B276",
+      "Fallbacks": 20,
+      "Chunks": 20
+    }
+  ]
+}
