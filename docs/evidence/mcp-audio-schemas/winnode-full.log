@@ -1,0 +1,9 @@
+  OpenClaw.Shared -> [repo]\src\OpenClaw.Shared\bin\Debug\net10.0\OpenClaw.Shared.dll
+  OpenClaw.TestSupport -> [repo]\tests\OpenClaw.TestSupport\bin\Debug\net10.0\OpenClaw.TestSupport.dll
+  OpenClaw.WinNode.Cli -> [repo]\src\OpenClaw.WinNode.Cli\bin\Debug\net10.0\winnode.dll
+  OpenClaw.WinNode.Cli.Tests -> [repo]\tests\OpenClaw.WinNode.Cli.Tests\bin\Debug\net10.0\OpenClaw.WinNode.Cli.Tests.dll
+Test run for [repo]\tests\OpenClaw.WinNode.Cli.Tests\bin\Debug\net10.0\OpenClaw.WinNode.Cli.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+Results File: [session-artifacts]\local-results\winnode-full.trx
+
+Passed!  - Failed:     0, Passed:   127, Skipped:     0, Total:   127, Duration: 7 s - OpenClaw.WinNode.Cli.Tests.dll (net10.0)

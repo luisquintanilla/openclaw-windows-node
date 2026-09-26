@@ -1,0 +1,56 @@
+
+  🦞 OpenClaw Windows Hub - Build Script
+  =======================================
+
+
+=== Checking Prerequisites ===
+✅ Windows detected
+✅ .NET SDK: 10.0.401
+✅ .NET SDK 10.0.400 or newer available
+✅ git version 2.55.0.windows.3
+✅ Node.js: v24.14.1
+✅ npm: 11.11.0
+✅ Windows SDK: 10.0.19041.0
+✅ WebView2 Runtime: 154.0.4258.37
+✅ Architecture: AMD64
+
+=== Prerequisite Summary ===
+✅ All prerequisites met!
+
+=== Validating Documentation ===
+Proof-pool validation passed: 7 named pools checked.
+Proof-pool validation passed: 7 named pools checked.
+Documentation flow regression passed in 5.48s: both schema paths and final summary reached without duplicating the validator matrix.
+Documentation validation passed: 51 Markdown files checked.
+
+=== Building Projects (Debug) ===
+   Runtime identifier: win-x64
+
+Building Shared...
+✅ Shared built successfully
+
+Building Cli...
+✅ Cli built successfully
+
+Building WinNodeCli...
+✅ WinNodeCli built successfully
+
+Building SetupEngine...
+✅ SetupEngine built successfully
+
+Building WinUI...
+❌ WinUI build failed
+     npm error code ERR_SSL_SSL/TLS_ALERT_HANDSHAKE_FAILURE
+     npm error errno ERR_SSL_SSL/TLS_ALERT_HANDSHAKE_FAILURE
+     npm error request to https://registry.npmjs.org/node-pty/-/node-pty-1.2.0-beta.12.tgz failed, reason: 7C450000:error:0A000410:SSL routines:ssl3_read_bytes:ssl/tls alert handshake failure:openssl\ssl\record\rec_layer_s3.c:918:SSL alert number 40
+     npm error
+     npm error A complete log of this run can be found in: [user-home]\AppData\Local\npm-cache\_logs\2026-09-26T09_01_03_277Z-debug-0.log
+
+=== Build Summary ===
+✅ SetupEngine
+✅ WinNodeCli
+✅ Cli
+✅ Shared
+❌ WinUI
+
+❌ 1 build(s) failed

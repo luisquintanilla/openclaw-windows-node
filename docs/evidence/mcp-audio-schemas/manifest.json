@@ -1,0 +1,112 @@
+[
+  {
+    "file": "audio-baseline.log",
+    "bytes": 1347,
+    "sha256": "7013b901a5bf6571ad65dd6e8b5f14e4708320d4fc412ad8fec67c92e9e24af9"
+  },
+  {
+    "file": "audio-calls-after.txt",
+    "bytes": 2674,
+    "sha256": "baf1436eb77ce182ab57195a1914fd5b941ce40ee5969632bf35185f1b000589"
+  },
+  {
+    "file": "audio-calls-before.txt",
+    "bytes": 2674,
+    "sha256": "baf1436eb77ce182ab57195a1914fd5b941ce40ee5969632bf35185f1b000589"
+  },
+  {
+    "file": "audio-candidate.log",
+    "bytes": 1304,
+    "sha256": "aee80db368c12d5b4d8bb451caa6fa2c010fee150bd61de828c58e9e1e139e44"
+  },
+  {
+    "file": "audio-tools-after.json",
+    "bytes": 5907,
+    "sha256": "433f47a8525fbca9bc7b274c4deae56c3740b7dfa963e53168890976e2218a24"
+  },
+  {
+    "file": "audio-tools-before.json",
+    "bytes": 3398,
+    "sha256": "a91336e816e5b51761ba8ab5bf355a8177d10a77aaf23691a173843c0af5f558"
+  },
+  {
+    "file": "command-results.json",
+    "bytes": 29787,
+    "sha256": "9431ee93833a58df6f67bc24475cf079459d7bd38a07dcd993488d4843c77405"
+  },
+  {
+    "file": "full-build.log",
+    "bytes": 1706,
+    "sha256": "07544a5b3602033f84ead3db50eb1633454b3ad4293155ff7542818c5a084f23"
+  },
+  {
+    "file": "provenance.json",
+    "bytes": 1489,
+    "sha256": "8ee4baad5fa5e7c10a3aa6ee77b6be861e3d74f076ad099a6fc7dffa158e4d7a"
+  },
+  {
+    "file": "schema-comparison.log",
+    "bytes": 83,
+    "sha256": "c329226185c6d4273972d36ce2d9f6a022d51e51f2a2f596f53069ef74f281fa"
+  },
+  {
+    "file": "schema-validation.json",
+    "bytes": 15322,
+    "sha256": "d911958ac35f51e2b0521bbc08c7154e9c8c0648064b53d8b2ebbe8e3803bb87"
+  },
+  {
+    "file": "shared-full-final.log",
+    "bytes": 8621,
+    "sha256": "5aaa00773ebe7ffd4747372ab9fcc2dbe2ff8fe86298f49dac0c9506afb02433"
+  },
+  {
+    "file": "shared-full.log",
+    "bytes": 8614,
+    "sha256": "90ffb87a994784c644c1313eaa7b6abd44b6a16f09bedb1def6bba5aeee721a1"
+  },
+  {
+    "file": "test-inventory.csv",
+    "bytes": 1391519,
+    "sha256": "d6e9d7bc9cf1703268b8a9aea5956e1f05e22f1d3a3bc965d86c8c9cfb89449a"
+  },
+  {
+    "file": "tray-first-build.log",
+    "bytes": 786,
+    "sha256": "df6a134c40380fd68107171b9ed943b31d186965793d3b2dcf4b1e3f76a5ef19"
+  },
+  {
+    "file": "tray-full-final.log",
+    "bytes": 752,
+    "sha256": "9923cc007404d3a9dcd7873defe1e92ba8041b209bd31db570de0b136d39ac84"
+  },
+  {
+    "file": "tray-full.log",
+    "bytes": 1588,
+    "sha256": "f5fd259342b063899931095672ed80f22026e9cd4a29b976f105ac5fe8b2b24f"
+  },
+  {
+    "file": "tray-runtime-copy-build-path.log",
+    "bytes": 166,
+    "sha256": "17486a3e623505588656029609431e8b0aede0b689b1a0c25dab7e031dea1020"
+  },
+  {
+    "file": "tray-runtime-copy.log",
+    "bytes": 43,
+    "sha256": "3c1bd31cff135ad4eb5848fd75ffde2439295959d2cbb8e10ea7d91d3f59fe49"
+  },
+  {
+    "file": "tray-runtime-recheck.log",
+    "bytes": 1550,
+    "sha256": "8cffe59969b3339aa88673ec42c849acf38b37f48bc325fc71f3b623edc3f729"
+  },
+  {
+    "file": "winnode-first-build.log",
+    "bytes": 655,
+    "sha256": "ed99a25474694b5b5c5e4cccfb29bc694fd285c0f4d7615e5ccef144ac0d8c64"
+  },
+  {
+    "file": "winnode-full.log",
+    "bytes": 777,
+    "sha256": "3c719b8581e1fde81724da22bf7388163ccec4c7fe925fdb15416a82ff144a54"
+  }
+]

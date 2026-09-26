@@ -1,0 +1,13 @@
+  Determining projects to restore...
+  Restored [repo]\tests\OpenClaw.WinNode.Cli.Tests\OpenClaw.WinNode.Cli.Tests.csproj (in 387 ms).
+  3 of 4 projects are up-to-date for restore.
+  OpenClaw.Shared -> [repo]\src\OpenClaw.Shared\bin\Debug\net10.0\OpenClaw.Shared.dll
+  OpenClaw.TestSupport -> [repo]\tests\OpenClaw.TestSupport\bin\Debug\net10.0\OpenClaw.TestSupport.dll
+  OpenClaw.WinNode.Cli -> [repo]\src\OpenClaw.WinNode.Cli\bin\Debug\net10.0\winnode.dll
+  OpenClaw.WinNode.Cli.Tests -> [repo]\tests\OpenClaw.WinNode.Cli.Tests\bin\Debug\net10.0\OpenClaw.WinNode.Cli.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.69

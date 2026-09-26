@@ -1,0 +1,17 @@
+  OpenClaw.Shared -> [repo]\src\OpenClaw.Shared\bin\Debug\net10.0\OpenClaw.Shared.dll
+  OpenClaw.TestSupport -> [repo]\tests\OpenClaw.TestSupport\bin\Debug\net10.0\OpenClaw.TestSupport.dll
+  OpenClaw.Connection -> [repo]\src\OpenClaw.Connection\bin\Debug\net10.0\OpenClaw.Connection.dll
+  OpenClaw.Tray.Tests -> [repo]\tests\OpenClaw.Tray.Tests\bin\Debug\net10.0\OpenClaw.Tray.Tests.dll
+Test run for [repo]\tests\OpenClaw.Tray.Tests\bin\Debug\net10.0\OpenClaw.Tray.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+[xUnit.net 00:00:00.97]     OpenClaw.Tray.Tests.NativeSpeechStackRuntimeTests.TrayBuildOutput_NativeTtsStack_LoadsWithAppLocalVCRuntime [FAIL]
+  Failed OpenClaw.Tray.Tests.NativeSpeechStackRuntimeTests.TrayBuildOutput_NativeTtsStack_LoadsWithAppLocalVCRuntime [8 ms]
+  Error Message:
+   msvcp140.dll was not copied to [repo]\src\OpenClaw.Tray.WinUI\bin\Debug\net10.0-windows10.0.22621.0\win-x64.
+  Stack Trace:
+     at OpenClaw.Tray.Tests.NativeSpeechStackRuntimeTests.TrayBuildOutput_NativeTtsStack_LoadsWithAppLocalVCRuntime() in [repo]\tests\OpenClaw.Tray.Tests\NativeSpeechStackRuntimeTests.cs:line 71
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+Results File: [session-artifacts]\local-results\tray-runtime-recheck.trx
+
+Failed!  - Failed:     1, Passed:     3, Skipped:     0, Total:     4, Duration: 95 ms - OpenClaw.Tray.Tests.dll (net10.0)

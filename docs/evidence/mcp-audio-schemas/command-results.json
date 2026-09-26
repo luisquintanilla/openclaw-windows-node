@@ -1,0 +1,725 @@
+[
+  {
+    "command": {
+      "sourceSha": "01956ec2f31fcc1d5145ee387be35ac4476d7fd6",
+      "executable": "dotnet",
+      "name": "audio-baseline",
+      "completedUtc": "2026-09-26T04:58:00.381808-04:00",
+      "repository": "[baseline]",
+      "worktreeStatus": null,
+      "arguments": [
+        "test",
+        ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+        "--filter",
+        "FullyQualifiedName~McpAudioToolSchemaTests&FullyQualifiedName!~ToolsList_AudioSchema",
+        "--logger",
+        "trx;LogFileName=audio-baseline.trx",
+        "--results-directory",
+        "[session-artifacts]\\local-results",
+        "--verbosity",
+        "minimal"
+      ],
+      "exitCode": 0,
+      "startedUtc": "2026-09-26T04:57:22.1393634-04:00"
+    },
+    "counters": {
+      "total": 75,
+      "passed": 75,
+      "failed": 0,
+      "skipped": 0
+    },
+    "trxSummaryNotExecuted": 0,
+    "skipCounting": "Count named NotExecuted outcomes; VSTest summary notExecuted can be zero for xUnit skips.",
+    "expectedCountersMatched": true,
+    "rawTrxSha256": "84c386dc86d1621f26af3b69108a7455de414fd89cb953dac6a5e6f2701381ae",
+    "nonPassing": []
+  },
+  {
+    "command": {
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md",
+      "name": "audio-candidate",
+      "completedUtc": "2026-09-26T04:58:33.2064043-04:00",
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3",
+      "exitCode": 0,
+      "executable": "dotnet",
+      "startedUtc": "2026-09-26T04:58:08.4996991-04:00",
+      "arguments": [
+        "test",
+        ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+        "--filter",
+        "FullyQualifiedName~McpAudioToolSchemaTests|FullyQualifiedName~McpToolBridgeTests|FullyQualifiedName~TtsCapabilityTests|FullyQualifiedName~SttCapabilityTests",
+        "--logger",
+        "trx;LogFileName=audio-candidate.trx",
+        "--results-directory",
+        "[session-artifacts]\\local-results",
+        "--verbosity",
+        "minimal"
+      ],
+      "repository": "[repo]"
+    },
+    "counters": {
+      "total": 202,
+      "passed": 202,
+      "failed": 0,
+      "skipped": 0
+    },
+    "trxSummaryNotExecuted": 0,
+    "skipCounting": "Count named NotExecuted outcomes; VSTest summary notExecuted can be zero for xUnit skips.",
+    "expectedCountersMatched": true,
+    "rawTrxSha256": "e464f3dfbdae093a7db6ce2673a94859a639047ea56a314594d68445a1136f6f",
+    "nonPassing": []
+  },
+  {
+    "command": {
+      "completedUtc": "2026-09-26T05:02:17.1236548-04:00",
+      "executable": "pwsh",
+      "name": "full-build",
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md",
+      "startedUtc": "2026-09-26T04:58:46.8578074-04:00",
+      "arguments": [
+        "-NoProfile",
+        "-File",
+        ".\\build.ps1",
+        "-NoTrustRepository"
+      ],
+      "repository": "[repo]",
+      "exitCode": 1,
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3"
+    }
+  },
+  {
+    "command": {
+      "executable": "pwsh",
+      "completedUtc": "2026-09-26T05:02:33.1535354-04:00",
+      "exitCode": 0,
+      "name": "schema-comparison",
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md",
+      "arguments": [
+        "-NoProfile",
+        "-File",
+        "[session-artifacts]\\Compare-LocalSchemaEvidence.ps1"
+      ],
+      "repository": "[repo]",
+      "startedUtc": "2026-09-26T05:02:31.3718764-04:00",
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3"
+    }
+  },
+  {
+    "command": {
+      "name": "shared-full-final",
+      "startedUtc": "2026-09-26T05:10:07.1031747-04:00",
+      "repository": "[repo]",
+      "exitCode": 0,
+      "executable": "dotnet",
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3",
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md",
+      "arguments": [
+        "test",
+        ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+        "--no-restore",
+        "--logger",
+        "trx;LogFileName=shared-full-final.trx",
+        "--results-directory",
+        "[session-artifacts]\\local-results",
+        "--verbosity",
+        "minimal"
+      ],
+      "completedUtc": "2026-09-26T05:11:14.4017392-04:00"
+    },
+    "counters": {
+      "total": 4220,
+      "passed": 4188,
+      "failed": 0,
+      "skipped": 32
+    },
+    "trxSummaryNotExecuted": 0,
+    "skipCounting": "Count named NotExecuted outcomes; VSTest summary notExecuted can be zero for xUnit skips.",
+    "expectedCountersMatched": true,
+    "rawTrxSha256": "2f34556e90867321dd354583df17bdbaaf42b951ffa7726e143f2ec57054d3e3",
+    "nonPassing": [
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_InvalidCommand_ReturnsError",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DefaultShell_ExecutesInsideAppContainer",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_Timeout_KillsProcess",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_NonZeroExitCode",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenWithScopes_PersistsScopesAcrossReload",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Powershell",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_GeneratesNewKeypair",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.DifferentDirs_ProduceDifferentIdentities",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CapturesStderr",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithEnvVars",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_PipelineSmokeTest_WithDenyPaths_ReturnsResult",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenForRole_Node_PreservesOperatorToken",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildDebugPayload_HasCorrectFormat",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ThrowsBeforeInitialize",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ProducesDeterministicSignature",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Cmd",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CustomEnv_DeniesBeforeMxcUnavailableHostFallback",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_EchoCmd_ExecutesInsideAppContainer",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_LeavesNoTempFileBehind",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithCwd",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_FilesystemAccessMatrix_EnforcesReadwriteAndReadonlyPaths",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV3_HasCorrectFormat",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_PersistsAcrossReload",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_DiffersForDifferentNonces",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_PreservesNonTokenFields_AfterAtomicWrite",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CompletesPromptly_WhenOrphanChildProcessHoldsStdoutHandle",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_LoadsExistingKeypair",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CmdDir_ReadsGrantedCustomFolder",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV2_HasCorrectFormat",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_LeavesNoTempFileBehind",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DirectArgvWithWindowsUiAccess_ExecutesInsideAppContainer",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.PublicKeyBase64Url_IsValidBase64Url",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      }
+    ]
+  },
+  {
+    "command": {
+      "name": "shared-full",
+      "startedUtc": "2026-09-26T05:02:31.3364282-04:00",
+      "repository": "[repo]",
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md",
+      "exitCode": 0,
+      "executable": "dotnet",
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3",
+      "completedUtc": "2026-09-26T05:03:44.2296127-04:00",
+      "arguments": [
+        "test",
+        ".\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj",
+        "--no-restore",
+        "--logger",
+        "trx;LogFileName=shared-full.trx",
+        "--results-directory",
+        "[session-artifacts]\\local-results",
+        "--verbosity",
+        "minimal"
+      ]
+    },
+    "counters": {
+      "total": 4220,
+      "passed": 4188,
+      "failed": 0,
+      "skipped": 32
+    },
+    "trxSummaryNotExecuted": 0,
+    "skipCounting": "Count named NotExecuted outcomes; VSTest summary notExecuted can be zero for xUnit skips.",
+    "expectedCountersMatched": true,
+    "rawTrxSha256": "4ed9e0a9fb27d5cd793d81e4106c414c0d68df48fcf9fdba6ee56a55c7ef41bb",
+    "nonPassing": [
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_Timeout_KillsProcess",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.DifferentDirs_ProduceDifferentIdentities",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Cmd",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_GeneratesNewKeypair",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenWithScopes_PersistsScopesAcrossReload",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CapturesStderr",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ThrowsBeforeInitialize",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_EchoCommand_Powershell",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CmdDir_ReadsGrantedCustomFolder",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.Initialize_LoadsExistingKeypair",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_LeavesNoTempFileBehind",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_NonZeroExitCode",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DefaultShell_ExecutesInsideAppContainer",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV2_HasCorrectFormat",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildDebugPayload_HasCorrectFormat",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.PublicKeyBase64Url_IsValidBase64Url",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_PersistsAcrossReload",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceToken_LeavesNoTempFileBehind",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.TryClearDeviceToken_PreservesNonTokenFields_AfterAtomicWrite",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.StoreDeviceTokenForRole_Node_PreservesOperatorToken",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_CustomEnv_DeniesBeforeMxcUnavailableHostFallback",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithCwd",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.BuildConnectPayloadV3_HasCorrectFormat",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_EchoCmd_ExecutesInsideAppContainer",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_DirectArgvWithWindowsUiAccess_ExecutesInsideAppContainer",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_DiffersForDifferentNonces",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_PipelineSmokeTest_WithDenyPaths_ReturnsResult",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_WithEnvVars",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.Mxc.MxcCommandRunnerIntegrationTests.SystemRun_FilesystemAccessMatrix_EnforcesReadwriteAndReadonlyPaths",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.DeviceIdentityIntegrationTests.SignPayload_ProducesDeterministicSignature",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_InvalidCommand_ReturnsError",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      },
+      {
+        "method": "OpenClaw.Shared.Tests.LocalCommandRunnerIntegrationTests.Run_CompletesPromptly_WhenOrphanChildProcessHoldsStdoutHandle",
+        "outcome": "NotExecuted",
+        "message": "Integration tests disabled. Set OPENCLAW_RUN_INTEGRATION=1 to enable."
+      }
+    ]
+  },
+  {
+    "command": {
+      "repository": "[repo]",
+      "arguments": [
+        "build",
+        ".\\tests\\OpenClaw.Tray.Tests\\OpenClaw.Tray.Tests.csproj",
+        "--verbosity",
+        "minimal"
+      ],
+      "startedUtc": "2026-09-26T05:04:00.1209051-04:00",
+      "completedUtc": "2026-09-26T05:04:11.5605822-04:00",
+      "name": "tray-first-build",
+      "exitCode": 0,
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md",
+      "executable": "dotnet",
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3"
+    }
+  },
+  {
+    "command": {
+      "repository": "[repo]",
+      "arguments": [
+        "test",
+        ".\\tests\\OpenClaw.Tray.Tests\\OpenClaw.Tray.Tests.csproj",
+        "--no-restore",
+        "--logger",
+        "trx;LogFileName=tray-full-final.trx",
+        "--results-directory",
+        "[session-artifacts]\\local-results",
+        "--verbosity",
+        "minimal"
+      ],
+      "startedUtc": "2026-09-26T05:07:03.2846776-04:00",
+      "executable": "dotnet",
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3",
+      "exitCode": 0,
+      "name": "tray-full-final",
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md",
+      "completedUtc": "2026-09-26T05:08:16.4746576-04:00"
+    },
+    "counters": {
+      "total": 3072,
+      "passed": 3072,
+      "failed": 0,
+      "skipped": 0
+    },
+    "trxSummaryNotExecuted": 0,
+    "skipCounting": "Count named NotExecuted outcomes; VSTest summary notExecuted can be zero for xUnit skips.",
+    "expectedCountersMatched": true,
+    "rawTrxSha256": "4c0c4d0db9aede8c7ed8ab2d3279eba4d20212dd38f7361ec000c1c352ef4a4b",
+    "nonPassing": []
+  },
+  {
+    "command": {
+      "executable": "dotnet",
+      "completedUtc": "2026-09-26T05:05:41.1739426-04:00",
+      "repository": "[repo]",
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md",
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3",
+      "arguments": [
+        "test",
+        ".\\tests\\OpenClaw.Tray.Tests\\OpenClaw.Tray.Tests.csproj",
+        "--no-restore",
+        "--logger",
+        "trx;LogFileName=tray-full.trx",
+        "--results-directory",
+        "[session-artifacts]\\local-results",
+        "--verbosity",
+        "minimal"
+      ],
+      "name": "tray-full",
+      "startedUtc": "2026-09-26T05:04:20.330195-04:00",
+      "exitCode": 1
+    },
+    "counters": {
+      "total": 3072,
+      "passed": 3071,
+      "failed": 1,
+      "skipped": 0
+    },
+    "trxSummaryNotExecuted": 0,
+    "skipCounting": "Count named NotExecuted outcomes; VSTest summary notExecuted can be zero for xUnit skips.",
+    "expectedCountersMatched": true,
+    "rawTrxSha256": "3739c1ea25087337edd11046ad7986a2ace6acf86746d07c38b61cd46f588e2f",
+    "nonPassing": [
+      {
+        "method": "OpenClaw.Tray.Tests.NativeSpeechStackRuntimeTests.TrayBuildOutput_NativeTtsStack_LoadsWithAppLocalVCRuntime",
+        "outcome": "Failed",
+        "message": "msvcp140.dll was not copied to [repo]\\src\\OpenClaw.Tray.WinUI\\bin\\Debug\\net10.0-windows10.0.22621.0\\win-x64."
+      }
+    ]
+  },
+  {
+    "command": {
+      "completedUtc": "2026-09-26T05:06:55.6911436-04:00",
+      "executable": "dotnet",
+      "arguments": [
+        "msbuild",
+        ".\\src\\OpenClaw.Tray.WinUI\\OpenClaw.Tray.WinUI.csproj",
+        "-t:CopyOpenClawVCRuntimeToOutput",
+        "-p:RuntimeIdentifier=win-x64",
+        "-p:Configuration=Debug",
+        "-verbosity:minimal",
+        "-getProperty:TargetDir,OpenClawVCRuntimeArch"
+      ],
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3",
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md",
+      "startedUtc": "2026-09-26T05:06:54.1041714-04:00",
+      "exitCode": 0,
+      "repository": "[repo]",
+      "name": "tray-runtime-copy-build-path"
+    }
+  },
+  {
+    "command": {
+      "arguments": [
+        "msbuild",
+        ".\\src\\OpenClaw.Tray.WinUI\\OpenClaw.Tray.WinUI.csproj",
+        "-t:CopyOpenClawVCRuntimeToOutput",
+        "-p:RuntimeIdentifier=win-x64",
+        "-p:Platform=x64",
+        "-p:Configuration=Debug",
+        "-verbosity:minimal"
+      ],
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3",
+      "startedUtc": "2026-09-26T05:06:07.3800536-04:00",
+      "executable": "dotnet",
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md",
+      "completedUtc": "2026-09-26T05:06:08.8357231-04:00",
+      "repository": "[repo]",
+      "exitCode": 0,
+      "name": "tray-runtime-copy"
+    }
+  },
+  {
+    "command": {
+      "name": "tray-runtime-recheck",
+      "executable": "dotnet",
+      "completedUtc": "2026-09-26T05:06:26.0918951-04:00",
+      "arguments": [
+        "test",
+        ".\\tests\\OpenClaw.Tray.Tests\\OpenClaw.Tray.Tests.csproj",
+        "--no-restore",
+        "--filter",
+        "FullyQualifiedName~NativeSpeechStackRuntimeTests",
+        "--logger",
+        "trx;LogFileName=tray-runtime-recheck.trx",
+        "--results-directory",
+        "[session-artifacts]\\local-results",
+        "--verbosity",
+        "minimal"
+      ],
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3",
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md",
+      "exitCode": 1,
+      "startedUtc": "2026-09-26T05:06:16.840151-04:00",
+      "repository": "[repo]"
+    },
+    "counters": {
+      "total": 4,
+      "passed": 3,
+      "failed": 1,
+      "skipped": 0
+    },
+    "trxSummaryNotExecuted": 0,
+    "skipCounting": "Count named NotExecuted outcomes; VSTest summary notExecuted can be zero for xUnit skips.",
+    "expectedCountersMatched": true,
+    "rawTrxSha256": "6366cfa40f2a2531b109bf8c549965a8c5b9b7a932f4fc484c12745a5c72b692",
+    "nonPassing": [
+      {
+        "method": "OpenClaw.Tray.Tests.NativeSpeechStackRuntimeTests.TrayBuildOutput_NativeTtsStack_LoadsWithAppLocalVCRuntime",
+        "outcome": "Failed",
+        "message": "msvcp140.dll was not copied to [repo]\\src\\OpenClaw.Tray.WinUI\\bin\\Debug\\net10.0-windows10.0.22621.0\\win-x64."
+      }
+    ]
+  },
+  {
+    "command": {
+      "completedUtc": "2026-09-26T05:09:34.3467284-04:00",
+      "executable": "dotnet",
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md",
+      "name": "winnode-first-build",
+      "arguments": [
+        "build",
+        ".\\tests\\OpenClaw.WinNode.Cli.Tests\\OpenClaw.WinNode.Cli.Tests.csproj",
+        "--verbosity",
+        "minimal"
+      ],
+      "exitCode": 0,
+      "startedUtc": "2026-09-26T05:09:26.8531587-04:00",
+      "repository": "[repo]",
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3"
+    }
+  },
+  {
+    "command": {
+      "repository": "[repo]",
+      "startedUtc": "2026-09-26T05:09:41.7066517-04:00",
+      "name": "winnode-full",
+      "arguments": [
+        "test",
+        ".\\tests\\OpenClaw.WinNode.Cli.Tests\\OpenClaw.WinNode.Cli.Tests.csproj",
+        "--no-restore",
+        "--logger",
+        "trx;LogFileName=winnode-full.trx",
+        "--results-directory",
+        "[session-artifacts]\\local-results",
+        "--verbosity",
+        "minimal"
+      ],
+      "exitCode": 0,
+      "sourceSha": "a993bc9e08fe1815f6080e571570f82d19f00bc3",
+      "executable": "dotnet",
+      "completedUtc": "2026-09-26T05:09:59.2456142-04:00",
+      "worktreeStatus": " M docs/MCP_AUDIO_SCHEMAS.md"
+    },
+    "counters": {
+      "total": 127,
+      "passed": 127,
+      "failed": 0,
+      "skipped": 0
+    },
+    "trxSummaryNotExecuted": 0,
+    "skipCounting": "Count named NotExecuted outcomes; VSTest summary notExecuted can be zero for xUnit skips.",
+    "expectedCountersMatched": true,
+    "rawTrxSha256": "fa89db917f0978a2dc7edf2b812e504509c23b4d069cc5f124b7ba1d7a3aeaa6",
+    "nonPassing": []
+  }
+]

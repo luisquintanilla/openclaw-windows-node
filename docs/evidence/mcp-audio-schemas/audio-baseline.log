@@ -1,0 +1,16 @@
+  Determining projects to restore...
+  Restored [baseline]\tests\OpenClaw.TestSupport\OpenClaw.TestSupport.csproj (in 268 ms).
+  Restored [baseline]\tests\OpenClaw.Shared.TestHost\OpenClaw.Shared.TestHost.csproj (in 268 ms).
+  Restored [baseline]\tests\OpenClaw.Shared.Tests\OpenClaw.Shared.Tests.csproj (in 268 ms).
+  Restored [baseline]\src\OpenClaw.Shared\OpenClaw.Shared.csproj (in 268 ms).
+  Restored [baseline]\src\OpenClaw.Cli\OpenClaw.Cli.csproj (in 268 ms).
+  OpenClaw.Shared -> [baseline]\src\OpenClaw.Shared\bin\Debug\net10.0\OpenClaw.Shared.dll
+  OpenClaw.TestSupport -> [baseline]\tests\OpenClaw.TestSupport\bin\Debug\net10.0\OpenClaw.TestSupport.dll
+  OpenClaw.Shared.TestHost -> [baseline]\tests\OpenClaw.Shared.TestHost\bin\Debug\net10.0\OpenClaw.Shared.TestHost.dll
+  OpenClaw.Cli -> [baseline]\src\OpenClaw.Cli\bin\Debug\net10.0\OpenClaw.Cli.dll
+  OpenClaw.Shared.Tests -> [baseline]\tests\OpenClaw.Shared.Tests\bin\Debug\net10.0\OpenClaw.Shared.Tests.dll
+Test run for [baseline]\tests\OpenClaw.Shared.Tests\bin\Debug\net10.0\OpenClaw.Shared.Tests.dll (.NETCoreApp,Version=v10.0)
+A total of 1 test files matched the specified pattern.
+Results File: [session-artifacts]\local-results\audio-baseline.trx
+
+Passed!  - Failed:     0, Passed:    75, Skipped:     0, Total:    75, Duration: 424 ms - OpenClaw.Shared.Tests.dll (net10.0)

@@ -1,6 +1,41 @@
 # Audio MCP input schemas
 
-`McpToolBridge` publishes curated `inputSchema` metadata for the existing
+This pilot is a narrow follow-up to existing MCP schema work, not
+a newly discovered gap or a regression in a shipped schema implementation.
+Local before/after and focused compatibility checks passed on source
+`a993bc9e08fe1815f6080e571570f82d19f00bc3`. The full WinUI build remains blocked
+by an existing npm TLS download failure. See the [evidence and exact
+limitations](evidence/mcp-audio-schemas/README.md), not a merge-readiness claim.
+
+## Prior work and scope
+
+[openclaw/openclaw-windows-node#355](https://github.com/openclaw/openclaw-windows-node/issues/355)
+already identified permissive `tools/list` schemas. Its
+[closure comment](https://github.com/openclaw/openclaw-windows-node/issues/355#issuecomment-4473186623)
+explicitly says it was consolidated, not necessarily fixed, into the MCP
+hardening work tracked in
+[openclaw/openclaw-windows-node#372](https://github.com/openclaw/openclaw-windows-node/issues/372).
+That tracker was later
+[closed in favor of the project board's Scenarios view (Mission field)](https://github.com/openclaw/openclaw-windows-node/issues/372#issuecomment-5222150923),
+where scope would be tracked going forward. These are historical references,
+not a claim that the closed tracker is the current owner, that the schema
+change shipped or that a duplicate broad issue is needed.
+
+[openclaw/openclaw-windows-node#401](https://github.com/openclaw/openclaw-windows-node/pull/401)
+(Add typed MCP tool input schemas) proposed a broader schema catalog. It was
+closed without merging, and the
+[maintainer's disposition](https://github.com/openclaw/openclaw-windows-node/pull/401#issuecomment-4472964017)
+requires fresh review and implementation after the refactor.
+
+This pilot covers only five existing audio tools and preserves permissive
+argument parsing. It adds no runtime validation and does not revive the old
+all-command implementation. Any eventual follow-up should contribute its
+bounded implementation and current-parser evidence to that existing history,
+rather than present the general schema concern as new.
+
+## Proposed metadata
+
+On this branch, `McpToolBridge` publishes curated `inputSchema` metadata for the existing
 `stt.transcribe`, `stt.listen`, `stt.status`, `tts.speak` and `tts.status` tool
 names. `McpAudioToolSchemas` is a discovery-only helper. It neither registers
 capabilities nor validates or rewrites calls. Disabled capabilities remain
@@ -73,11 +108,14 @@ JSON. It does not open a microphone, play sound, inspect private files, download
 models or call a cloud provider. The listen result check intentionally retains
 the existing PascalCase `SttSegment` JSON members.
 
-This is in-process JSON-RPC proof, not a running tray, HTTP client, gateway or
-audio engine proof. Schema validity and permissiveness can additionally be
-checked with an already available JSON Schema validator such as PowerShell
-`Test-Json -Json <arguments-json> -Schema <inputSchema-json>`. Do not confuse
-schema acceptance with capability success for the boundaries above.
+The recorded run provides in-process JSON-RPC evidence, not a running tray,
+HTTP client, gateway or audio engine proof. The harness-only baseline passed
+75 cases; the candidate passed all 81 new cases and 121 existing bridge/audio
+cases. Five schemas changed, other audio catalog fields stayed identical,
+and seven synthetic request/response pairs stayed identical. PowerShell 7.6.6
+`Test-Json` (JsonSchema.Net 7.0.0.0, draft 2020-12 selected for validation only)
+matched all 21 declared schema-acceptance expectations. This includes the
+documented differences between schema acceptance and capability success.
 
 Repository closeout also requires `.\build.ps1`, full Shared and Tray tests,
 and WinNode CLI tests for the changed command documentation. Isolate

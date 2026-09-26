@@ -1,0 +1,26 @@
+{
+  "base": "273b0182745a3093c0e09f306ca8a1fff6ef3c5a",
+  "baselineHarness": "01956ec2f31fcc1d5145ee387be35ac4476d7fd6",
+  "candidateSource": "a993bc9e08fe1815f6080e571570f82d19f00bc3",
+  "identicalHarnessBlob": "8ec3c9379dc2f132b258f3908d81249427ffd634",
+  "baselineProductionTree": "e105f5679ef7248e2835011e6240d82b4214f324",
+  "candidateProductionTree": "545e6e673c557206335fdae0507731b3d809b256",
+  "candidateDirtyDuringTests": "Documentation-only prior-art correction in docs/MCP_AUDIO_SCHEMAS.md.",
+  "host": "Local Windows x64; .NET SDK 10.0.401; VSTest/xUnit v2.",
+  "isolated": [
+    "OPENCLAW_REPO_ROOT",
+    "OPENCLAW_TRAY_DATA_DIR",
+    "TEMP",
+    "TMP",
+    "process-only short PATH"
+  ],
+  "restore": "Session-only official NuGet v2 source, no global configuration, TLS bypass or audit disable.",
+  "notVerified": [
+    "Full WinUI build: existing node-pty-1.2.0-beta.12.tgz npm TLS handshake failure.",
+    "Running tray HTTP MCP, gateway, microphone, inference, playback and cloud providers.",
+    "Structured autoreview: codex executable absent; helper exit 1.",
+    "Hosted CI workflow rejected for missing workflow scope; cloud pilot runtime never confirmed."
+  ],
+  "sourceReview": "Direct review found no actionable in-scope issue; not a clean structured-autoreview claim.",
+  "rawEvidencePolicy": "Raw TRX stays local. Published inventory uses method names and counts, not theory argument values or unrelated stdout. Seven audio calls use synthetic event results."
+}

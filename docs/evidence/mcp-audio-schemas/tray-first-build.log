@@ -1,0 +1,15 @@
+  Determining projects to restore...
+  Restored [repo]\src\OpenClaw.Shared\OpenClaw.Shared.csproj (in 326 ms).
+  Restored [repo]\src\OpenClaw.Connection\OpenClaw.Connection.csproj (in 326 ms).
+  Restored [repo]\tests\OpenClaw.Tray.Tests\OpenClaw.Tray.Tests.csproj (in 370 ms).
+  1 of 4 projects are up-to-date for restore.
+  OpenClaw.Shared -> [repo]\src\OpenClaw.Shared\bin\Debug\net10.0\OpenClaw.Shared.dll
+  OpenClaw.TestSupport -> [repo]\tests\OpenClaw.TestSupport\bin\Debug\net10.0\OpenClaw.TestSupport.dll
+  OpenClaw.Connection -> [repo]\src\OpenClaw.Connection\bin\Debug\net10.0\OpenClaw.Connection.dll
+  OpenClaw.Tray.Tests -> [repo]\tests\OpenClaw.Tray.Tests\bin\Debug\net10.0\OpenClaw.Tray.Tests.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:10.72

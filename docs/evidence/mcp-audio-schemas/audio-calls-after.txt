@@ -1,0 +1,14 @@
+REQUEST {"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"stt.transcribe","arguments":{"maxDurationMs":1,"unknown":true}}}
+RESPONSE {"jsonrpc":"2.0","id":2,"result":{"content":[{"type":"text","text":"{\u0022transcribed\u0022:true,\u0022text\u0022:\u0022fixture transcript\u0022,\u0022durationMs\u0022:25,\u0022language\u0022:\u0022en-US\u0022,\u0022engineEffective\u0022:\u0022whisper\u0022}"}],"isError":false}}
+REQUEST {"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"stt.transcribe","arguments":{"maxDurationMs":30001}}}
+RESPONSE {"jsonrpc":"2.0","id":2,"result":{"content":[{"type":"text","text":"maxDurationMs exceeds 30000 ms"}],"isError":true}}
+REQUEST {"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"stt.listen","arguments":{"timeoutMs":0,"language":false}}}
+RESPONSE {"jsonrpc":"2.0","id":2,"result":{"content":[{"type":"text","text":"{\u0022text\u0022:\u0022fixture transcript\u0022,\u0022language\u0022:\u0022en-US\u0022,\u0022durationMs\u0022:25,\u0022segments\u0022:[{\u0022Text\u0022:\u0022fixture transcript\u0022,\u0022StartMs\u0022:0,\u0022EndMs\u0022:25}],\u0022engineEffective\u0022:\u0022whisper\u0022}"}],"isError":false}}
+REQUEST {"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"stt.status","arguments":{"unknown":true}}}
+RESPONSE {"jsonrpc":"2.0","id":2,"result":{"content":[{"type":"text","text":"{\u0022engine\u0022:\u0022whisper\u0022,\u0022readiness\u0022:\u0022ready\u0022,\u0022modelDownloadProgress\u0022:null,\u0022isListenWithVadSupported\u0022:true,\u0022isBoundedTranscribeSupported\u0022:true}"}],"isError":false}}
+REQUEST {"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"tts.speak","arguments":{"text":" hello ","provider":" PiPeR ","interrupt":"true"}}}
+RESPONSE {"jsonrpc":"2.0","id":2,"result":{"content":[{"type":"text","text":"{\u0022spoken\u0022:true,\u0022provider\u0022:\u0022windows\u0022,\u0022requestedProvider\u0022:\u0022piper\u0022,\u0022fellBack\u0022:true,\u0022contentType\u0022:\u0022audio/wav\u0022,\u0022durationMs\u0022:25}"}],"isError":false}}
+REQUEST {"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"tts.speak","arguments":{"text":" "}}}
+RESPONSE {"jsonrpc":"2.0","id":2,"result":{"content":[{"type":"text","text":"Missing required text"}],"isError":true}}
+REQUEST {"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"tts.status","arguments":{"unknown":true}}}
+RESPONSE {"jsonrpc":"2.0","id":2,"result":{"content":[{"type":"text","text":"{\u0022configuredProvider\u0022:\u0022piper\u0022,\u0022effectiveProvider\u0022:\u0022piper\u0022,\u0022willFallBack\u0022:false,\u0022providers\u0022:[]}"}],"isError":false}}
