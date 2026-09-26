@@ -7,6 +7,33 @@
   "sourceCommit": "15134f936c2ede2f1d6bd28ddc1395797f3d0d3e",
   "sourceAtExecution": "Uncommitted combined tree on base273b018. Every final tested source blob was verified identical when committed as sourceCommit. Assembly hashes are the actual executed binaries, not hypothetical rebuilds after commit.",
   "intermediateCommitExecutedIndependently": false,
+  "commandChronology": {
+    "scope": "The sixteen retained build/test validation commands, in execution order. Asset download and read-only inspection commands are outside this chronology.",
+    "exitCodeSource": "Saved shell execution results and the final harness's captured LASTEXITCODE checks. Exit codes are not inferred from TRX counters.",
+    "shellStartedAt": null,
+    "shellFinishedAt": null,
+    "shellTimeAvailability": "Unavailable for all records: retained execution records do not supply exact shell boundaries. No boundaries were reconstructed from file times, elapsed durations, or TRX timestamps.",
+    "runnerTimeSource": "Original unmodified TRX TestRun/Times start and finish attributes, including their recorded UTC offset. These are test-runner timestamps, not shell/build/restore boundaries.",
+    "commandRendering": "Workload commands are transcribed from saved invocation records; quoting preserves argument boundaries. Process-local environment setup and output redirection are omitted. Refer to environmentRecovery and the validation guide. Native runs alone enabled the two documented Whisper proof variables.",
+    "orderedRecords": [
+      "initialAttempts/focused-01",
+      "initialAttempts/native-01",
+      "initialAttempts/full-build-01",
+      "initialAttempts/focused-02",
+      "initialAttempts/focused-03",
+      "initialAttempts/native-02",
+      "initialAttempts/shared-01",
+      "initialAttempts/winui-scoped-01",
+      "initialAttempts/winui-compile-02",
+      "initialAttempts/tray-01",
+      "initialAttempts/cli-01",
+      "finalTests/stt-focused-final",
+      "finalTests/stt-native-final",
+      "finalTests/stt-shared-final",
+      "finalTests/stt-tray-final",
+      "finalTests/stt-cli-final"
+    ]
+  },
   "host": {
     "os": "Windows",
     "architecture": "x64",
@@ -202,6 +229,10 @@
   "finalTests": [
     {
       "name": "stt-focused-final",
+      "exitCode": 0,
+      "status": "passed",
+      "runnerStartedAt": "2026-09-26T06:15:35.4176872-04:00",
+      "runnerFinishedAt": "2026-09-26T06:15:37.8108404-04:00",
       "command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --no-restore -m:1 -p:UseSharedCompilation=false --filter \"FullyQualifiedName~SpeechToTextServiceTests|FullyQualifiedName~SpeechToTextLifecycleContractTests|FullyQualifiedName~SpeechToTextLanguageNormalizationTests|FullyQualifiedName~SttCapabilityTests|FullyQualifiedName~McpToolBridgeTests\" --logger \"trx;LogFileName=stt-focused-final.trx\" --results-directory \"<repo>\\artifacts\\stt-task\\results\"",
       "total": 136,
       "executed": 136,
@@ -213,6 +244,10 @@
     },
     {
       "name": "stt-native-final",
+      "exitCode": 0,
+      "status": "passed",
+      "runnerStartedAt": "2026-09-26T06:15:39.3759845-04:00",
+      "runnerFinishedAt": "2026-09-26T06:15:51.3865112-04:00",
       "command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --no-restore -m:1 -p:UseSharedCompilation=false --no-build --filter \"FullyQualifiedName~SpeechToTextNativeProofTests\" --logger \"trx;LogFileName=stt-native-final.trx\" --results-directory \"<repo>\\artifacts\\stt-task\\results\"",
       "total": 1,
       "executed": 1,
@@ -224,6 +259,10 @@
     },
     {
       "name": "stt-shared-final",
+      "exitCode": 0,
+      "status": "passedWithExplicitSkips",
+      "runnerStartedAt": "2026-09-26T06:15:52.8242237-04:00",
+      "runnerFinishedAt": "2026-09-26T06:16:52.5330486-04:00",
       "command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --no-restore -m:1 -p:UseSharedCompilation=false --no-build --logger \"trx;LogFileName=stt-shared-final.trx\" --results-directory \"<repo>\\artifacts\\stt-task\\results\"",
       "total": 4171,
       "executed": 4138,
@@ -269,6 +308,10 @@
     },
     {
       "name": "stt-tray-final",
+      "exitCode": 0,
+      "status": "passed",
+      "runnerStartedAt": "2026-09-26T06:16:55.1467718-04:00",
+      "runnerFinishedAt": "2026-09-26T06:17:58.3638109-04:00",
       "command": "dotnet test .\\tests\\OpenClaw.Tray.Tests\\OpenClaw.Tray.Tests.csproj --no-restore -m:1 -p:UseSharedCompilation=false --no-build --logger \"trx;LogFileName=stt-tray-final.trx\" --results-directory \"<repo>\\artifacts\\stt-task\\results\"",
       "total": 3072,
       "executed": 3072,
@@ -280,6 +323,10 @@
     },
     {
       "name": "stt-cli-final",
+      "exitCode": 0,
+      "status": "passed",
+      "runnerStartedAt": "2026-09-26T06:18:00.5669215-04:00",
+      "runnerFinishedAt": "2026-09-26T06:18:08.9742769-04:00",
       "command": "dotnet test .\\tests\\OpenClaw.WinNode.Cli.Tests\\OpenClaw.WinNode.Cli.Tests.csproj --no-restore -m:1 -p:UseSharedCompilation=false --no-build --logger \"trx;LogFileName=stt-cli-final.trx\" --results-directory \"<repo>\\artifacts\\stt-task\\results\"",
       "total": 127,
       "executed": 127,
@@ -435,6 +482,11 @@
   "initialAttempts": [
     {
       "name": "focused-01",
+      "command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --filter \"FullyQualifiedName~SpeechToTextServiceTests|FullyQualifiedName~SpeechToTextLifecycleContractTests|FullyQualifiedName~SpeechToTextLanguageNormalizationTests|FullyQualifiedName~SttCapabilityTests|FullyQualifiedName~McpToolBridgeTests\" -m:1 -p:UseSharedCompilation=false --logger \"trx;LogFileName=stt-focused-01.trx\" --results-directory .\\artifacts\\stt-task\\results",
+      "exitCode": 0,
+      "status": "passed",
+      "runnerStartedAt": "2026-09-26T05:47:10.3851800-04:00",
+      "runnerFinishedAt": "2026-09-26T05:47:15.1039564-04:00",
       "result": "131 passed, zero failed/skipped",
       "serviceBlob": "e774c5b576ff67914037aec2962fd1558609fe00",
       "sourcePatch": "initial-source.patch",
@@ -442,6 +494,11 @@
     },
     {
       "name": "native-01",
+      "command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --no-build --no-restore --filter FullyQualifiedName~SpeechToTextNativeProofTests --logger \"trx;LogFileName=stt-native-01.trx\" --results-directory .\\artifacts\\stt-task\\results",
+      "exitCode": 0,
+      "status": "passed",
+      "runnerStartedAt": "2026-09-26T05:47:57.7546327-04:00",
+      "runnerFinishedAt": "2026-09-26T05:48:10.8466982-04:00",
       "result": "one passed, zero failed/skipped; all four pair/repeat hashes equal",
       "serviceBlob": "e774c5b576ff67914037aec2962fd1558609fe00",
       "nativeProofBlob": "8e5819114c1fdd26704b0c8959612e9ae151edf1",
@@ -452,38 +509,95 @@
       "name": "full-build-01",
       "command": ".\\build.ps1 -NoTrustRepository",
       "exitCode": 1,
+      "status": "failed",
+      "runnerStartedAt": null,
+      "runnerFinishedAt": null,
+      "runnerTimeAvailability": "Not applicable: this build invocation produced no test-runner TRX. Exact shell boundaries unavailable.",
       "serviceBlob": "e774c5b576ff67914037aec2962fd1558609fe00",
       "sourcePatch": "initial-source.patch",
       "result": "Documentation gate passed 50 files; Shared/Cli/WinNodeCli/SetupEngine succeeded; WinUI blocked by existing node-pty npm TLS handshake failure. Not repeated."
     },
     {
       "name": "focused-02",
+      "command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --no-restore --filter \"FullyQualifiedName~SpeechToTextServiceTests|FullyQualifiedName~SpeechToTextLifecycleContractTests|FullyQualifiedName~SpeechToTextLanguageNormalizationTests|FullyQualifiedName~SttCapabilityTests|FullyQualifiedName~McpToolBridgeTests\" -m:1 -p:UseSharedCompilation=false --logger \"trx;LogFileName=stt-focused-02.trx\" --results-directory .\\artifacts\\stt-task\\results",
       "exitCode": 1,
+      "status": "failed",
+      "runnerStartedAt": null,
+      "runnerFinishedAt": null,
+      "runnerTimeAvailability": "Unavailable: compilation failed before a TRX was produced. Exact shell boundaries unavailable.",
       "result": "CS0053 test-helper accessibility/nesting error while strengthening ownership proof. Fixed without changing assertions; final focused suite passed."
     },
     {
       "name": "focused-03",
+      "command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --no-restore --filter \"FullyQualifiedName~SpeechToTextServiceTests|FullyQualifiedName~SpeechToTextLifecycleContractTests|FullyQualifiedName~SpeechToTextLanguageNormalizationTests|FullyQualifiedName~SttCapabilityTests|FullyQualifiedName~McpToolBridgeTests\" -m:1 -p:UseSharedCompilation=false --logger \"trx;LogFileName=stt-focused-03.trx\" --results-directory .\\artifacts\\stt-task\\results",
+      "exitCode": 0,
+      "status": "passed",
+      "runnerStartedAt": "2026-09-26T06:04:56.4490935-04:00",
+      "runnerFinishedAt": "2026-09-26T06:05:00.8774088-04:00",
       "result": "136 passed, zero failed/skipped",
       "serviceBlob": "288c86363f959208852654d11a52602170302dbc",
       "limitation": "Final production source, preceding final test-only model assertions and module provenance additions."
     },
     {
       "name": "native-02",
+      "command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --no-build --no-restore --filter \"FullyQualifiedName~SpeechToTextNativeProofTests\" --logger \"trx;LogFileName=stt-native-02.trx\" --results-directory .\\artifacts\\stt-task\\results",
+      "exitCode": 0,
+      "status": "passed",
+      "runnerStartedAt": "2026-09-26T06:07:08.6603534-04:00",
+      "runnerFinishedAt": "2026-09-26T06:07:22.4953114-04:00",
       "result": "one passed, zero failed/skipped; same four pair/repeat hashes",
       "serviceBlob": "288c86363f959208852654d11a52602170302dbc",
       "nativeProofBlob": "8e5819114c1fdd26704b0c8959612e9ae151edf1"
     },
     {
+      "name": "shared-01",
+      "command": "dotnet test .\\tests\\OpenClaw.Shared.Tests\\OpenClaw.Shared.Tests.csproj --no-build --no-restore --logger \"trx;LogFileName=stt-shared-01.trx\" --results-directory .\\artifacts\\stt-task\\results",
+      "exitCode": 0,
+      "status": "passedWithExplicitSkips",
+      "runnerStartedAt": "2026-09-26T06:07:24.2428874-04:00",
+      "runnerFinishedAt": "2026-09-26T06:08:31.9674697-04:00",
+      "result": "4138 passed, zero failed, 33 explicitly skipped. Superseded by unchanged-production final suite after test-only proof strengthening.",
+      "serviceBlob": "288c86363f959208852654d11a52602170302dbc"
+    },
+    {
       "name": "winui-scoped-01",
       "command": "dotnet build .\\src\\OpenClaw.Tray.WinUI\\OpenClaw.Tray.WinUI.csproj --no-restore -c Debug -r win-x64 -p:SkipMxcNodeBridgeRestore=true -p:UseSharedCompilation=false -m:1",
       "exitCode": 1,
+      "status": "failed",
+      "runnerStartedAt": null,
+      "runnerFinishedAt": null,
+      "runnerTimeAvailability": "Not applicable: scoped build produced no test-runner TRX. Exact shell boundaries unavailable.",
       "result": "Actual changed VoiceService/WinUI assembly compiled, then existing wxc-exec copy failed because npm bridge was absent. One existing generated Icon obsolete warning."
     },
     {
       "name": "winui-compile-02",
-      "command": "dotnet msbuild .\\src\\OpenClaw.Tray.WinUI\\OpenClaw.Tray.WinUI.csproj -t:Compile,CopyOpenClawVCRuntimeToOutput,CopySetupAssetsLooseForConsumerCopy,CopySetupDefaultConfigToOutput -p:RuntimeIdentifier=win-x64 -p:Configuration=Debug -p:SkipMxcNodeBridgeRestore=true -p:UseSharedCompilation=false -m:1 -v:minimal",
+      "command": "dotnet msbuild .\\src\\OpenClaw.Tray.WinUI\\OpenClaw.Tray.WinUI.csproj \"-t:Compile,CopyOpenClawVCRuntimeToOutput,CopySetupAssetsLooseForConsumerCopy,CopySetupDefaultConfigToOutput\" -p:RuntimeIdentifier=win-x64 -p:Configuration=Debug -p:SkipMxcNodeBridgeRestore=true -p:UseSharedCompilation=false -m:1 -v:minimal",
       "exitCode": 0,
+      "status": "qualifiedCompilePassed",
+      "runnerStartedAt": null,
+      "runnerFinishedAt": null,
+      "runnerTimeAvailability": "Not applicable: compile/copy targets produced no test-runner TRX. Exact shell boundaries unavailable.",
       "result": "Qualified compile and existing harness asset/runtime copy only. Platform omitted; actual TargetDir is bin\\Debug\\net10.0-windows10.0.22621.0\\win-x64. No shipping/MXC/app launch claim."
+    },
+    {
+      "name": "tray-01",
+      "command": "dotnet test .\\tests\\OpenClaw.Tray.Tests\\OpenClaw.Tray.Tests.csproj -m:1 -p:UseSharedCompilation=false --logger \"trx;LogFileName=stt-tray-01.trx\" --results-directory .\\artifacts\\stt-task\\results",
+      "exitCode": 0,
+      "status": "passed",
+      "runnerStartedAt": "2026-09-26T06:12:03.5656845-04:00",
+      "runnerFinishedAt": "2026-09-26T06:13:11.4525234-04:00",
+      "result": "3072 passed, zero failed/skipped; matching restore/build preceded the final no-build/no-restore run.",
+      "serviceBlob": "288c86363f959208852654d11a52602170302dbc"
+    },
+    {
+      "name": "cli-01",
+      "command": "dotnet test .\\tests\\OpenClaw.WinNode.Cli.Tests\\OpenClaw.WinNode.Cli.Tests.csproj -m:1 -p:UseSharedCompilation=false --logger \"trx;LogFileName=stt-cli-01.trx\" --results-directory .\\artifacts\\stt-task\\results",
+      "exitCode": 0,
+      "status": "passed",
+      "runnerStartedAt": "2026-09-26T06:13:45.8855349-04:00",
+      "runnerFinishedAt": "2026-09-26T06:13:56.0144663-04:00",
+      "result": "127 passed, zero failed/skipped; matching restore/build preceded the final no-build/no-restore run.",
+      "serviceBlob": "288c86363f959208852654d11a52602170302dbc"
     }
   ],
   "environmentRecovery": [

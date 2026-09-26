@@ -125,6 +125,21 @@ TRX cases/counters; missing, malformed, empty, unsuccessful, or mismatched repor
 were rejected. Focused/native rows overlap the full suite and must not be added
 as unique coverage.
 
+### Saved command chronology
+
+`validation.json` now orders all sixteen retained build/test commands and records
+their actual exit codes and statuses, including the failed compile/full build,
+qualified WinUI recovery, intermediate suites, and final five runs. Commands
+come from saved invocations; process-local setup/redirection is described
+separately rather than publishing private paths.
+
+Twelve commands have original TRX `TestRun/Times` start/finish attributes.
+Those are **runner timestamps**, not shell, restore, or compilation boundaries.
+Exact shell start/end times are unavailable in the retained records and are
+explicitly null. The three build/copy commands have no runner timestamps; the
+failed focused compilation produced no TRX. No missing time was reconstructed
+from file metadata or elapsed duration, and no command was rerun to fill a gap.
+
 Shared's 33 skips are 16 DeviceIdentity, nine LocalCommandRunner, and seven MXC
 integration cases gated by `OPENCLAW_RUN_INTEGRATION`, plus the one separately
 opt-in Whisper native case. Native opt-in variables were cleared before ordinary
