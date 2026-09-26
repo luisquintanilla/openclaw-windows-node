@@ -26,7 +26,8 @@ not in the general MEAI options. Existing DI continues to own
 `TextToSpeechService`; no global or competing `ITextToSpeechClient` registration
 is introduced. This callback is a small composition seam, not a standalone
 reusable Windows provider: other consumers would still need to supply its
-Windows synthesis/voice-policy callback.
+Windows synthesis/voice-policy callback. An injected fake client does not run
+that configured-voice policy; the native tests retain the callback to cover it.
 
 The service owns the adapter, including an internally injected test client.
 Each native invocation owns and disposes its synthesizer, synthesis stream and
@@ -41,6 +42,8 @@ the adapter rejects new calls without synchronously waiting on the UI thread
 or destroying another call's native resources. Accepted calls finish or cancel
 through their own tokens and `using` scopes. The adapter does not own the
 service or the callback's captured settings.
+Disposal is terminal for synthesis even though the existing readiness snapshot
+describes configured provider availability rather than service lifetime.
 
 Cancellation before synthesis prevents the callback. Cancellation during the
 Windows async operation is forwarded to its WinRT task. Cancellation after it
@@ -168,7 +171,9 @@ $env:OPENCLAW_TRAY_DATA_DIR = Join-Path (Get-Location) 'artifacts\tts-test-setti
 dotnet build .\tests\OpenClaw.Tray.Tests\OpenClaw.Tray.Tests.csproj
 dotnet test .\tests\OpenClaw.Tray.Tests\OpenClaw.Tray.Tests.csproj --no-build --no-restore --filter FullyQualifiedName~WindowsTextToSpeechClientTests
 dotnet build .\tests\OpenClaw.Tray.UITests\OpenClaw.Tray.UITests.csproj -r win-x64 -p:Platform=x64
+$env:OPENCLAW_RUN_NATIVE_WINDOWS_TTS = '1'
 dotnet test .\tests\OpenClaw.Tray.UITests\OpenClaw.Tray.UITests.csproj --no-build --no-restore -r win-x64 -p:Platform=x64 --filter FullyQualifiedName~WindowsTextToSpeechServiceTests
+Remove-Item Env:\OPENCLAW_RUN_NATIVE_WINDOWS_TTS
 .\build.ps1 -NoTrustRepository
 dotnet build .\tests\OpenClaw.Shared.Tests\OpenClaw.Shared.Tests.csproj
 dotnet test .\tests\OpenClaw.Shared.Tests\OpenClaw.Shared.Tests.csproj --no-build --no-restore
@@ -180,6 +185,11 @@ nonzero test count. The `NativeWindowsSpeech` category synthesizes through the
 actual service and installed OS voice, but replaces playback with an in-memory
 capture. It must not play sound or download a model. Tests use temporary
 settings and Piper directories and do not read real API keys. The three native
+cases require `OPENCLAW_RUN_NATIVE_WINDOWS_TTS=1`; ordinary CI may lack voices
+and skips them without that explicit opt-in. After opt-in, unavailable or broken
+native speech fails the tests, rather than becoming a passing or skipped proof.
+Only a run with all three cases passed and zero skipped counts as native proof.
+These native
 cases retain the production service, its default client construction, the real
 adapter, voice resolution, OS synthesis and WAV copy. Only playback is replaced.
 Other service cases replace both the synthesis client and playback, except the

@@ -12,6 +12,15 @@ using Xunit.Abstractions;
 
 namespace OpenClaw.Tray.UITests;
 
+public sealed class NativeWindowsSpeechFactAttribute : FactAttribute
+{
+    public NativeWindowsSpeechFactAttribute()
+    {
+        if (Environment.GetEnvironmentVariable("OPENCLAW_RUN_NATIVE_WINDOWS_TTS") != "1")
+            Skip = "Set OPENCLAW_RUN_NATIVE_WINDOWS_TTS=1 to synthesize silently using installed Windows voices.";
+    }
+}
+
 /// <summary>Real service tests. Playback is always replaced; no sound or cloud calls.</summary>
 public sealed class WindowsTextToSpeechServiceTests(ITestOutputHelper output)
 {
@@ -205,6 +214,20 @@ public sealed class WindowsTextToSpeechServiceTests(ITestOutputHelper output)
     }
 
     [Fact]
+    public async Task Dispose_IsTerminalForTheWindowsAdapterWithoutStartingSynthesisOrPlayback()
+    {
+        using var adapter = new WindowsTextToSpeechClient((_, _, _) =>
+            throw new Xunit.Sdk.XunitException("Disposed adapter must not start synthesis."));
+        using var fixture = new Fixture(speechClient: adapter);
+        fixture.Service.Dispose();
+
+        await Assert.ThrowsAsync<ObjectDisposedException>(() =>
+            fixture.Service.SpeakAsync(new() { Text = "hello", Provider = "windows" }));
+
+        Assert.Equal(0, fixture.PlayCalls);
+    }
+
+    [NativeWindowsSpeechFact]
     [Trait("Category", "NativeWindowsSpeech")]
     public async Task NativeWindows_DefaultAndStaleConfiguredVoiceReturnSilentPcmWav()
     {
@@ -217,7 +240,7 @@ public sealed class WindowsTextToSpeechServiceTests(ITestOutputHelper output)
         Assert.Equal(2, fixture.PlayCalls);
     }
 
-    [Fact]
+    [NativeWindowsSpeechFact]
     [Trait("Category", "NativeWindowsSpeech")]
     public async Task NativeWindows_UnreadyDefaultPiperUsesRealAdapterAndSilentOfflineFallback()
     {
@@ -236,7 +259,7 @@ public sealed class WindowsTextToSpeechServiceTests(ITestOutputHelper output)
         AssertPcmWave(fixture.Audio!);
     }
 
-    [Fact]
+    [NativeWindowsSpeechFact]
     [Trait("Category", "NativeWindowsSpeech")]
     public async Task NativeWindows_ExplicitInstalledVoiceWorksAndMissingVoiceStaysStrict()
     {
