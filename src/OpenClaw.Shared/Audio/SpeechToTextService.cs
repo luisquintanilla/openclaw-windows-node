@@ -3,48 +3,111 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Whisper.net;
-using Whisper.net.Ggml;
 
 namespace OpenClaw.Shared.Audio;
 
 /// <summary>
-/// Wraps Whisper.net for speech-to-text transcription.
-/// Lazily loads the model on first use and caches the factory.
-/// Thread-safe: concurrent calls are serialized by a semaphore.
+/// Owns Whisper model loading and PCM conversion.
+/// Transcription, model replacement, unloading, and disposal share one gate.
 /// </summary>
-public sealed class SpeechToTextService : IDisposable
+public sealed class SpeechToTextService : IDisposable, IAsyncDisposable
 {
     private readonly IOpenClawLogger _logger;
     private readonly SemaphoreSlim _gate = new(1, 1);
     private WhisperFactory? _factory;
     private string? _loadedModelPath;
+    private bool _disposed;
 
-    public bool IsModelLoaded => _factory != null;
-    public string? LoadedModelPath => _loadedModelPath;
+    public bool IsModelLoaded => Volatile.Read(ref _factory) != null;
+    public string? LoadedModelPath => Volatile.Read(ref _loadedModelPath);
 
     public SpeechToTextService(IOpenClawLogger logger)
     {
         _logger = logger;
     }
 
-    /// <summary>Load (or reload) the Whisper model from disk.</summary>
+    /// <summary>Load a model when idle. Use LoadModelAsync if transcription may be active.</summary>
     public void LoadModel(string modelPath)
     {
+        EnterQuiescentLifecycle();
+        try
+        {
+            LoadModelCore(modelPath);
+        }
+        finally
+        {
+            _gate.Release();
+        }
+    }
+
+    /// <summary>Wait asynchronously for active transcription, then load the model off the caller context.</summary>
+    public async Task LoadModelAsync(string modelPath, CancellationToken cancellationToken = default)
+    {
+        await _gate.WaitAsync(cancellationToken).ConfigureAwait(ConfigureAwaitOptions.ForceYielding);
+        try
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            LoadModelCore(modelPath);
+        }
+        finally
+        {
+            _gate.Release();
+        }
+    }
+
+    private void LoadModelCore(string modelPath)
+    {
+        ObjectDisposedException.ThrowIf(_disposed, this);
         if (!System.IO.File.Exists(modelPath))
             throw new System.IO.FileNotFoundException($"Whisper model not found: {modelPath}");
 
-        _factory?.Dispose();
-        _factory = WhisperFactory.FromPath(modelPath);
-        _loadedModelPath = modelPath;
+        ReleaseModel();
+        try
+        {
+            _factory = WhisperFactory.FromPath(modelPath);
+            _loadedModelPath = modelPath;
+        }
+        catch
+        {
+            ReleaseModel();
+            throw;
+        }
         _logger.Info($"Whisper model loaded: {modelPath}");
     }
 
-    /// <summary>Unload the current model and free memory.</summary>
+    /// <summary>Unload an idle model. Use UnloadModelAsync if transcription may be active.</summary>
     public void UnloadModel()
     {
-        _factory?.Dispose();
-        _factory = null;
-        _loadedModelPath = null;
+        EnterQuiescentLifecycle();
+        try
+        {
+            UnloadModelCore();
+        }
+        finally
+        {
+            _gate.Release();
+        }
+    }
+
+    /// <summary>Wait asynchronously for active transcription before freeing the model.</summary>
+    public async Task UnloadModelAsync(CancellationToken cancellationToken = default)
+    {
+        await _gate.WaitAsync(cancellationToken).ConfigureAwait(ConfigureAwaitOptions.ForceYielding);
+        try
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            UnloadModelCore();
+        }
+        finally
+        {
+            _gate.Release();
+        }
+    }
+
+    private void UnloadModelCore()
+    {
+        ObjectDisposedException.ThrowIf(_disposed, this);
+        ReleaseModel();
         _logger.Info("Whisper model unloaded");
     }
 
@@ -57,29 +120,33 @@ public sealed class SpeechToTextService : IDisposable
         string language = "auto",
         CancellationToken cancellationToken = default)
     {
-        if (_factory == null)
-            throw new InvalidOperationException("No Whisper model is loaded. Call LoadModel first.");
-
-        await _gate.WaitAsync(cancellationToken);
+        // Enter native processing off the caller context even when admission is
+        // uncontended, so lifecycle completion does not depend on the UI thread.
+        await _gate.WaitAsync(cancellationToken).ConfigureAwait(ConfigureAwaitOptions.ForceYielding);
         try
         {
+            ObjectDisposedException.ThrowIf(_disposed, this);
+            var factory = _factory ??
+                throw new InvalidOperationException("No Whisper model is loaded. Call LoadModel first.");
+            cancellationToken.ThrowIfCancellationRequested();
             // Whisper.net's WithLanguage expects either "auto" or a 2-letter
             // ISO 639-1 code. The capability validator accepts the broader
             // BCP-47 shape ("en-US", "zh-Hans-CN") because that's what the
             // public docs advertise; normalize down here so Whisper actually
             // sees something it understands.
             var whisperLang = NormalizeForWhisper(language);
-            var builder = _factory.CreateBuilder()
+            var builder = factory.CreateBuilder()
                 .WithLanguage(whisperLang)
                 .WithThreads(Math.Max(1, Environment.ProcessorCount / 2));
 
             using var processor = builder.Build();
-
             using var wavStream = PcmToWavStream(samples, 16000);
 
             var results = new List<TranscriptionResult>();
-            await foreach (var segment in processor.ProcessAsync(wavStream, cancellationToken))
+            await foreach (var segment in processor.ProcessAsync(wavStream, cancellationToken)
+                .ConfigureAwait(false))
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 var text = segment.Text?.Trim();
                 if (!string.IsNullOrEmpty(text))
                 {
@@ -93,6 +160,7 @@ public sealed class SpeechToTextService : IDisposable
                 }
             }
 
+            cancellationToken.ThrowIfCancellationRequested();
             return results;
         }
         finally
@@ -174,9 +242,53 @@ public sealed class SpeechToTextService : IDisposable
         return primary;
     }
 
+    private void ReleaseModel()
+    {
+        var factory = _factory;
+        _factory = null;
+        _loadedModelPath = null;
+        factory?.Dispose();
+    }
+
+    private void EnterQuiescentLifecycle()
+    {
+        if (!_gate.Wait(0))
+            throw new InvalidOperationException("Whisper is busy. Use the asynchronous model lifecycle API.");
+    }
+
+    /// <summary>Dispose when idle. Use DisposeAsync if transcription may be active.</summary>
     public void Dispose()
     {
-        _factory?.Dispose();
-        _gate.Dispose();
+        EnterQuiescentLifecycle();
+        try
+        {
+            DisposeCore();
+        }
+        finally
+        {
+            _gate.Release();
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await _gate.WaitAsync().ConfigureAwait(ConfigureAwaitOptions.ForceYielding);
+        try
+        {
+            DisposeCore();
+        }
+        finally
+        {
+            _gate.Release();
+        }
+    }
+
+    private void DisposeCore()
+    {
+        if (_disposed) return;
+        _disposed = true;
+        ReleaseModel();
+        // Keep the managed gate alive so already queued callers can observe
+        // disposal rather than race a disposed semaphore.
     }
 }

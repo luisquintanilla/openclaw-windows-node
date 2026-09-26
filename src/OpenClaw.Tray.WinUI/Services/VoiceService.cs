@@ -126,7 +126,7 @@ public sealed class VoiceService : IAsyncDisposable
         if (!_stt.IsModelLoaded)
         {
             var modelPath = _modelManager.GetModelPath(modelName);
-            _stt.LoadModel(modelPath);
+            await _stt.LoadModelAsync(modelPath, cancellationToken).ConfigureAwait(false);
         }
     }
 
@@ -485,6 +485,6 @@ public sealed class VoiceService : IAsyncDisposable
     public async ValueTask DisposeAsync()
     {
         await StopAsync();
-        _stt.Dispose();
+        await _stt.DisposeAsync().ConfigureAwait(false);
     }
 }
